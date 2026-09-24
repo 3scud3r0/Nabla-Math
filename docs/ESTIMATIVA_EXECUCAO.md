@@ -1,6 +1,6 @@
 # Estimativa de execução do roteiro global
 
-Atualizada em 24/09/2026. São **intervalos de planejamento**, não previsão de descobertas, datas de AGI ou compromisso de lançamento. Considera dois engenheiros experientes em dedicação integral, consultoria regular de especialista em Lean e física, infraestrutura modesta, revisão independente e módulos de escopo explícito. A mesma pessoa trabalhando sozinha e em tempo parcial amplia bastante os prazos.
+Atualizada em 24/09/2026. São **intervalos iniciais de planejamento**, não previsão de descobertas, datas de AGI ou compromisso de lançamento. A estimativa abaixo foi feita para o recorte descrito antes da auditoria mais recente; os protótipos agora existentes reduzem parte da escrita inicial, mas não eliminam validação, segurança, operação nem revisão externa. Recalcular os tickets após cada critério do [`roadmap`](ROADMAP_GLOBAL_RESEARCH.md). Considera dois engenheiros experientes em dedicação integral, consultoria regular de especialista em Lean e física, infraestrutura modesta e revisão independente.
 
 | Marco | Entrega observável | Esforço adicional estimado | Calendário indicativo, com paralelismo |
 | --- | --- | ---: | ---: |
@@ -12,9 +12,9 @@ Atualizada em 24/09/2026. São **intervalos de planejamento**, não previsão de
 | F5 | Serviço multiusuário seguro, verificação redundante, atribuição, métricas auditáveis e operação | 12–30 pessoa-meses | 9–20 meses |
 | F6 | SDKs Rust/C/C++, benchmarks de treinamento e módulos científicos adicionais | 12–36 pessoa-meses por recorte | 9–24+ meses |
 
-O total bruto é aproximadamente **44–115 pessoa-meses** para um produto de escopo delimitado; tarefas simultâneas fazem o calendário estimado de **2,5 a 5 anos** para equipe pequena de 2–4 pessoas com revisão científica. Em dedicação individual parcial, prever **5–10+ anos**. Não há um término de “toda a ciência de A a Z”: cobertura e manutenção são contínuas.
+O total original foi aproximadamente **44–115 pessoa-meses** para um produto de escopo delimitado; isso não é uma estimativa precisa do trabalho restante em 24/09/2026. Uma reestimativa honesta depende de fechar decisões F0, escolher as referências externas de F3, definir serviço e equipe de F5 e escolher benchmarks de F4/F6. Para uma pessoa em tempo parcial, não há calendário confiável sem decompor e medir essas tarefas. Não há término de “toda a ciência de A a Z”: cobertura e manutenção são contínuas.
 
-**Estado atual:** núcleo racional local, LaTeX fonte, SQLite, caso orbital analítico e SVG, duas instâncias racionais verificadas pelo Lean na CI, curadoria local e troca manual de snapshots. F0–F6 **não** estão concluídas. O início das etapas seguintes exige escolher licença do código, titulares de dados, identidade da organização Hugging Face e política de contribuição; nenhuma plataforma pública será habilitada automaticamente. A CI Lean deverá permanecer verde e a tradução matemática revisada para ampliar a cobertura.
+**Estado atual:** núcleo racional local, LaTeX fonte, SQLite, casos analíticos de órbita/fluido, Lean para exemplos limitados, curadoria local e troca de snapshots. Site estático publicado; coordenador não implantado; dataset público não confirmado. F0–F6 **não** estão concluídas. Dependências externas incluem direitos e revisão de dados, identidade/organização para publicação, implantação e operador do serviço global. A CI Lean deverá permanecer verde, e a tradução matemática precisa de revisão antes de ampliar a cobertura.
 
 ## Portas de validação
 
