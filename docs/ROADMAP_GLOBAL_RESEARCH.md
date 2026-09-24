@@ -1,8 +1,10 @@
 # NablaMath — roteiro executável para pesquisa distribuída
 
-**Estado:** especificação e checklist, não implementação. **Revisão:** 2026-09-24. **Base:** `main` em `d1e20635edd0b54c72a1d50d1235d9fa7a610c99`.
+**Estado:** especificação e checklist; núcleo local alpha e fonte inicial do site iniciados, fases ainda não concluídas. **Revisão:** 2026-09-24. **Base histórica:** `main` em `d1e20635edd0b54c72a1d50d1235d9fa7a610c99`.
 
 Este documento orienta pessoas e agentes que vão transformar o acervo histórico em um pacote Python instalável, uma plataforma de pesquisa local e, progressivamente, uma rede aberta de trabalho científico. Consulte também `docs/AI_HANDOFF.md` e `docs/ARCHITECTURE_AND_ACCEPTANCE.md`. A pasta `current scripts/` contém versões históricas; nenhum caminho futuro listado aqui deve ser anunciado como implementado antes de existir, passar pelos testes e ser publicado.
+
+**Prévia implementada nesta branch:** `src/nablamath/` oferece parser aritmético limitado, regras com condição, avaliação racional, banco SQLite, exportação local JSONL e LaTeX. O site em `website/` é estático com métricas zero explicitamente rotuladas. Consulte `docs/CORE_ALPHA.md`. A tabela abaixo continua descrevendo o **destino arquitetural**; várias linhas ainda não existem.
 
 ## 1. Objetivo e limites
 

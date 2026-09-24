@@ -1,5 +1,11 @@
 # NablaMath
 
+## Prévia executável: núcleo local alpha
+
+O repositório agora contém uma **prévia experimental de aritmética racional rastreável** em `src/nablamath/`, instalável localmente com `python -m pip install -e .` ou com os scripts `setup.cmd`/`setup.ps1` no Windows e `setup.sh` em Linux/macOS. Experimente `nabla run "(x+x)/x" --value x=3 --tex report.tex`; o comando mostra etapas, preserva `x != 0`, salva SQLite e gera LaTeX. Veja [instruções e limitações da alpha](docs/CORE_ALPHA.md). O núcleo não implementa os modelos científicos ou a rede global descritos abaixo.
+
+Verificação de desenvolvimento: `python -m unittest discover -s tests -v`. Lean e compilação PDF são opcionais e não fazem parte da instalação básica.
+
 ## Roteiro para a plataforma de pesquisa distribuída
 
 O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. **É um plano; esses módulos, serviços, site e dataset ainda não estão implementados nem publicados.**

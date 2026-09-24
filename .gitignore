@@ -1,0 +1,11 @@
+.venv/
+.nabla/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+/*.aux
+/*.log
+/*.pdf
+/*.tex
