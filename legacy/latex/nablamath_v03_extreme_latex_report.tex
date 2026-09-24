@@ -1,0 +1,325 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\geometry{margin=1.7cm}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{NablaMath v0.3}
+\rhead{Relatorio extremo}
+\cfoot{\thepage}
+\title{NablaMath v0.3: Relatorio matematico extremo}
+\author{NablaMath}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{abstract}
+Este documento foi gerado por um modulo de relatorios matematicos em LaTeX. Ele combina expressao simbolica, derivadas passo a passo, gradiente, Hessiana, diagnostico numerico e manifesto de visualizacao.
+\end{abstract}
+\tableofcontents
+\newpage
+\section{Analise simbolica minuciosa}
+\subsection{Expressao original}
+
+\[
+f=\left(x^{2} + y + -11\right)^{2} + \left(x + y^{2} + -7\right)^{2}
+\]
+
+A expressao e mantida como arvore simbolica, permitindo derivadas exatas, gradiente, Hessiana e avaliacao numerica.
+
+\subsection{Gradiente}
+
+\[
+\nabla f=\begin{bmatrix}2\left(x^{2} + y + -11\right)2x + 2\left(x + y^{2} + -7\right)\\2\left(x^{2} + y + -11\right) + 2\left(x + y^{2} + -7\right)2y\end{bmatrix}
+\]
+
+\subsubsection{Derivada parcial em relacao a $x$}
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dx}\left(\left(x^{2} + y + -11\right)^{2} + \left(x + y^{2} + -7\right)^{2}\right)=\frac{d}{dx}\left(\left(x^{2} + y + -11\right)^{2}\right)+\frac{d}{dx}\left(\left(x + y^{2} + -7\right)^{2}\right)
+\]
+
+\paragraph{Regra da potencia com cadeia} Aqui u=x\textasciicircum{}\{2\} + y + -11 e n=2.
+
+\[
+\frac{d}{dx}u^n=n u^{n-1}u'
+\]
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dx}\left(x^{2} + y + -11\right)=\frac{d}{dx}\left(x^{2} + y\right)+\frac{d}{dx}\left(-11\right)
+\]
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dx}\left(x^{2} + y\right)=\frac{d}{dx}\left(x^{2}\right)+\frac{d}{dx}\left(y\right)
+\]
+
+\paragraph{Regra da potencia com cadeia} Aqui u=x e n=2.
+
+\[
+\frac{d}{dx}u^n=n u^{n-1}u'
+\]
+
+\paragraph{Regra do simbolo} A derivada de uma variavel em relacao a ela mesma e 1; em relacao a outra variavel e 0.
+
+\[
+\frac{d}{dx}x=1
+\]
+
+\paragraph{Regra do simbolo} A derivada de uma variavel em relacao a ela mesma e 1; em relacao a outra variavel e 0.
+
+\[
+\frac{d}{dx}y=0
+\]
+
+\paragraph{Regra da constante} Toda constante tem derivada zero.
+
+\[
+\frac{d}{dx}-11=0
+\]
+
+\paragraph{Regra da potencia com cadeia} Aqui u=x + y\textasciicircum{}\{2\} + -7 e n=2.
+
+\[
+\frac{d}{dx}u^n=n u^{n-1}u'
+\]
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dx}\left(x + y^{2} + -7\right)=\frac{d}{dx}\left(x + y^{2}\right)+\frac{d}{dx}\left(-7\right)
+\]
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dx}\left(x + y^{2}\right)=\frac{d}{dx}\left(x\right)+\frac{d}{dx}\left(y^{2}\right)
+\]
+
+\paragraph{Regra do simbolo} A derivada de uma variavel em relacao a ela mesma e 1; em relacao a outra variavel e 0.
+
+\[
+\frac{d}{dx}x=1
+\]
+
+\paragraph{Regra da potencia com cadeia} Aqui u=y e n=2.
+
+\[
+\frac{d}{dx}u^n=n u^{n-1}u'
+\]
+
+\paragraph{Regra do simbolo} A derivada de uma variavel em relacao a ela mesma e 1; em relacao a outra variavel e 0.
+
+\[
+\frac{d}{dx}y=0
+\]
+
+\paragraph{Regra da constante} Toda constante tem derivada zero.
+
+\[
+\frac{d}{dx}-7=0
+\]
+
+\paragraph{Resultado final da derivada} A expressao final e simplificada pelo motor simbolico da NablaMath.
+
+\[
+\frac{\partial}{\partial x}\left(\left(x^{2} + y + -11\right)^{2} + \left(x + y^{2} + -7\right)^{2}\right)=2\left(x^{2} + y + -11\right)2x + 2\left(x + y^{2} + -7\right)
+\]
+
+\subsubsection{Derivada parcial em relacao a $y$}
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dy}\left(\left(x^{2} + y + -11\right)^{2} + \left(x + y^{2} + -7\right)^{2}\right)=\frac{d}{dy}\left(\left(x^{2} + y + -11\right)^{2}\right)+\frac{d}{dy}\left(\left(x + y^{2} + -7\right)^{2}\right)
+\]
+
+\paragraph{Regra da potencia com cadeia} Aqui u=x\textasciicircum{}\{2\} + y + -11 e n=2.
+
+\[
+\frac{d}{dy}u^n=n u^{n-1}u'
+\]
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dy}\left(x^{2} + y + -11\right)=\frac{d}{dy}\left(x^{2} + y\right)+\frac{d}{dy}\left(-11\right)
+\]
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dy}\left(x^{2} + y\right)=\frac{d}{dy}\left(x^{2}\right)+\frac{d}{dy}\left(y\right)
+\]
+
+\paragraph{Regra da potencia com cadeia} Aqui u=x e n=2.
+
+\[
+\frac{d}{dy}u^n=n u^{n-1}u'
+\]
+
+\paragraph{Regra do simbolo} A derivada de uma variavel em relacao a ela mesma e 1; em relacao a outra variavel e 0.
+
+\[
+\frac{d}{dy}x=0
+\]
+
+\paragraph{Regra do simbolo} A derivada de uma variavel em relacao a ela mesma e 1; em relacao a outra variavel e 0.
+
+\[
+\frac{d}{dy}y=1
+\]
+
+\paragraph{Regra da constante} Toda constante tem derivada zero.
+
+\[
+\frac{d}{dy}-11=0
+\]
+
+\paragraph{Regra da potencia com cadeia} Aqui u=x + y\textasciicircum{}\{2\} + -7 e n=2.
+
+\[
+\frac{d}{dy}u^n=n u^{n-1}u'
+\]
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dy}\left(x + y^{2} + -7\right)=\frac{d}{dy}\left(x + y^{2}\right)+\frac{d}{dy}\left(-7\right)
+\]
+
+\paragraph{Regra da soma} Derivamos cada parcela separadamente.
+
+\[
+\frac{d}{dy}\left(x + y^{2}\right)=\frac{d}{dy}\left(x\right)+\frac{d}{dy}\left(y^{2}\right)
+\]
+
+\paragraph{Regra do simbolo} A derivada de uma variavel em relacao a ela mesma e 1; em relacao a outra variavel e 0.
+
+\[
+\frac{d}{dy}x=0
+\]
+
+\paragraph{Regra da potencia com cadeia} Aqui u=y e n=2.
+
+\[
+\frac{d}{dy}u^n=n u^{n-1}u'
+\]
+
+\paragraph{Regra do simbolo} A derivada de uma variavel em relacao a ela mesma e 1; em relacao a outra variavel e 0.
+
+\[
+\frac{d}{dy}y=1
+\]
+
+\paragraph{Regra da constante} Toda constante tem derivada zero.
+
+\[
+\frac{d}{dy}-7=0
+\]
+
+\paragraph{Resultado final da derivada} A expressao final e simplificada pelo motor simbolico da NablaMath.
+
+\[
+\frac{\partial}{\partial y}\left(\left(x^{2} + y + -11\right)^{2} + \left(x + y^{2} + -7\right)^{2}\right)=2\left(x^{2} + y + -11\right) + 2\left(x + y^{2} + -7\right)2y
+\]
+
+\subsection{Hessiana}
+
+\[
+H_f=\begin{bmatrix}22x2x + 2\left(x^{2} + y + -11\right)2 + 2 & 22x + 22y\\22x + 22y & 2 + 22y2y + 2\left(x + y^{2} + -7\right)2\end{bmatrix}
+\]
+
+A Hessiana resume a curvatura local da funcao. Em otimizacao, ela ajuda a distinguir minimos, maximos e pontos de sela.
+
+
+\section{Calculo numerico em malha}
+Esta varredura numerica simples avalia a funcao em uma malha pequena. Ela nao substitui otimizacao global, mas oferece diagnostico inicial do dominio.
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+$x$ & $y$ & $f(x,y)$\\
+\midrule
+-6 & -6 & 890\\
+-6 & -4 & 450\\
+-6 & -2 & 610\\
+-6 & 0 & 794\\
+-6 & 2 & 810\\
+-6 & 4 & 850\\
+-6 & 6 & 1490\\
+-4 & -6 & 626\\
+-4 & -4 & 26\\
+-4 & -2 & 58\\
+-4 & 0 & 146\\
+-4 & 2 & 98\\
+-4 & 4 & 106\\
+-4 & 6 & 746\\
+-2 & -6 & 898\\
+-2 & -4 & 170\\
+-2 & -2 & 106\\
+-2 & 0 & 130\\
+-2 & 2 & 50\\
+-2 & 4 & 58\\
+-2 & 6 & 730\\
+0 & -6 & 1130\\
+0 & -4 & 306\\
+0 & -2 & 178\\
+0 & 0 & 170\\
+0 & 2 & 90\\
+0 & 4 & 130\\
+0 & 6 & 866\\
+2 & -6 & 1130\\
+2 & -4 & 242\\
+2 & -2 & 82\\
+2 & 0 & 74\\
+2 & 2 & 26\\
+2 & 4 & 130\\
+2 & 6 & 962\\
+4 & -6 & 1090\\
+4 & -4 & 170\\
+4 & -2 & 10\\
+4 & 0 & 34\\
+4 & 2 & 50\\
+4 & 4 & 250\\
+4 & 6 & 1210\\
+6 & -6 & 1586\\
+6 & -4 & 666\\
+6 & -2 & 538\\
+6 & 0 & 626\\
+6 & 2 & 738\\
+6 & 4 & 1066\\
+6 & 6 & 2186\\
+\bottomrule
+\end{tabular}
+\end{center}
+\[
+\min_{grid} f \approx 10\quad \text{em}\quad (x,y)=(4,-2)
+\]
+
+
+\section{Metadados reprodutiveis}
+\begin{verbatim}
+{
+  "generator": "NablaMath ExtremeLatexPDFReport",
+  "created_at_unix": 1777159164.7620945,
+  "expression": "(((((x^2) + y) + -11)^2) + (((x + (y^2)) + -7)^2))",
+  "latex": "\\left(x^{2} + y + -11\\right)^{2} + \\left(x + y^{2} + -7\\right)^{2}",
+  "variables": [
+    "x",
+    "y"
+  ]
+}
+\end{verbatim}
+\end{document}
