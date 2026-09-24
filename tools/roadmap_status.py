@@ -1,4 +1,4 @@
-"""Audita presença de caminhos citados no inventário; presença não significa conclusão."""
+"""Exibe os estados declarados das fases; não infere conclusão pela presença de arquivos."""
 
 from pathlib import Path
 import re
@@ -10,16 +10,15 @@ DOC = ROOT / "docs/ROADMAP_GLOBAL_RESEARCH.md"
 
 def main() -> None:
     source = DOC.read_text(encoding="utf-8")
-    section = source.split("## 5. Inventário", 1)[1].split("## 6. Checklist", 1)[0]
-    candidates = re.findall(r"^\| `([^`]+)` \|", section, re.MULTILINE)
-    paths = [item for item in candidates if " ou " not in item and "*" not in item]
-    present = [path for path in paths if (ROOT / path).is_file()]
-    missing = [path for path in paths if not (ROOT / path).is_file()]
-    print(f"Caminhos específicos existentes: {len(present)}/{len(paths)}")
-    print("AVISO: um arquivo existente pode estar incompleto; a contagem não mede fases.")
-    print("Caminhos ainda não implementados:")
-    for path in missing:
-        print("-", path)
+    phases = re.findall(r"^- \[([ xX])\] \*\*(F[0-6])\*\* (.+)$", source, re.MULTILINE)
+    if len(phases) != 7:
+        raise SystemExit(f"Esperadas 7 fases no checklist do roadmap; encontradas {len(phases)}")
+    print("Estado declarado no roadmap (não é auditoria científica):")
+    for checked, phase, summary in phases:
+        status = "marcada" if checked.lower() == "x" else "aberta"
+        print(f"{phase}: {status} — {summary}")
+    print("Arquivos e critérios de aceite: docs/ROADMAP_GLOBAL_RESEARCH.md")
+    print("Nenhuma fase é concluída por contagem ou presença de arquivos.")
 
 
 if __name__ == "__main__":
