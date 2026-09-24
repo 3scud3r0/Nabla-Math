@@ -210,6 +210,8 @@ Arquivos `__init__.py`, tipos, testes de cada regra/modelo, documentação de no
 
 ### Incremento em revisão — 24/09/2026
 
+Novo recorte: contratos de problemas/unidades/evidências, solver linear racional, RK4, diferenciação direta escalar, solução analítica de fluxo laminar em tubo, coordenação SQLite local com duas reexecuções, raiz Merkle, adaptadores de fração canônica C/C++/Rust e guia de leitura. Executar `python tools/roadmap_status.py` para ver caminhos faltantes; a presença dos arquivos não basta para concluir as fases.
+
 - [x] Executor local: expressões racionais, SQLite, reexecução e fonte LaTeX.
 - [x] Caso orbital analítico: vis-viva, período, condições SI, checagens independentes de conservação em testes.
 - [x] Diagrama SVG local em escala da órbita ideal, com foco explícito e texto de acessibilidade.

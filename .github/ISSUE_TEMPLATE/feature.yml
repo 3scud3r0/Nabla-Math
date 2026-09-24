@@ -1,0 +1,22 @@
+name: Recurso da biblioteca
+description: Proposta de funcionalidade implementável e verificável
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Problema concreto e público alvo
+      description: Explique o caso de uso com um exemplo mínimo.
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Entrada, saída, hipóteses e compatibilidade
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Testes de aceite e dependências
+    validations:
+      required: true

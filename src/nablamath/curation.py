@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 import sqlite3
 
+from .dataset.deduplicate import normalized_expression
+from .dataset.cards import write_dataset_card
 from .storage import verify_record
 
 
@@ -25,8 +27,8 @@ def curate(path: Path, destination: Path, *, license_id: str, provenance: str) -
         if not verify_record(item):
             raise ValueError("Registro inválido impede curadoria")
         # Os valores não tornam uma expressão repetida independente para avaliação.
-        source = item["source"].replace(" ", "")
-        bucket = int(hashlib.sha256(source.encode()).hexdigest()[:8], 16) % 10
+        source = normalized_expression(item["source"])
+        bucket = int(source[:8], 16) % 10
         split = "train" if bucket < 8 else "validation" if bucket == 8 else "test"
         groups[item["content_id"]] = {"record": item, "split": split,
                                        "license_declaration": license_id, "provenance": provenance,
@@ -42,6 +44,8 @@ def curate(path: Path, destination: Path, *, license_id: str, provenance: str) -
                                  for key in ("train", "validation", "test")},
                 "license_declaration": license_id, "provenance": provenance,
                 "publication": "local_only", "warning": "No novelty, data rights, or scientific validity implied."}
-    destination.with_suffix(destination.suffix + ".manifest.json").write_text(
+    manifest_path = destination.with_suffix(destination.suffix + ".manifest.json")
+    manifest_path.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_dataset_card(manifest_path, destination.with_suffix(destination.suffix + ".CARD.md"))
     return manifest

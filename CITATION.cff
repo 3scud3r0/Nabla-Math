@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "Cite a versão exata do commit e a licença efetivamente publicada."
+title: "NablaMath: biblioteca experimental de cálculo rastreável"
+authors:
+  - name: "NablaMath contributors"
+repository-code: "https://github.com/3scud3r0/Nabla-Math"
+type: software

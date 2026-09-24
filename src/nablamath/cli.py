@@ -15,6 +15,7 @@ from .expression import DomainError, render
 from .formal import verify_with_lean
 from .orbit_svg import write_earth_orbit_svg
 from .orbits import earth_circular_orbit
+from .physics.fluids import PipeFlow
 from .report import write_report
 from .research import calculate
 from .storage import export_verified, import_snapshot, load_result, save_result, verify_record
@@ -61,6 +62,12 @@ def main(argv: list[str] | None = None) -> int:
     orbit = commands.add_parser("orbit", help="Órbita terrestre circular ideal em unidades SI")
     orbit.add_argument("--altitude-m", type=float, required=True)
     orbit.add_argument("--svg", type=Path, help="Gravar visualização orbital SVG em escala")
+    fluid = commands.add_parser("fluid", help="Perfil analítico laminar em tubo circular (SI)")
+    fluid.add_argument("--radius-m", type=float, required=True)
+    fluid.add_argument("--length-m", type=float, required=True)
+    fluid.add_argument("--pressure-pa", type=float, required=True)
+    fluid.add_argument("--viscosity-pa-s", type=float, required=True)
+    fluid.add_argument("--density-kg-m3", type=float, required=True)
     formal = commands.add_parser("formal", help="Provar no Lean uma instância racional armazenada")
     formal.add_argument("identifier")
     formal.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
@@ -78,6 +85,11 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(object_orbit.summary(), ensure_ascii=False, indent=2))
             if args.svg:
                 print("SVG:", write_earth_orbit_svg(object_orbit, args.svg))
+            return 0
+        if args.command == "fluid":
+            flow = PipeFlow(args.radius_m, args.length_m, args.pressure_pa,
+                            args.viscosity_pa_s, args.density_kg_m3)
+            print(json.dumps(flow.solve().__dict__, ensure_ascii=False, indent=2))
             return 0
         if args.command == "curate":
             print(json.dumps(curate(args.db, args.destination, license_id=args.license,
