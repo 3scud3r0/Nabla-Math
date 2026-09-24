@@ -12,3 +12,10 @@ jobs:
       - run: python -m pip install -e .
       - run: python -m unittest discover -s tests -v
       - run: python tools/roadmap_status.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm test
+        working-directory: website
+      - run: npm run build
+        working-directory: website
