@@ -13,7 +13,7 @@
   <header class="nav shell">
     <a class="brand" href="#inicio" aria-label="NablaMath, início"><span class="glyph">∇</span> NablaMath</a>
     <nav aria-label="Navegação principal">
-      <a href="#progresso">Progresso</a><a href="#instalar">Instalar</a><a href="#funciona">Como funciona</a><a href="#participar">Participar</a>
+      <a href="#progresso">Progresso</a><a href="#fronteira">Mapa</a><a href="#instalar">Instalar</a><a href="#participar">Contribuir</a>
     </nav>
     <a class="nav-link" href="https://github.com/3scud3r0/Nabla-Math">GitHub ↗</a>
   </header>
@@ -23,7 +23,7 @@
       <h1>Da expressão<br>à <em>evidência.</em></h1>
       <p class="lede">Um lugar para formular, calcular, testar, explicar e preservar trabalho matemático. Começamos com um núcleo local pequeno. A rede científica global é uma meta construída por etapas verificáveis.</p>
       <div class="actions"><a class="button primary" href="https://github.com/3scud3r0/Nabla-Math/blob/main/docs/CORE_ALPHA.md">Experimentar a prévia</a><a class="button secondary" href="https://github.com/3scud3r0/Nabla-Math/blob/main/docs/ROADMAP_GLOBAL_RESEARCH.md">Ler o roteiro ↗</a></div>
-      <p class="note">Há uma ponte experimental para Lean, órbitas ideais e troca manual de registros. Dataset público e rede distribuída ainda não estão disponíveis.</p>
+      <p class="note">Hoje há um núcleo local e uma prévia de computação neste navegador. O mapa até superinteligência é um programa de pesquisa hipotético: nenhum roteiro científico demonstra que esse resultado ocorrerá.</p>
     </section>
     <section class="shell section" id="instalar"><span class="kicker">SEU LABORATÓRIO, SEUS DADOS</span><h2>Calcule no seu computador.</h2><p class="lede">A aplicação local oferece botões para executar cálculos racionais, iniciar e parar um loop limitado, explorar exemplos orbitais e de fluxo laminar, gerar LaTeX e exportar o banco. Compartilhar dados é uma escolha explícita.</p><div class="actions"><a class="button primary" href="https://github.com/3scud3r0/Nabla-Math/releases/tag/v0.1.0-alpha.1">Baixar instalador Windows ↗</a><a class="button secondary" href="https://github.com/3scud3r0/Nabla-Math/blob/main/docs/DESKTOP.md">Guia de instalação ↗</a></div><p class="note">O instalador só aparecerá na versão alpha após a CI Windows aprovar o executável e o release ser publicado. Ele ainda não possui assinatura de código. Em Linux e macOS, use o pacote Python.</p></section>
     <section class="band" id="progresso"><div class="shell">
@@ -34,11 +34,38 @@
         <div class="metric"><strong id="metric-phases">—</strong><span>fases completas de 7</span></div>
       </div>
       <p class="snapshot" id="snapshot-date">Carregando snapshot…</p>
-      <div class="roadmap" aria-label="Fases do projeto">
-        <div><b>F0</b><span>Roteiro</span><small>Documentado; decisões pendentes</small></div>
-        <div><b>F1</b><span>Produto local</span><small>Núcleo alpha parcial</small></div>
-        <div><b>F2</b><span>Lean e relatórios</span><small>Instâncias racionais em revisão</small></div>
-        <div><b>F3+</b><span>Ciência e rede</span><small>Órbitas ideais; troca manual</small></div>
+      <div class="roadmap" aria-label="Sete fases de implementação; todas abertas">
+        <div><b>F0 · ABERTA</b><span>Governança</span><small>Políticas e decisões operacionais</small></div>
+        <div><b>F1 · ABERTA</b><span>Produto local</span><small>Instalação, dados e recuperação</small></div>
+        <div><b>F2 · ABERTA</b><span>Lean</span><small>Provas gerais e tradução revisada</small></div>
+        <div><b>F3 · ABERTA</b><span>Validação</span><small>Referências e agentes isolados</small></div>
+        <div><b>F4 · ABERTA</b><span>Dataset</span><small>Curadoria e avaliação de treino</small></div>
+        <div><b>F5 · ABERTA</b><span>Rede global</span><small>Backend ainda não implantado</small></div>
+        <div><b>F6 · ABERTA</b><span>SDKs e IA</span><small>Interoperabilidade e ablações</small></div>
+      </div>
+    </div></section>
+    <section class="shell section frontier" id="fronteira">
+      <span class="kicker">MAPA DE PESQUISA · HIPÓTESES, NÃO PREVISÕES</span>
+      <h2>Do cálculo auditável a sistemas cada vez mais capazes.</h2>
+      <p class="lede">“Superinteligência” não tem uma definição operacional nem um cronograma aceitos pela ciência. Este mapa separa entregas implementáveis de hipóteses futuras. Cada avanço precisa de teste independente, resultado reproduzível e revisão humana.</p>
+      <ol class="frontier-map">
+        <li class="done"><b>Agora · fundação local</b><strong>Executar e preservar</strong><span>Python, SQLite, cálculos racionais limitados, relatórios, exemplos físicos idealizados e instalador alpha.</span><small>Feito em protótipo; não equivale a pesquisa científica ampla.</small></li>
+        <li class="partial"><b>Próximo · rigor verificável</b><strong>Formalizar e auditar</strong><span>Traduzir um subconjunto explícito para Lean, checar provas gerais e conferir a tradução entre intenção humana e teorema.</span><small>Parcial; exige completar regras e testes de fidelidade.</small></li>
+        <li><b>Porta científica</b><strong>Validar contra o mundo</strong><span>Comparar modelos numéricos com referências independentes, incertezas, unidades e limites de validade.</span><small>Órbitas e fluxo laminar são exemplos iniciais; validação empírica ampla não existe.</small></li>
+        <li><b>Porta de dados</b><strong>Curar e medir utilidade</strong><span>Publicar dados permitidos, sem vazamento, e testar se melhoram modelos em avaliações reservadas.</span><small>Dataset global NablaMath e ganho de treino ainda não demonstrados.</small></li>
+        <li><b>Porta de colaboração</b><strong>Computar em rede</strong><span>Workers voluntários, servidor autenticado, repetição independente, proteção contra abuso e métricas auditáveis.</span><small>O backend global não está implantado. GitHub Pages não recebe jobs.</small></li>
+        <li class="horizon"><b>Horizonte aberto · sem garantia</b><strong>Pesquisa assistida por IA</strong><span>Agentes podem propor conjecturas, experimentos e explicações; verificadores formais e laboratórios avaliam cada alegação.</span><small>Superinteligência é uma possibilidade especulativa, não um marco que este projeto possa prometer ou provar.</small></li>
+      </ol>
+      <p class="note">Setas representam dependências de evidência, não uma curva inevitável de progresso. Uma prova Lean estabelece um resultado sob axiomas formais; não certifica, sozinha, que um modelo físico descreve a natureza.</p>
+    </section>
+    <section class="band contribution" id="participar"><div class="shell">
+      <div class="section-head"><div><span class="kicker">CONTRIBUIÇÃO PELO NAVEGADOR</span><h2>Use parte do seu computador.</h2></div><p>Você escolhe iniciar e pode parar. O cálculo roda localmente em um Web Worker, sem enviar dados ao servidor. O conjunto é demonstrativo, pequeno e não representa descoberta científica.</p></div>
+      <div class="compute-panel">
+        <label for="compute-count">Casos de demonstração (máximo 5.000)</label>
+        <div class="compute-controls"><input id="compute-count" type="number" min="1" max="5000" step="100" value="500"><button class="button primary" id="start-compute" type="button">Iniciar contribuição local</button><button class="button secondary" id="stop-compute" type="button" disabled>Parar</button><button class="button secondary" id="download-compute" type="button" disabled>Baixar resultados JSONL</button></div>
+        <progress id="compute-progress" max="500" value="0"></progress>
+        <p id="compute-status" class="compute-status" aria-live="polite">Pronto. Nada será calculado antes de você iniciar.</p>
+        <p class="note">Esse botão não envia execuções ao NablaMath global: ainda não existe backend público. Baixe o resultado e use o repositório para compartilhar. Os registros mostram verificações aritméticas exatas de exemplos simples, não provas Lean nem novos resultados.</p>
       </div>
     </div></section>
     <section class="shell section" id="funciona">
@@ -51,7 +78,7 @@
       </div>
       <div class="terminal" aria-label="Exemplo de terminal"><div class="terminal-top"><span></span><span></span><span></span><label>Primeiro cálculo</label></div><code>$ nabla run "(x+x)/x" --value x=3<br><i>regra: x+x → 2*x<br>condição: x ≠ 0<br>resultado exato: 2</i></code></div>
     </section>
-    <section class="closing" id="participar"><div class="shell closing-inner"><div><span class="kicker">CONSTRUIR COM RIGOR</span><h2>Cada passo conta.</h2><p>O roteiro indica o que desenvolver, testar e revisar. Contribuições futuras terão origem e limites claros.</p></div><a class="button primary" href="https://github.com/3scud3r0/Nabla-Math">Acompanhar o projeto ↗</a></div></section>
+    <section class="closing"><div class="shell closing-inner"><div><span class="kicker">CONSTRUIR COM RIGOR</span><h2>Cada passo conta.</h2><p>O roteiro indica o que desenvolver, testar e revisar. Contribuições futuras terão origem e limites claros.</p></div><a class="button primary" href="https://github.com/3scud3r0/Nabla-Math">Acompanhar o projeto ↗</a></div></section>
   </main>
   <footer class="shell"><span>∇ NablaMath · protótipo aberto em evolução</span><span>Sem alegação de certificação científica.</span></footer>
 </body>
