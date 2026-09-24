@@ -7,7 +7,7 @@ from nablamath.research import calculate
 class LeanSourceTests(unittest.TestCase):
     def test_instance_has_no_trust_shortcuts(self):
         source = lean_source(calculate("(x+x)/x", {"x": 3}))
-        self.assertIn("import Mathlib", source)
+        self.assertIn("import Mathlib.Tactic", source)
         self.assertIn("norm_num", source)
         self.assertNotIn("sorry", source)
         self.assertNotIn("axiom ", source)

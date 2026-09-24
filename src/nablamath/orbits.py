@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from math import isfinite, pi, sqrt
 
+# WGS 84, NGA: https://earth-info.nga.mil/?action=wgs84&dir=wgs84
 EARTH_MU_M3_S2 = 3.986004418e14
 EARTH_EQUATORIAL_RADIUS_M = 6_378_137.0
 

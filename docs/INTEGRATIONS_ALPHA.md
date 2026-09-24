@@ -6,7 +6,7 @@
 
 ## Órbita de dois corpos
 
-`nabla orbit --altitude-m 400000` imprime parâmetros de órbita terrestre circular ideal. API: `Orbit(mu_m3_s2, pericenter_m, apocenter_m).summary()`. Utiliza quilômetros? **Não:** metros, segundos e m³/s² em toda a API. Considera massa central pontual, sem atmosfera, J2, pressão de radiação, propulsão nem efemérides reais. Testes conferem velocidade/período de LEO em tolerância ampla e, para uma elipse, conservação independente de energia e momento angular em peri/apoastro. Não serve para navegação de missão.
+`nabla orbit --altitude-m 400000` imprime parâmetros de órbita terrestre circular ideal. API: `Orbit(mu_m3_s2, pericenter_m, apocenter_m).summary()`. Usa metros, segundos e m³/s² em toda a API. Constantes [WGS 84 da NGA](https://earth-info.nga.mil/?action=wgs84&dir=wgs84); resultado a 400 km comparado com [ordem de grandeza de velocidade da ISS indicada pela NASA](https://science.nasa.gov/missions/landsat/flying-high-landsat-8-sees-the-international-space-station/) (~7,7 km/s) e [período aproximado](https://science.nasa.gov/earth/earth-observatory/human-spaceflight-factsheet/) (~90 min). Considera massa central pontual, sem atmosfera, J2, pressão de radiação, propulsão nem efemérides reais. Testes conferem conservação independente de energia e momento angular em peri/apoastro. Não serve para navegação de missão.
 
 ## Dataset local
 

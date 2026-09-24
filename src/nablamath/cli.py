@@ -62,7 +62,8 @@ def main(argv: list[str] | None = None) -> int:
     formal = commands.add_parser("formal", help="Provar no Lean uma instância racional armazenada")
     formal.add_argument("identifier")
     formal.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
-    formal.add_argument("--project", type=Path, default=Path(__file__).resolve().parents[2] / "lean")
+    formal.add_argument("--project", type=Path, default=Path("lean"),
+                        help="Pasta Lake clonada; padrão: ./lean")
     args = parser.parse_args(argv)
     try:
         if args.command == "doctor":

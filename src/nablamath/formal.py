@@ -36,7 +36,7 @@ def _term(expr: Expr, values: dict[str, Fraction]) -> str:
 def lean_source(result: ResearchResult) -> str:
     """Enuncia a igualdade desta instância; não reivindica prova simbólica geral."""
     values = dict(result.values)
-    return ("import Mathlib\n\n"
+    return ("import Mathlib.Tactic\n\n"
             f"-- Instância racional {result.content_id}; gerada de AST restrita.\n"
             f"example : {_term(result.original, values)} = {_rational(result.value)} := by\n"
             "  norm_num\n")
