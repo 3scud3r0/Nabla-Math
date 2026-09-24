@@ -17,4 +17,6 @@ O botão executável abre `http://127.0.0.1:<porta>/`. Só é acessível neste c
 - **Criar lote curado** produz `curated.jsonl`, manifesto e cartão na pasta pessoal, separados por expressão.
 - **Publicar** pede dataset Hugging Face `conta/nome`, token com escrita, licença, origem, responsável e confirmação de direitos. O sistema confere o hash e reexecuta o lote antes de enviar os três arquivos em um commit. O token é usado nesta requisição, sem ser salvo em disco. O envio pode ser repetido; verificar o destino antes de clicar.
 
+**O loop do aplicativo é local.** Ele não submete execuções para uma fila NablaMath global em tempo real. O botão “Publicar” envia um lote curado diretamente ao dataset Hugging Face que você indicar, após confirmação; isso não conecta o computador a workers ou coordenadores do projeto.
+
 Os registros são aritmética exata para entradas específicas: `formal_proof: false`. Provas Lean opcionais usam `nabla formal ID` no terminal com Lake instalado. Consulte [publicação](PUBLISHING.md), [limites técnicos](IMPLEMENTATION_STATUS.md) e [roteiro](ROADMAP_GLOBAL_RESEARCH.md).
