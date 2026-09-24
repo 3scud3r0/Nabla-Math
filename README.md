@@ -4,20 +4,20 @@
 
 O repositório agora contém uma **prévia experimental de aritmética racional rastreável** em `src/nablamath/`, instalável localmente com `python -m pip install -e .` ou com os scripts `setup.cmd`/`setup.ps1` no Windows e `setup.sh` em Linux/macOS. Experimente `nabla run "(x+x)/x" --value x=3 --tex report.tex`; o comando mostra etapas, preserva `x != 0`, salva SQLite e gera LaTeX. Veja [instruções e limitações da alpha](docs/CORE_ALPHA.md). O núcleo não implementa os modelos científicos ou a rede global descritos abaixo.
 
-Verificação de desenvolvimento: `python -m unittest discover -s tests -v`. Lean e compilação PDF são opcionais e não fazem parte da instalação básica.
+Verificação de desenvolvimento: `python -m unittest discover -s tests -v`. Lean e compilação PDF são opcionais e não fazem parte da instalação básica. `nabla orbit --altitude-m 400000` calcula uma órbita circular ideal; `nabla formal ID` submete uma instância racional armazenada ao Lean/Mathlib quando Lake estiver instalado; `nabla curate dataset.jsonl --license CC0-1.0 --provenance 'origem controlada'` cria um conjunto local revalidado (a licença é declaração do curador). Veja [limites e comandos novos](docs/INTEGRATIONS_ALPHA.md).
 
 ## Roteiro para a plataforma de pesquisa distribuída
 
-O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. **É um plano; esses módulos, serviços, site e dataset ainda não estão implementados nem publicados.**
+O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. **Os exemplos Lean, orbitais e de curadoria locais são limitados; não há serviço global nem dataset publicado.**
 
 Checklist resumido (critérios e caminhos de cada fase constam no roteiro):
 
 - [x] **F0 — roteiro:** documentar arquitetura, ordem, arquivos e critérios de aceitação.
 - [ ] **F0 — decisões:** escolher licenças, formatos e políticas de contribuição/segurança.
-- [ ] **F1 — biblioteca local:** empacotamento pip, bootstrap Windows/Linux, CLI, banco local e primeiro problema reproduzível sem IA.
-- [ ] **F2 — rigor:** hipóteses e unidades por etapa, ponte Lean auditável, LaTeX compilável e gráficos com proveniência.
-- [ ] **F3 — ciência e agentes:** validação de casos orbitais/fluidos por escopo, agentes com cotas e trajetórias registradas.
-- [ ] **F4 — publicação:** datasets versionados após curadoria e site estático com progresso derivado de dados reais.
+- [ ] **F1 — biblioteca local (prévia executável):** empacotamento local pip, bootstrap Windows/Linux, CLI, SQLite e exemplo racional; faltam instalação limpa em SOs alvo e estabilidade de API.
+- [ ] **F2 — rigor (subconjunto inicial):** Lean/Mathlib para instâncias racionais e dois lemas, LaTeX fonte e hipóteses; faltam provas simbólicas geradas para cada etapa, PDF CI e gráficos auditáveis.
+- [ ] **F3 — ciência e agentes (orbital inicial):** modelo analítico de dois corpos com testes de conservação; faltam referências externas, fluidos, agentes e trajetória local.
+- [ ] **F4 — publicação (curadoria local):** JSONL com manifesto e divisões por fonte; faltam dataset card, Parquet, revisão de licença, Hugging Face e métricas publicadas reais.
 - [ ] **F5 — rede global:** coordenação, nós voluntários, verificação independente, autoria e métricas públicas auditáveis.
 - [ ] **F6 — interoperabilidade:** protocolo estável, SDKs Rust/C/C++ e avaliação da utilidade dos dados no treinamento.
 

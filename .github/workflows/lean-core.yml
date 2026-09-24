@@ -1,0 +1,20 @@
+name: Lean formal core
+on:
+  push:
+  pull_request:
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: lean
+          build: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - run: |
+          nabla run '(x+x)/x' --value x=3 --db .nabla/results.sqlite3
+          python -m nablamath.formal_ci

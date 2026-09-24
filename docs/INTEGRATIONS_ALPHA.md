@@ -1,0 +1,13 @@
+# Integrações experimentais: Lean, órbitas e curadoria
+
+## Lean 4 / Mathlib
+
+`lean/lean-toolchain` e `lean/lakefile.toml` fixam Lean/Mathlib v4.34.0. Instale `elan` seguindo a documentação do Lean, entre em `lean/` e execute `lake update`, `lake exe cache get`, `lake build`. A CI `.github/workflows/lean-core.yml` verifica a biblioteca e executa duas instâncias geradas no Lean. Para um registro existente: `nabla formal ID --db .nabla/results.sqlite3 --project lean`. Sem Lake ou se a prova falhar, o comando retorna erro; não grava selo formal no SQLite. O gerador substitui os valores numéricos antes de propor igualdade com `norm_num`. Isso **não prova uma identidade simbólica universal, uma teoria física ou fidelidade da formalização de linguagem natural**. O lema `cancel_nonzero_rational` exige `x ≠ 0`. Não aceite conteúdo de fontes externas como código Lean bruto.
+
+## Órbita de dois corpos
+
+`nabla orbit --altitude-m 400000` imprime parâmetros de órbita terrestre circular ideal. API: `Orbit(mu_m3_s2, pericenter_m, apocenter_m).summary()`. Utiliza quilômetros? **Não:** metros, segundos e m³/s² em toda a API. Considera massa central pontual, sem atmosfera, J2, pressão de radiação, propulsão nem efemérides reais. Testes conferem velocidade/período de LEO em tolerância ampla e, para uma elipse, conservação independente de energia e momento angular em peri/apoastro. Não serve para navegação de missão.
+
+## Dataset local
+
+`nabla curate dataset.jsonl --db .nabla/results.sqlite3 --license CC0-1.0 --provenance 'meus exemplos autorais'` cria JSONL e manifesto SHA-256. A procedência e licença são **declarações**; autor precisa verificar titularidade. A divisão agrupa registros pela expressão textual sem espaços para reduzir vazamento entre treino e teste; isto não bloqueia expressões equivalentes escritas de outro jeito nem contaminação de outros datasets. `formal_proof: false` permanece verdadeiro no dataset mesmo que uma instância tenha sido verificada isoladamente no Lean, até existir vínculo persistente auditável. O comando não publica nada, não treina modelos e não mede ganho científico.

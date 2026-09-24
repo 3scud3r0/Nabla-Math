@@ -10,7 +10,10 @@ import shutil
 import sys
 
 from . import __version__
+from .curation import curate
 from .expression import DomainError, render
+from .formal import verify_with_lean
+from .orbits import earth_circular_orbit
 from .report import write_report
 from .research import calculate
 from .storage import export_verified, load_result, save_result, verify_record
@@ -46,6 +49,17 @@ def main(argv: list[str] | None = None) -> int:
     export = commands.add_parser("export", help="Exportar registros revalidados em JSONL")
     export.add_argument("destination", type=Path)
     export.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
+    curated = commands.add_parser("curate", help="Criar dataset local com proveniência e divisões")
+    curated.add_argument("destination", type=Path)
+    curated.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
+    curated.add_argument("--license", required=True, help="Declaração fornecida pelo curador")
+    curated.add_argument("--provenance", required=True)
+    orbit = commands.add_parser("orbit", help="Órbita terrestre circular ideal em unidades SI")
+    orbit.add_argument("--altitude-m", type=float, required=True)
+    formal = commands.add_parser("formal", help="Provar no Lean uma instância racional armazenada")
+    formal.add_argument("identifier")
+    formal.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
+    formal.add_argument("--project", type=Path, default=Path(__file__).resolve().parents[2] / "lean")
     args = parser.parse_args(argv)
     try:
         if args.command == "doctor":
@@ -53,6 +67,21 @@ def main(argv: list[str] | None = None) -> int:
                               "pdflatex_command_available": shutil.which("pdflatex") is not None,
                               "lean_command_available": shutil.which("lean") is not None}, ensure_ascii=False))
             return 0
+        if args.command == "orbit":
+            print(json.dumps(earth_circular_orbit(args.altitude_m).summary(), ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "curate":
+            print(json.dumps(curate(args.db, args.destination, license_id=args.license,
+                                    provenance=args.provenance), ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "formal":
+            payload = load_result(args.db, args.identifier)
+            if payload is None or not verify_record(payload):
+                raise ValueError("Registro inexistente ou inválido")
+            result = calculate(payload["source"], payload["values"])
+            check = verify_with_lean(result, args.project)
+            print(json.dumps(check.__dict__, ensure_ascii=False))
+            return 0 if check.verified else 1
         if args.command == "show":
             payload = load_result(args.db, args.identifier)
             if payload is None:
