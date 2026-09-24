@@ -220,7 +220,8 @@ Novo recorte: contratos de problemas/unidades/evidências, solver linear raciona
 - [x] Troca manual de snapshots entre dois bancos locais: manifesto SHA-256, reexecução, importação transacional e idempotente.
 - [ ] Prova formal simbólica de cada regra com hipóteses, revisão humana de tradução e registro persistente do resultado formal.
 - [ ] Comparação orbital com fonte externa, unidade física automática, modelos perturbados, CFD validado e visualização auditável.
-- [ ] Publicação de datasets sob conta escolhida, API multiusuário, sincronização e reprodução por máquinas independentes.
+- [x] Implementar publicador opt-in com auditoria, aprovação vinculada ao hash e workflow diário condicionado à configuração.
+- [ ] Publicação real sob conta escolhida, API multiusuário, sincronização e reprodução por máquinas independentes.
 
 Nenhuma das fases F1–F6 completas abaixo decorre apenas destes incrementos. A ação Lean no GitHub já compilou o exemplo; isso prova duas **instâncias numéricas**, sem estabelecer uma identidade gerada universal nem verificar modelos físicos.
 

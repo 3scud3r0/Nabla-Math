@@ -16,7 +16,7 @@ Intercâmbio manual entre computadores: `nabla export lote.jsonl --db origem.sql
 
 ## Roteiro para a plataforma de pesquisa distribuída
 
-O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. Veja a [estimativa por marcos e recursos](docs/ESTIMATIVA_EXECUCAO.md). **Os exemplos Lean, orbitais e de curadoria locais são limitados; não há serviço global nem dataset publicado.**
+O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. Veja a [estimativa por marcos e recursos](docs/ESTIMATIVA_EXECUCAO.md) e o [guia de publicação auditada](docs/PUBLISHING.md). **Os exemplos Lean, orbitais e de curadoria locais são limitados; não há serviço global nem dataset publicado.**
 
 Checklist resumido (critérios e caminhos de cada fase constam no roteiro):
 
@@ -24,8 +24,8 @@ Checklist resumido (critérios e caminhos de cada fase constam no roteiro):
 - [ ] **F0 — decisões:** escolher licenças, formatos e políticas de contribuição/segurança.
 - [ ] **F1 — biblioteca local (prévia executável):** empacotamento local pip, bootstrap Windows/Linux, CLI, SQLite e exemplo racional; faltam instalação limpa em SOs alvo e estabilidade de API.
 - [ ] **F2 — rigor (subconjunto inicial):** Lean/Mathlib para instâncias racionais e dois lemas, LaTeX fonte e hipóteses; faltam provas simbólicas geradas para cada etapa, PDF CI e gráficos auditáveis.
-- [ ] **F3 — ciência e agentes (orbital inicial):** modelo analítico de dois corpos com testes de conservação; faltam referências externas, fluidos, agentes e trajetória local.
-- [ ] **F4 — publicação (curadoria local):** JSONL com manifesto e divisões por fonte; faltam dataset card, Parquet, revisão de licença, Hugging Face e métricas publicadas reais.
+- [ ] **F3 — ciência e agentes (orbital inicial):** modelo analítico de dois corpos com testes de conservação; faltam comparação orbital com referência externa, CFD validado e benchmarks de agentes; há fluxo laminar analítico e trajetória local limitada.
+- [ ] **F4 — publicação (curadoria local):** JSONL, manifesto, cartão, auditoria opt-in e workflow diário condicionado a lote aprovado; faltam revisão independente de direitos, publicação real, Parquet e métricas públicas.
 - [ ] **F5 — rede global:** coordenação, nós voluntários, verificação independente, autoria e métricas públicas auditáveis.
 - [ ] **F6 — interoperabilidade:** protocolo estável, SDKs Rust/C/C++ e avaliação da utilidade dos dados no treinamento.
 
