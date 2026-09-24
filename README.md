@@ -30,7 +30,7 @@ Checklist resumido (critérios e caminhos de cada fase constam no roteiro):
 - [ ] **F6 — interoperabilidade:** protocolo estável, SDKs Rust/C/C++ e avaliação da utilidade dos dados no treinamento.
 
 
-**Status: acervo histórico em migração; produto final ainda não implementado nem cientificamente validado.**
+**Status: inventário de arquivos completo (122/122), prévia local testada; produto global ainda não implementado nem cientificamente validado.**
 
 NablaMath é a visão de um ambiente aberto de matemática simbólica e numérica, autodiferenciação, tensores, otimização, relatividade especial/geral, dinâmica orbital, calculadora rastreável passo a passo, renderização científica e publicação acadêmica em LaTeX. O usuário quer tanto arquitetura modular testável quanto um único arquivo `.py` gerado automaticamente para distribuição.
 

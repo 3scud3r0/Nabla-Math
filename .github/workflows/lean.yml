@@ -1,0 +1,16 @@
+name: Lean bridge (optional)
+on:
+  push:
+    paths: ['lean/**', 'src/nablamath/formal/**', '.github/workflows/lean.yml']
+  pull_request:
+    paths: ['lean/**', 'src/nablamath/formal/**', '.github/workflows/lean.yml']
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: lean
+          build: true
+          build-args: NablaMath

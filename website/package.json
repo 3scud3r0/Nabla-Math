@@ -1,0 +1,8 @@
+{
+  "name": "nablamath-site",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Site estático com estado verificável do NablaMath",
+  "scripts": {"build": "node -e \"require('fs').mkdirSync('dist',{recursive:true}); for (const f of ['index.html','styles.css','app.js']) require('fs').copyFileSync(f,'dist/'+f)\""},
+  "engines": {"node": ">=18"}
+}

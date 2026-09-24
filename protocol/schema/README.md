@@ -1,3 +1,7 @@
-# Protocolo experimental de frações — v0
+# Protocolo NablaMath v1
 
-Este recorte do protocolo tem apenas escalares racionais canônicos em UTF-8/ASCII: `0`, `12`, `-7`, `3/4`, `-5/9`. Denominador sempre inteiro positivo, numerador diferente de zero quando houver barra e `gcd(|numerador|,denominador)=1`. Sem espaços, zero negativo, zeros à esquerda ou sinal `+`. Valores devem caber em `int64` para interoperar com a ABI C. A aritmética Python interna pode representar inteiros maiores; a conversão deve recusar valores fora do intervalo. Versão v0 não estabiliza ABI nem transporte de teoremas, unidades, modelos físicos ou blobs.
+O envelope intercambiável é JSON UTF-8 canônico: chaves ordenadas, separadores compactos,
+números exatos como strings (`"3/2"`) e arrays com ordem semântica preservada. Todo registro
+tem `schema_version`, `content_id`, `payload`, `provenance`, `license` e `evidence`. Valores
+de ponto flutuante devem carregar tolerância e unidade. A identidade é SHA-256 do envelope
+canônico; ela não prova autoria nem validade científica.
