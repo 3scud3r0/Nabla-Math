@@ -15,4 +15,5 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - name: Explain publication boundary
-        run: echo "Nenhum upload automático: snapshot curado, licença, repositório e credencial devem ser configurados pelo mantenedor."
+        run: |
+          echo "Nenhum upload automático: snapshot curado, licença, repositório e credencial devem ser configurados pelo mantenedor."
