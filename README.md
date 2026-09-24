@@ -1,63 +1,88 @@
-# NablaMath
+# ∇ NablaMath
 
-## Prévia executável: núcleo local alpha
+**Um laboratório local para cálculos rastreáveis, dados curados e pesquisa matemática aberta.** O pacote Python já executa um subconjunto de aritmética racional, registra as etapas no SQLite e oferece experimentos físicos bem delimitados. A rede científica global descrita no roteiro continua em desenvolvimento.
 
-O repositório agora contém uma **prévia experimental de aritmética racional rastreável** em `src/nablamath/`, instalável localmente com `python -m pip install -e .` ou com os scripts `setup.cmd`/`setup.ps1` no Windows e `setup.sh` em Linux/macOS. Experimente `nabla run "(x+x)/x" --value x=3 --tex report.tex`; o comando mostra etapas, preserva `x != 0`, salva SQLite e gera LaTeX. Veja [instruções e limitações da alpha](docs/CORE_ALPHA.md). Os casos físicos limitados não compõem a plataforma científica ou rede global descrita abaixo.
+[Instalação](#instalação) · [Aplicativo local](#aplicativo-local) · [Verificação](#verificação) · [Roteiro](docs/ROADMAP_GLOBAL_RESEARCH.md) · [Contribuir](CONTRIBUTING.md)
 
-Este incremento acrescenta [um guia das fórmulas e arquivos executáveis](docs/GUIA_DA_IMPLEMENTACAO.md): unidades SI, álgebra linear exata, RK4, derivação por números duais, fluxo laminar em tubo, coordenador SQLite local com duas verificações, card de dataset e parsers C/C++/Rust para frações canônicas. São recortes testáveis de diferentes fases; nenhuma fase científica/global foi concluída.
+## O que funciona hoje
 
-[Estado arquivo por arquivo e restrições de conclusão](docs/IMPLEMENTATION_STATUS.md) · auditoria reproduzível: `python tools/roadmap_status.py`.
+| Função | Escopo comprovável | Limite atual |
+| --- | --- | --- |
+| Cálculo e etapas | Avaliação racional exata, condições de domínio, SQLite e relatório `.tex` | Poucas regras algébricas; não é álgebra computacional geral |
+| Lean 4 | Provas de instâncias racionais específicas, com Lake/Mathlib opcionais | Não formaliza automaticamente qualquer identidade ou teoria física |
+| Física | Órbita ideal de dois corpos, propagação radial reduzida e fluxo laminar analítico | Não é CFD ou dinâmica orbital perturbada validada experimentalmente |
+| Dados | Exportação/importação reexecutáveis, SHA-256, deduplicação, card e aprovação para upload | Licenças dependem de revisão humana; sem dataset público confirmado |
+| Aplicativo pessoal | Interface no navegador local, banco próprio, botões, loop com limite e upload opcional | Não é serviço multiusuário nem computador global |
+| Site | Código estático e workflow GitHub Pages | A URL pública depende da configuração e execução do Pages |
 
-Verificação de desenvolvimento: `python -m unittest discover -s tests -v`. Lean e compilação PDF são opcionais e não fazem parte da instalação básica. `nabla orbit --altitude-m 400000 --svg orbit.svg` calcula uma órbita circular ideal e gera um diagrama SVG em escala; `nabla formal ID` submete uma instância racional armazenada ao Lean/Mathlib quando Lake estiver instalado; `nabla curate dataset.jsonl --license CC0-1.0 --provenance 'origem controlada'` cria um conjunto local revalidado (a licença é declaração do curador). Veja [limites e comandos novos](docs/INTEGRATIONS_ALPHA.md).
+## Instalação
 
-Fluxo laminar delimitado: `nabla fluid --radius-m .01 --length-m 2 --pressure-pa 5 --viscosity-pa-s 1 --density-kg-m3 1000`. Não representa CFD geral.
+Requer **Python 3.10+**. Na pasta do projeto (para publicar no Hub, instale `python -m pip install ".[cloud]"`):
 
-Intercâmbio manual entre computadores: `nabla export lote.jsonl --db origem.sqlite3` e `nabla import lote.jsonl --db destino.sqlite3`. O importador confere hash, reexecuta os registros e ignora duplicatas idênticas. Ainda não há servidor nem sincronização em tempo real.
+```bash
+python -m pip install .
+nabla doctor
+nabla desktop
+```
 
-## Roteiro para a plataforma de pesquisa distribuída
+Em Windows, a [ação Windows installer](https://github.com/3scud3r0/Nabla-Math/actions/workflows/windows-installer.yml) constrói um instalador com interface e banco locais. Abra uma execução concluída, baixe o artefato `NablaMath-Setup-Windows` e execute seu `.exe`. A compilação deve passar na CI antes de haver um download verificado. Veja o [guia do aplicativo](docs/DESKTOP.md) e os scripts de desenvolvimento `setup.cmd`, `setup.ps1` e `setup.sh`.
 
-O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. Veja a [estimativa por marcos e recursos](docs/ESTIMATIVA_EXECUCAO.md) e o [guia de publicação auditada](docs/PUBLISHING.md). **Os exemplos Lean, orbitais e de curadoria locais são limitados; não há serviço global nem dataset publicado.**
+## Aplicativo local
 
-Checklist resumido (critérios e caminhos de cada fase constam no roteiro):
+`nabla desktop` abre uma página acessível **somente neste computador**, vinculada a `127.0.0.1`. O banco e os arquivos ficam em `~/NablaMath`, inclusive depois da desinstalação. Você pode:
 
-- [x] **F0 — roteiro:** documentar arquitetura, ordem, arquivos e critérios de aceitação.
-- [ ] **F0 — decisões:** escolher licenças, formatos e políticas de contribuição/segurança.
-- [ ] **F1 — biblioteca local (prévia executável):** empacotamento local pip, bootstrap Windows/Linux, CLI, SQLite e exemplo racional; faltam instalação limpa em SOs alvo e estabilidade de API.
-- [ ] **F2 — rigor (subconjunto inicial):** Lean/Mathlib para instâncias racionais e dois lemas, LaTeX fonte e hipóteses; faltam provas simbólicas geradas para cada etapa, PDF CI e gráficos auditáveis.
-- [ ] **F3 — ciência e agentes (orbital inicial):** modelo analítico de dois corpos com testes de conservação; faltam comparação orbital com referência externa, CFD validado e benchmarks de agentes; há fluxo laminar analítico e trajetória local limitada.
-- [ ] **F4 — publicação (curadoria local):** JSONL, manifesto, cartão, auditoria opt-in e workflow diário condicionado a lote aprovado; faltam revisão independente de direitos, publicação real, Parquet e métricas públicas.
-- [ ] **F5 — rede global:** coordenação, nós voluntários, verificação independente, autoria e métricas públicas auditáveis.
-- [ ] **F6 — interoperabilidade:** protocolo estável, SDKs Rust/C/C++ e avaliação da utilidade dos dados no treinamento.
+1. Calcular `(x+x)/x` para `x=3`, inspecionar a condição `x ≠ 0` e gerar LaTeX.
+2. Iniciar e interromper um loop de até 1.000 exemplos racionais por sessão. Ele repete quatro famílias explícitas com diferentes valores; quantidade não significa descoberta científica.
+3. Consultar uma órbita circular ideal e um caso analítico de fluxo em tubo.
+4. Exportar o banco como JSONL com manifesto, importar um snapshot local revalidado e preparar um lote curado.
+5. Publicar um lote no **seu** dataset Hugging Face somente após informar destino, token e declarar os direitos sobre os dados. O token não é salvo no banco.
 
+O site estático público mostra apenas métricas vindas de um snapshot versionado; não mostra participantes conectados em tempo real.
 
-**Status: inventário de arquivos completo (122/122), prévia local testada; produto global ainda não implementado nem cientificamente validado.**
+## Terminal e Python
 
-NablaMath é a visão de um ambiente aberto de matemática simbólica e numérica, autodiferenciação, tensores, otimização, relatividade especial/geral, dinâmica orbital, calculadora rastreável passo a passo, renderização científica e publicação acadêmica em LaTeX. O usuário quer tanto arquitetura modular testável quanto um único arquivo `.py` gerado automaticamente para distribuição.
+```bash
+nabla run "(x+x)/x" --value x=3 --tex report.tex
+nabla orbit --altitude-m 400000 --svg orbit.svg
+nabla fluid --radius-m .01 --length-m 2 --pressure-pa 5 --viscosity-pa-s 1 --density-kg-m3 1000
+nabla export lote.jsonl --db minha.sqlite3
+nabla import lote.jsonl --db outro.sqlite3
+```
 
-> **Não confundir demonstrações históricas com modelos certificados, CFD, um Nanite/Cycles completo ou física de plasma validada. Não aumentar o número de páginas repetindo texto.**
+```python
+from nablamath.research import calculate
+result = calculate("(x+x)/x", {"x": 3})
+print(result.value)            # 2, exatamente
+print(result.to_data()["assumptions"])  # ['x != 0']
+```
 
-## Comece aqui — instruções para a próxima IA
+O primeiro exemplo simplifica `x+x` para `2x` e cancela `x` **somente se `x ≠ 0`**. A avaliação para `x=3` é exata; isso não prova uma lei universal sem hipóteses.
 
-1. [Estado, visão e inventário de implementação](docs/AI_HANDOFF.md).
-2. [Arquitetura-alvo e critérios verificáveis](docs/ARCHITECTURE_AND_ACCEPTANCE.md).
-3. [Histórico e transcrição recuperável da conversa](docs/CONVERSATION_FOR_NEXT_AI.md).
-4. [Índice e manifesto completo dos artefatos](docs/CONTENT_INDEX.md) — publicação de binários pendente enquanto não aparecerem no repositório.
-5. [Como executar o importador do acervo original](docs/UPLOAD_REMAINING_ARCHIVE.md).
+## Verificação
 
-O acervo originário compreende um ZIP com 177 itens, entre Python, PDFs, PNG/JPG, fontes LaTeX e HTML. **Não presumir que esses arquivos já foram publicados** sem verificação dos caminhos `archive/artifacts/` no GitHub. Não há transcrição literal integral de turnos antigos além do contexto recuperável explicitado na documentação.
+```bash
+python -m unittest discover -s tests -v
+python tools/roadmap_status.py
+```
 
-## Prioridade de engenharia
+O segundo comando conta caminhos especificados, não maturidade científica. Cada modelo físico requer comparação com referência independente antes de qualquer alegação aplicada. Consulte o [estado das implementações](docs/IMPLEMENTATION_STATUS.md), o [protocolo de publicação](docs/PUBLISHING.md), as [decisões pendentes](docs/DECISIONS/README.md) e a [estimativa do roteiro](docs/ESTIMATIVA_EXECUCAO.md).
 
-Construir uma suíte executável com testes independentes para matemática, relatividade, órbitas, relatórios e renderização. Para relatórios, preservar fontes `.tex`, equações numeradas, derivações únicas, hipótese/unidade/valor substituído e referências do exemplo Asteria-1 e do relatório simbólico v0.3. Para renders, distinguir diagnóstico, aparência estilizada e observável físico.
+## Estrutura
 
-## GitHub Actions
+| Diretório | Responsabilidade |
+| --- | --- |
+| `src/nablamath/` | Pacote instalável; núcleo, física, desktop, publicação opcional |
+| `lean/` | Projetos e exemplos formais em Lean/Mathlib |
+| `tests/` | Testes de unidade, integração, física e interoperabilidade |
+| `website/` | Site estático público GitHub Pages; métricas versionadas |
+| `services/` | Protótipos de coordenação e utilitários de serviço |
+| `sdk/`, `protocol/` | Contratos de interoperabilidade em evolução |
+| `packaging/windows/` | Receita reproduzível do instalador Windows |
+| `docs/` | Roteiro, governança, guias de operação e limites |
+| `archive/` | Acervo histórico, quando presente no clone |
 
-Habilitar Actions por si só não transfere arquivos locais para o repositório. O status do código/binários deve ser verificado nos commits e nas pastas publicados; não indicar que arquivos não enviados estão disponíveis.
+## Roteiro e status
 
-## Descrição de longo prazo
+O [roadmap global](docs/ROADMAP_GLOBAL_RESEARCH.md) conserva o checklist F0–F6. **Existirem todos os caminhos previstos no inventário não conclui as fases.** Lean geral, descoberta científica autônoma, coordenação pública resistente a fraude, sincronização entre máquinas e ganho mensurável em treino de IA permanecem metas de pesquisa. Não há prazo científico garantido nem resultados físicos certificados.
 
-Leia [description.md](description.md) para a visão unificada, os módulos propostos e o diferencial de rastreabilidade científica. O anexo histórico literal de 4.905 linhas encontra-se no arquivo completo gerado nesta conversa, pendente de substituição da versão editorial publicada no GitHub.
-
-## Scripts históricos
-
-Os [79 scripts Python originais estão organizados em `current scripts/`](current%20scripts/README.md), com as estruturas de versões preservadas. O acervo inclui 50 conteúdos de arquivo distintos; não equivale a uma suíte científica validada ou a uma nova API canônica.
+Licença do código: [MIT](LICENSE). Dados e dependências têm direitos próprios: revise a procedência antes de redistribuir. Consulte [segurança](SECURITY.md) e [política de dados](docs/DATA_GOVERNANCE.md).

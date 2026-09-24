@@ -35,6 +35,9 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="nabla", description="NablaMath: núcleo local de cálculo rastreável")
     parser.add_argument("--version", action="version", version=__version__)
     commands = parser.add_subparsers(dest="command", required=True)
+    desktop = commands.add_parser("desktop", help="Abrir painel web local com banco SQLite")
+    desktop.add_argument("--data-dir", type=Path, default=Path.home() / "NablaMath")
+    desktop.add_argument("--no-browser", action="store_true")
     commands.add_parser("doctor", help="Mostrar ambiente e integrações opcionais")
     run = commands.add_parser("run", help="Executar expressão racional com etapas")
     run.add_argument("expression", help='Exemplo: "(x+x)/x"')
@@ -75,6 +78,13 @@ def main(argv: list[str] | None = None) -> int:
                         help="Pasta Lake clonada; padrão: ./lean")
     args = parser.parse_args(argv)
     try:
+        if args.command == "desktop":
+            from .desktop.app import main as desktop_main
+            desktop_args = ["--data-dir", str(args.data_dir)]
+            if args.no_browser:
+                desktop_args.append("--no-browser")
+            desktop_main(desktop_args)
+            return 0
         if args.command == "doctor":
             print(json.dumps({"version": __version__, "python": sys.version.split()[0],
                               "pdflatex_command_available": shutil.which("pdflatex") is not None,
