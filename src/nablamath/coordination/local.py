@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import sqlite3
+from contextlib import closing
 import time
 
 from ..research import calculate
@@ -15,7 +16,7 @@ class LocalCoordinator:
     def __init__(self, path: Path):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        with self._connect() as db:
+        with closing(self._connect()) as db, db:
             db.executescript("""
             CREATE TABLE IF NOT EXISTS tasks (
                 task_id TEXT PRIMARY KEY, expression TEXT NOT NULL, values_json TEXT NOT NULL,
@@ -33,7 +34,7 @@ class LocalCoordinator:
         normalized = {k: str(v) for k,v in calculated.values.items()}
         canonical = json.dumps([expression, normalized], sort_keys=True, separators=(",", ":"))
         identifier = hashlib.sha256(canonical.encode()).hexdigest()
-        with self._connect() as db:
+        with closing(self._connect()) as db, db:
             db.execute("INSERT OR IGNORE INTO tasks (task_id,expression,values_json) VALUES (?,?,?)",
                        (identifier, expression, json.dumps(normalized, sort_keys=True)))
         return identifier
@@ -42,7 +43,7 @@ class LocalCoordinator:
         if not worker or len(worker) > 128 or not 1 <= seconds <= 3600:
             raise ValueError("Trabalhador ou prazo inválidos")
         now = time.time()
-        with self._connect() as db:
+        with closing(self._connect()) as db, db:
             db.execute("BEGIN IMMEDIATE")
             tasks = db.execute("SELECT task_id,expression,values_json FROM tasks WHERE status='pending' ORDER BY task_id")
             for task_id, expression, values_json in tasks:
@@ -58,7 +59,7 @@ class LocalCoordinator:
 
     def submit(self, worker: str, task_id: str, result_id: str) -> str:
         """Reexecuta o cálculo localmente; aceita consenso só de duas IDs de worker distintas."""
-        with self._connect() as db:
+        with closing(self._connect()) as db, db:
             db.execute("BEGIN IMMEDIATE")
             task = db.execute("SELECT expression,values_json,status FROM tasks WHERE task_id=?",
                               (task_id,)).fetchone()
@@ -80,6 +81,6 @@ class LocalCoordinator:
             return "awaiting_second_worker"
 
     def status(self, task_id: str) -> str | None:
-        with self._connect() as db:
+        with closing(self._connect()) as db, db:
             row = db.execute("SELECT status FROM tasks WHERE task_id=?", (task_id,)).fetchone()
         return row[0] if row else None

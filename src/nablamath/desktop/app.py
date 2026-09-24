@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import secrets
 import sqlite3
+from contextlib import closing
 import threading
 import webbrowser
 
@@ -33,13 +34,13 @@ class LocalResearch:
     def count(self) -> int:
         if not self.db.is_file():
             return 0
-        with sqlite3.connect(self.db) as connection:
+        with closing(sqlite3.connect(self.db)) as connection, connection:
             return connection.execute("SELECT count(*) FROM results").fetchone()[0]
 
     def recent(self, limit: int = 12) -> list[dict]:
         if not self.db.is_file():
             return []
-        with sqlite3.connect(self.db) as connection:
+        with closing(sqlite3.connect(self.db)) as connection, connection:
             rows = connection.execute("SELECT payload FROM results ORDER BY created_at DESC, content_id DESC LIMIT ?",
                                       (min(max(limit, 1), 100),)).fetchall()
         return [json.loads(row[0]) for row in rows]

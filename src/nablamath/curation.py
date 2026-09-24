@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import sqlite3
+from contextlib import closing
 
 from .dataset.deduplicate import normalized_expression
 from .dataset.cards import write_dataset_card
@@ -19,7 +20,7 @@ def curate(path: Path, destination: Path, *, license_id: str, provenance: str) -
     """
     if not license_id.strip() or not provenance.strip():
         raise ValueError("Licença declarada e procedência são obrigatórias")
-    with sqlite3.connect(path) as connection:
+    with closing(sqlite3.connect(path)) as connection, connection:
         rows = connection.execute("SELECT payload FROM results ORDER BY content_id").fetchall()
     groups: dict[str, dict] = {}
     for (raw,) in rows:

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import sqlite3
+from contextlib import closing
 
 from .research import ResearchResult
 from .research import calculate
@@ -15,7 +16,7 @@ def save_result(path: str | Path, result: ResearchResult) -> bool:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(result.to_data(), ensure_ascii=False, sort_keys=True)
-    with sqlite3.connect(path) as connection:
+    with closing(sqlite3.connect(path)) as connection, connection:
         connection.execute("""
             CREATE TABLE IF NOT EXISTS results (
                 content_id TEXT PRIMARY KEY,
@@ -35,7 +36,7 @@ def save_result(path: str | Path, result: ResearchResult) -> bool:
 def load_result(path: str | Path, identifier: str) -> dict | None:
     if not Path(path).is_file():
         return None
-    with sqlite3.connect(path) as connection:
+    with closing(sqlite3.connect(path)) as connection, connection:
         try:
             row = connection.execute("SELECT payload FROM results WHERE content_id=?", (identifier,)).fetchone()
         except sqlite3.OperationalError as exc:
@@ -60,7 +61,7 @@ def export_verified(path: str | Path, destination: str | Path) -> tuple[int, str
 
     destination = Path(destination)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    with sqlite3.connect(path) as connection:
+    with closing(sqlite3.connect(path)) as connection, connection:
         rows = connection.execute("SELECT payload FROM results ORDER BY content_id").fetchall()
     data = []
     for (raw,) in rows:
@@ -105,7 +106,7 @@ def import_snapshot(path: str | Path, source: str | Path) -> tuple[int, int]:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     inserted = 0
-    with sqlite3.connect(path) as connection:
+    with closing(sqlite3.connect(path)) as connection, connection:
         connection.execute("""CREATE TABLE IF NOT EXISTS results (
             content_id TEXT PRIMARY KEY, payload TEXT NOT NULL,
             created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)""")
