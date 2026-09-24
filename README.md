@@ -1,5 +1,21 @@
 # NablaMath
 
+## Roteiro para a plataforma de pesquisa distribuída
+
+O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. **É um plano; esses módulos, serviços, site e dataset ainda não estão implementados nem publicados.**
+
+Checklist resumido (critérios e caminhos de cada fase constam no roteiro):
+
+- [x] **F0 — roteiro:** documentar arquitetura, ordem, arquivos e critérios de aceitação.
+- [ ] **F0 — decisões:** escolher licenças, formatos e políticas de contribuição/segurança.
+- [ ] **F1 — biblioteca local:** empacotamento pip, bootstrap Windows/Linux, CLI, banco local e primeiro problema reproduzível sem IA.
+- [ ] **F2 — rigor:** hipóteses e unidades por etapa, ponte Lean auditável, LaTeX compilável e gráficos com proveniência.
+- [ ] **F3 — ciência e agentes:** validação de casos orbitais/fluidos por escopo, agentes com cotas e trajetórias registradas.
+- [ ] **F4 — publicação:** datasets versionados após curadoria e site estático com progresso derivado de dados reais.
+- [ ] **F5 — rede global:** coordenação, nós voluntários, verificação independente, autoria e métricas públicas auditáveis.
+- [ ] **F6 — interoperabilidade:** protocolo estável, SDKs Rust/C/C++ e avaliação da utilidade dos dados no treinamento.
+
+
 **Status: acervo histórico em migração; produto final ainda não implementado nem cientificamente validado.**
 
 NablaMath é a visão de um ambiente aberto de matemática simbólica e numérica, autodiferenciação, tensores, otimização, relatividade especial/geral, dinâmica orbital, calculadora rastreável passo a passo, renderização científica e publicação acadêmica em LaTeX. O usuário quer tanto arquitetura modular testável quanto um único arquivo `.py` gerado automaticamente para distribuição.
