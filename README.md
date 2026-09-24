@@ -27,3 +27,7 @@ Habilitar Actions por si só não transfere arquivos locais para o repositório.
 ## Descrição de longo prazo
 
 Leia [description.md](description.md) para a visão unificada, os módulos propostos e o diferencial de rastreabilidade científica. O anexo histórico literal de 4.905 linhas encontra-se no arquivo completo gerado nesta conversa, pendente de substituição da versão editorial publicada no GitHub.
+
+## Scripts históricos
+
+Os [79 scripts Python originais estão organizados em `current scripts/`](current%20scripts/README.md), com as estruturas de versões preservadas. O acervo inclui 50 conteúdos de arquivo distintos; não equivale a uma suíte científica validada ou a uma nova API canônica.
