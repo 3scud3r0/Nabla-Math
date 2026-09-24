@@ -12,18 +12,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - run: python -m pip install -e .
       - name: Explain publication boundary
-        if: ${{ vars.NABLA_DATASET_REPO == '' }}
-        run: echo "Publicação desabilitada: configure snapshot curado, licença e repositório no ambiente."
-      - name: Publish approved snapshot
-        if: ${{ vars.NABLA_DATASET_REPO != '' }}
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          NABLA_DATASET_REPO: ${{ vars.NABLA_DATASET_REPO }}
-        run: |
-          if [ -z "$HF_TOKEN" ]; then
-            echo "Credencial HF ausente; nenhum upload será executado."
-            exit 0
-          fi
-          echo "Repositório configurado ($NABLA_DATASET_REPO), mas o job exige snapshot curado e manifesto aprovado."
+        run: echo "Nenhum upload automático: snapshot curado, licença, repositório e credencial devem ser configurados pelo mantenedor."
