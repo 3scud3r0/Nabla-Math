@@ -1,0 +1,30 @@
+name: Lean formal core
+on:
+  push:
+  pull_request:
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Initialize Lean and resolve Lake dependencies
+        working-directory: lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake update
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: lean
+          build: true
+          build-args: NablaMath
+      - name: Resolve pinned Mathlib and compile Lean library
+        working-directory: lean
+        run: lake build NablaMath
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - run: |
+          nabla run '(x+x)/x' --value x=3 --db .nabla/results.sqlite3
+          python -m nablamath.formal_ci

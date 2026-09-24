@@ -1,0 +1,21 @@
+name: Modelo ou validação científica
+description: Proposta física/matemática com regime e referência
+body:
+  - type: textarea
+    id: model
+    attributes:
+      label: Equação, variáveis e unidades
+    validations:
+      required: true
+  - type: textarea
+    id: assumptions
+    attributes:
+      label: Regime, condições iniciais/de contorno e limitações
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Fonte independente, valores e tolerâncias de validação
+    validations:
+      required: true
