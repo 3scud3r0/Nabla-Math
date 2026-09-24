@@ -39,7 +39,7 @@ def curate(path: Path, destination: Path, *, license_id: str, provenance: str) -
                      for k in sorted(groups))
     digest = hashlib.sha256(output.encode()).hexdigest()
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(output, encoding="utf-8")
+    destination.write_bytes(output.encode("utf-8"))
     manifest = {"schema_version": 1, "sha256": digest, "records": len(groups),
                 "split_counts": {key: sum(v["split"] == key for v in groups.values())
                                  for key in ("train", "validation", "test")},

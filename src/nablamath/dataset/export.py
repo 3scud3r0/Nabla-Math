@@ -14,7 +14,7 @@ def export_jsonl(records: list[DatasetRecord], destination: str | Path) -> dict:
     path.parent.mkdir(parents=True, exist_ok=True)
     text = "".join(record.to_json() + "\n" for record in records)
     digest = sha256(text.encode()).hexdigest()
-    path.write_text(text, encoding="utf-8")
+    path.write_bytes(text.encode("utf-8"))
     manifest = {"schema_version": 1, "format": "jsonl", "records": len(records), "sha256": digest,
                 "splits": {s: sum(r.split == s for r in records) for s in ("train", "validation", "test")}}
     path.with_suffix(path.suffix + ".manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")

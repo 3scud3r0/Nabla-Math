@@ -71,7 +71,7 @@ def export_verified(path: str | Path, destination: str | Path) -> tuple[int, str
         data.append(json.dumps(record, sort_keys=True, ensure_ascii=False, separators=(",", ":")))
     content = ("\n".join(data) + "\n") if data else ""
     digest = hashlib.sha256(content.encode("utf-8")).hexdigest()
-    destination.write_text(content, encoding="utf-8")
+    destination.write_bytes(content.encode("utf-8"))
     manifest = {"schema_version": 1, "format": "jsonl", "records": len(data),
                 "sha256": digest, "evidence": "exact_rational_reexecution_only",
                 "formal_proof": False, "publication": "local_snapshot"}

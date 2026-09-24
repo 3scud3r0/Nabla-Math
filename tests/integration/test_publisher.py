@@ -69,7 +69,7 @@ class PublisherTests(unittest.TestCase):
             rows = [json.loads(line) for line in snapshot.read_text(encoding="utf-8").splitlines()]
             rows[1]["split"] = "test" if rows[0]["split"] != "test" else "train"
             raw = "".join(json.dumps(row) + "\n" for row in rows)
-            snapshot.write_text(raw, encoding="utf-8")
+            snapshot.write_bytes(raw.encode("utf-8"))
             import hashlib
             new_hash = hashlib.sha256(raw.encode()).hexdigest()
             manifest_path = snapshot.with_suffix(".jsonl.manifest.json")
