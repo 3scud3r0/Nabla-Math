@@ -7,17 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Initialize Lean and resolve Lake dependencies
+        working-directory: lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake update
       - uses: leanprover/lean-action@v1
         with:
           lake-package-directory: lean
-          auto-config: false
-          use-github-cache: false
-          use-mathlib-cache: false
+          build: true
       - name: Resolve pinned Mathlib and compile Lean library
         working-directory: lean
         run: |
-          lake update
-          lake exe cache get
           lake build
       - uses: actions/setup-python@v5
         with:

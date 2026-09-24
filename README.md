@@ -10,7 +10,7 @@ Intercâmbio manual entre computadores: `nabla export lote.jsonl --db origem.sql
 
 ## Roteiro para a plataforma de pesquisa distribuída
 
-O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. **Os exemplos Lean, orbitais e de curadoria locais são limitados; não há serviço global nem dataset publicado.**
+O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. Veja a [estimativa por marcos e recursos](docs/ESTIMATIVA_EXECUCAO.md). **Os exemplos Lean, orbitais e de curadoria locais são limitados; não há serviço global nem dataset publicado.**
 
 Checklist resumido (critérios e caminhos de cada fase constam no roteiro):
 
