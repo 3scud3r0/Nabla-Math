@@ -1,0 +1,77 @@
+name: Windows installer
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'pyproject.toml'
+      - 'packaging/windows/**'
+      - '.github/workflows/windows-installer.yml'
+  pull_request:
+    paths: ['src/**', 'pyproject.toml', 'packaging/windows/**', '.github/workflows/windows-installer.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install application and packager
+        run: python -m pip install -e ".[cloud]" pyinstaller
+      - name: Run Python tests
+        run: python -m unittest discover -s tests -q
+      - name: Freeze standalone application
+        run: python -m PyInstaller --noconfirm --clean --onedir --windowed --name NablaMath --collect-data nablamath.desktop --collect-submodules huggingface_hub src/nablamath/desktop/launcher.py
+      - name: Smoke test frozen executable
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath 'dist/NablaMath/NablaMath.exe' -ArgumentList '--no-browser', '--port', '38291' -PassThru
+          try {
+            $ready = $false
+            for ($i = 0; $i -lt 30; $i++) {
+              Start-Sleep -Seconds 1
+              try {
+                $response = Invoke-WebRequest -Uri 'http://127.0.0.1:38291/' -UseBasicParsing -TimeoutSec 2
+                if ($response.StatusCode -eq 200 -and $response.Content.Contains('Seu laboratório matemático')) { $ready = $true; break }
+              } catch { }
+              if ($p.HasExited) { break }
+            }
+            if (-not $ready) { throw 'Aplicativo empacotado não iniciou o painel local' }
+          } finally { if (-not $p.HasExited) { Stop-Process -Id $p.Id -Force } }
+      - name: Install Inno Setup
+        run: choco install innosetup --yes --no-progress
+      - name: Build Windows installer
+        shell: pwsh
+        run: |
+          & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' packaging/windows/nablamath.iss
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NablaMath-Setup-Windows
+          path: release/NablaMath-Setup-Windows.exe
+          if-no-files-found: error
+          retention-days: 90
+
+  release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: NablaMath-Setup-Windows
+          path: release
+      - name: Publish versioned alpha release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v0.1.0-alpha.1 release/NablaMath-Setup-Windows.exe \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --prerelease --title "NablaMath Desktop 0.1 alpha" \
+            --notes "Instalador Windows experimental, sem assinatura de código. Execute localmente; verifique as limitações em docs/DESKTOP.md."

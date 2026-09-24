@@ -26,13 +26,19 @@ Para fluido newtoniano incompressível em tubo circular, em regime estacionário
 
 Uma tarefa racional entra no SQLite depois de passar por `calculate`. `lease(worker)` reserva a tarefa por tempo limitado; a operação SQLite `BEGIN IMMEDIATE` evita que duas chamadas locais simultâneas escolham a mesma vaga. `submit` reexecuta o cálculo em vez de acreditar no texto recebido. Dois nomes de trabalhador distintos com o mesmo resultado permitem marcar `verified`. Nomes são meras strings, não pessoas autenticadas: um único usuário pode inventar dois nomes. Por isso não é consenso resistente a fraude, blockchain ou computação global.
 
-## 7. Dados e prova — `curation.py`, `formal.py`
+## 7. Dados e prova — `curation.py`, `formal/`
 
-Cada registro é reexecutado antes de entrar em um JSONL local. Expressões com a mesma árvore sintática recebem a mesma divisão train/validation/test para limitar um tipo de vazamento. A divisão não reconhece automaticamente identidades algébricas equivalentes, como `x+x` e `2*x`. Um card deixa claro que a licença informada é declaração do curador. Em Lean, a ponte substitui símbolos por valores racionais e pede ao kernel uma prova de igualdade **daquela instância**; os dois lemas Lean estáticos cobrem a soma de termos iguais e um cancelamento condicionado a `x≠0`. A física orbital, o fluido e o dataset não ganharam prova formal por essa operação.
+Cada registro é reexecutado antes de entrar em um JSONL local. Expressões com a mesma árvore sintática recebem a mesma divisão train/validation/test para limitar um tipo de vazamento. A divisão não reconhece automaticamente identidades algébricas equivalentes, como `x+x` e `2*x`. Um card deixa claro que a licença informada é declaração do curador. Em Lean, a ponte substitui símbolos por valores racionais e pede ao kernel uma prova de igualdade **daquela instância**; os lemas Lean estáticos cobrem a soma de termos iguais e um cancelamento condicionado a `x≠0`. `formal.translate` rejeita símbolos sem valor; `formal.check` preserva timeout e diagnóstico; `formal.obligations` registra pendências; `formal.review` separa revisão humana da compilação. A física orbital, o fluido e o dataset não ganharam prova formal por essa operação.
 
 ## 8. Protocolo C/C++/Rust — `protocol/schema/README.md`
 
 Os adaptadores leem apenas frações canônicas dentro de `int64`. Uma string `2/4` é rejeitada porque a forma canônica é `1/2`; `3/1` é rejeitada porque a forma canônica é `3`. A implementação C não aloca memória: escreve em uma estrutura fornecida pelo chamador e retorna erro se a string não respeita o contrato. C++ encapsula esse retorno em `std::optional`; Rust devolve `Option<Fraction>`. Isso já permite testar um pequeno contrato comum, mas não implementa integração geral dos três idiomas com toda a biblioteca.
+
+## 9. Adaptadores, relatórios e serviço opt-in
+
+`adapters/registry.py` detecta NumPy, SciPy, SymPy e Matplotlib sem tornar esses pacotes obrigatórios. `adapters.sympy` constrói objetos SymPy a partir da AST segura, evitando interpretar strings livres; `adapters.scipy` devolve a solução e as tolerâncias usadas. `reports/` reutiliza o emissor LaTeX canônico, enquanto `viz/` separa especificação serializável do PNG. `physics/orbital/` expõe estado e validações de um recorte radial reduzido; o módulo avisa suas hipóteses e não se apresenta como propagador 3D.
+
+`services/coordinator` é uma fila local com token HMAC para prototipagem e endpoint loopback de saúde; o worker executa apenas expressões declarativas e o publisher exige um cliente autenticado injetado. Isso permite testes de integração sem enviar dados à Internet. Não há consenso público, blockchain, conta Hugging Face ou métricas em tempo real habilitados por padrão.
 
 ## Próximas verificações científicas
 

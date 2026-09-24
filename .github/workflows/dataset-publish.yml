@@ -1,0 +1,36 @@
+name: Curated dataset publication
+on:
+  push:
+    paths: ['datasets/approved/**', 'services/publisher/**', '.github/workflows/dataset-publish.yml']
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && vars.NABLA_PUBLISH_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: nablamath-dataset-publish
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install publisher
+        run: python -m pip install -e . 'huggingface_hub>=0.25,<2'
+      - name: Audit and publish approved snapshot
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          NABLA_DATASET_REPO: ${{ vars.NABLA_DATASET_REPO }}
+        run: |
+          test -n "$HF_TOKEN"
+          test -n "$NABLA_DATASET_REPO"
+          test -f datasets/approved/data.jsonl
+          test -f datasets/approved/data.jsonl.approval.json
+          python -m services.publisher.cli datasets/approved/data.jsonl \
+            --approval datasets/approved/data.jsonl.approval.json \
+            --repo-id "$NABLA_DATASET_REPO" --publish

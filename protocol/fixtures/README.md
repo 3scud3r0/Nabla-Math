@@ -1,3 +1,5 @@
-# Fixtures de conformidade
+# Fixtures de interoperabilidade
 
-Valores válidos: `0`, `1`, `-1`, `3/4`, `-5/9`. Inválidos: `00`, `-0`, `+1`, `2/4`, `3/1`, `1/0`, ` 1`, `1 `, `1/02`. Testes Python/C/C++ devem concordar; esses casos não substituem fuzzing nem testes de limites `int64`.
+Fixtures são pequenos casos ouro compartilhados entre Python, Rust, C e C++. Devem conter
+resultado racional, erro esperado, versão de schema e SHA-256. Nenhum fixture deve incluir
+segredo, código executável de terceiros ou dados cuja licença não permita redistribuição.

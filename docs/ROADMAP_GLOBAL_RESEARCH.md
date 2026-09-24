@@ -1,10 +1,10 @@
 # NablaMath — roteiro executável para pesquisa distribuída
 
-**Estado:** especificação e checklist; núcleo local alpha e fonte inicial do site iniciados, fases ainda não concluídas. **Revisão:** 2026-09-24. **Base histórica:** `main` em `d1e20635edd0b54c72a1d50d1235d9fa7a610c99`.
+**Estado:** inventário de arquivos presente (122/122) e incrementos locais testados; fases ainda não concluídas. **Revisão:** 2026-09-24. **Base histórica:** `main` em `d1e20635edd0b54c72a1d50d1235d9fa7a610c99`.
 
-Este documento orienta pessoas e agentes que vão transformar o acervo histórico em um pacote Python instalável, uma plataforma de pesquisa local e, progressivamente, uma rede aberta de trabalho científico. Consulte também `docs/AI_HANDOFF.md` e `docs/ARCHITECTURE_AND_ACCEPTANCE.md`. A pasta `current scripts/` contém versões históricas; nenhum caminho futuro listado aqui deve ser anunciado como implementado antes de existir, passar pelos testes e ser publicado.
+Este documento orienta pessoas e agentes que vão transformar o acervo histórico em um pacote Python instalável, uma plataforma de pesquisa local e, progressivamente, uma rede aberta de trabalho científico. Consulte também `docs/AI_HANDOFF.md` e `docs/ARCHITECTURE_AND_ACCEPTANCE.md`. A pasta `current scripts/` contém versões históricas; a presença dos caminhos abaixo foi automatizada, mas nenhum deles deve ser anunciado como fase completa sem passar pelos testes, revisão científica e publicação.
 
-**Prévia implementada nesta branch:** `src/nablamath/` oferece parser aritmético limitado, regras com condição, avaliação racional, banco SQLite, exportação local JSONL e LaTeX. O site em `website/` é estático com métricas zero explicitamente rotuladas. Consulte `docs/CORE_ALPHA.md`. A tabela abaixo continua descrevendo o **destino arquitetural**; várias linhas ainda não existem.
+**Prévia implementada nesta branch:** `src/nablamath/` oferece parser aritmético limitado, regras com condição, avaliação racional, banco SQLite, exportação local JSONL e LaTeX, adaptadores opcionais, relatórios, visualização, contratos de dataset e ponte formal modular. O site em `website/` é estático com métricas zero explicitamente rotuladas. Serviços locais opt-in usam SQLite e HMAC, sem publicação automática. Consulte `docs/CORE_ALPHA.md` e `docs/IMPLEMENTATION_STATUS.md`. A tabela abaixo continua descrevendo o **destino arquitetural**; presença não significa conclusão.
 
 ## 1. Objetivo e limites
 
@@ -220,7 +220,8 @@ Novo recorte: contratos de problemas/unidades/evidências, solver linear raciona
 - [x] Troca manual de snapshots entre dois bancos locais: manifesto SHA-256, reexecução, importação transacional e idempotente.
 - [ ] Prova formal simbólica de cada regra com hipóteses, revisão humana de tradução e registro persistente do resultado formal.
 - [ ] Comparação orbital com fonte externa, unidade física automática, modelos perturbados, CFD validado e visualização auditável.
-- [ ] Publicação de datasets sob conta escolhida, API multiusuário, sincronização e reprodução por máquinas independentes.
+- [x] Implementar publicador opt-in com auditoria, aprovação vinculada ao hash e workflow diário condicionado à configuração.
+- [ ] Publicação real sob conta escolhida, API multiusuário, sincronização e reprodução por máquinas independentes.
 
 Nenhuma das fases F1–F6 completas abaixo decorre apenas destes incrementos. A ação Lean no GitHub já compilou o exemplo; isso prova duas **instâncias numéricas**, sem estabelecer uma identidade gerada universal nem verificar modelos físicos.
 

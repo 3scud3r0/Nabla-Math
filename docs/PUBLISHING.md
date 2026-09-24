@@ -1,0 +1,10 @@
+# Publicação de snapshots curados
+
+O loop diário roda **somente** no branch padrão, após configurar a variável do repositório `NABLA_PUBLISH_ENABLED=true`, a variável `NABLA_DATASET_REPO=organizacao/dataset` e o segredo `HF_TOKEN` com escrita no dataset. Até lá não envia dados.
+
+1. Gerar localmente um banco com `nablamath.storage.save_result` e executar `nablamath.curation.curate(db, Path("datasets/approved/data.jsonl"), license_id="CC0-1.0", provenance="...")`. Auditar direitos de cada fonte, registros e cartão. O curador gera `data.jsonl`, `.manifest.json`, `.CARD.md`.
+2. Após revisão humana, adicionar `datasets/approved/data.jsonl.approval.json` com as chaves `approved_for_publication: true`, `snapshot_sha256` igual ao manifesto, `dataset_repo`, `reviewer`, `license_id`, `redistributable: true`, `attribution`. Isto é uma declaração de direitos do mantenedor, não análise jurídica automatizada. Fazer revisão de riscos de privacidade antes de enviar dados próprios ou de terceiros.
+3. Validar com `python -m services.publisher.cli datasets/approved/data.jsonl --approval datasets/approved/data.jsonl.approval.json --repo-id organizacao/dataset`. Este comando é seco e não acessa o Hub. Para publicar manualmente, instalar `huggingface_hub`, configurar `HF_TOKEN` e adicionar `--publish`.
+4. Para o agendamento, mesclar os arquivos aprovados no branch padrão e configurar as duas variáveis e o segredo. O workflow falha sem snapshot/aprovação explícitos; não cria material automaticamente. A pasta no Hub é `snapshots/<sha256>/`, com dados, manifesto e cartão enviados num único commit. Reexecuções enviam conteúdo idêntico à mesma pasta e podem produzir commits redundantes. O cartão fica nessa pasta; a página principal do dataset precisa de um `README.md` próprio se desejar metadados e visualização no Hub.
+
+**Limites:** apenas instâncias aritméticas racionais locais, reexecutáveis; `formal_proof: false`. Não há revisão automática de titularidade, ineditismo, valor para treino, fronteira de física nem ganho recursivo. A divisão é por expressão e precisa de auditoria de vazamento por famílias matemáticas.
