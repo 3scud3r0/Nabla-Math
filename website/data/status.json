@@ -4,5 +4,8 @@
   "verified_public_participants": 0,
   "completed_phases": 0,
   "total_phases": 7,
-  "note": "Prévia local alpha parcial; ainda não existe dataset público nem serviço de participantes."
+  "note": "Protótipo local. A contribuição pelo navegador executa exemplos demonstrativos no próprio dispositivo e só é exportada por download; não há backend nem fila global. As sete fases continuam abertas.",
+  "browser_compute": "local_opt_in_demo",
+  "global_coordinator": "not_deployed",
+  "superintelligence_goal": "speculative_research_horizon_not_a_prediction"
 }
