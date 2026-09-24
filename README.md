@@ -23,3 +23,7 @@ Construir uma suíte executável com testes independentes para matemática, rela
 ## GitHub Actions
 
 Habilitar Actions por si só não transfere arquivos locais para o repositório. O status do código/binários deve ser verificado nos commits e nas pastas publicados; não indicar que arquivos não enviados estão disponíveis.
+
+## Descrição de longo prazo
+
+Leia [description.md](description.md) para a visão unificada, os módulos propostos e o diferencial de rastreabilidade científica. O anexo histórico literal de 4.905 linhas encontra-se no arquivo completo gerado nesta conversa, pendente de substituição da versão editorial publicada no GitHub.
