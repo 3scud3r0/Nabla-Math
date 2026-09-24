@@ -1,27 +1,28 @@
-# Cobertura do inventário e limites de entrega
+# Estado de implementação
 
-Auditoria automática: `python tools/roadmap_status.py`. Na revisão de 24/09/2026, **122 de 122 caminhos específicos** do inventário existem; esse número conta a presença do arquivo, **não** sua conclusão. Os novos módulos têm contratos executáveis e testes locais, mas várias integrações continuam opt-in e as fases científicas/global ainda não estão concluídas.
+Revisado em 24/09/2026. Este documento resume protótipos e limites observáveis. O checklist e os arquivos restantes estão em [`ROADMAP_GLOBAL_RESEARCH.md`](ROADMAP_GLOBAL_RESEARCH.md).
 
-## Fluxos já executáveis
+## Funciona neste recorte
 
-1. Aritmética racional exata, etapas condicionais, SQLite, JSONL e LaTeX fonte.
-2. Lean/Mathlib fixados e duas instâncias racionais compiladas em CI anterior.
-3. Órbita de dois corpos ideal em SI e SVG; fluxo laminar analítico em tubo com conferência por quadratura.
-4. Conversões dimensionais exatas, álgebra linear racional, RK4 e JVP escalar por duais.
-5. Propostas declarativas de agente com cota, trajetória de falhas e recusa de execução arbitrária.
-6. Curadoria local com hash, cartão, divisão estrutural; coordenação SQLite local e raiz Merkle, sem autenticação de usuários.
-7. Parser C e wrapper C++ compilados; parser Rust submetido à CI de interoperabilidade.
-8. Adaptadores opcionais NumPy/SciPy/SymPy, relatórios/viz, propagação radial reduzida de dois corpos via RK4, seleção de agentes, schema/export de dataset e serviço loopback com token HMAC.
-9. Aplicativo pessoal em loopback com interface, SQLite no diretório do usuário, cálculo, loop limitado, exportação/importação, laudo LaTeX e publicação opcional mediante declaração de direitos. Receita Windows via PyInstaller + Inno Setup; artefato .exe depende da execução bem-sucedida da CI Windows.
-10. Ponte formal reorganizada como pacote `nablamath.formal`, arquivos Lean de referência, publicador opt-in de snapshot curado, com auditoria e commit único e site estático com fonte modular.
+- Pacote Python experimental, CLI e desktop local em loopback.
+- Expressões racionais em subconjunto documentado, etapas com condições, SQLite, importação/exportação JSONL, manifesto/hash e LaTeX fonte.
+- Exemplos limitados de Lean 4/Mathlib, órbita ideal de dois corpos, fluxo laminar analítico em tubo, unidades/conversões, RK4 e visualização SVG.
+- Curadoria local, exportação e publicador Hugging Face opt-in; worker declarativo local; protótipos de fila e log Merkle.
+- Parsers de frações em C/C++/Rust; instalador Windows alpha.
+- Site estático publicado: <https://3scud3r0.github.io/Nabla-Math/>.
 
-## Bloqueios para concluir todas as fases
+## Ainda não demonstrado
 
-- O [inventário atualizado](ROADMAP_GLOBAL_RESEARCH.md) inclui ainda CFD validado em referências externas, traduções Lean simbólicas completas, web service autenticado e resistente a fraude, operação efetiva de publicação diária no Hugging Face, avaliação de treinamento e suporte geral Rust/C/C++. Requerem projeto, dados, manutenção e revisão especializada.
-- O código novo recebeu MIT em `LICENSE`; dados, arquivos históricos e dependências de terceiros continuam sujeitos às licenças declaradas em seus próprios metadados. A política de contribuição e a operação pública ainda precisam de aprovação do mantenedor.
-- O workflow diário exige snapshot e aprovação associados ao hash, além de variáveis do repositório e segredo do Hub; não há credenciais, organização nem lote aprovado no repositório. Site e dataset público ainda precisam de confirmação de implantação; o site público requer configuração de GitHub Pages. Ver [publicação](PUBLISHING.md).
-- O plano original estima **44–115 pessoa-meses** para uma plataforma de escopo limitado. Criar os caminhos restantes reduziu a ausência de arquivos, mas não transforma adaptadores opt-in em produto global nem substitui validação técnica. O auditor confirma presença; os critérios de fase continuam sendo testes, evidência e operação.
+- O serviço global: `services/coordinator/app.py` só expõe uma rota HTTP `/health`; não há API pública de coordenação multiusuário.
+- Participantes ou tarefas reais ao vivo: contadores versionados não representam usuários conectados.
+- Dataset NablaMath publicado no Hugging Face ou ganho de modelos treinados com esses dados.
+- Provas Lean gerais para as regras simbólicas, validação independente de enunciado formalizado ou autoformalização geral.
+- Validação orbital por efemérides externas, CFD geral, simulação física de alta fidelidade ou garantia de aplicação industrial.
+- Execução segura de código arbitrário de agente em sandbox de produção; workers atuais executam apenas a tarefa declarativa restrita.
+- SDKs completos dos motores científicos em C/C++/Rust: os componentes existentes cobrem parsing de frações.
 
-## Critério para mudar um item de estado
+## Operação externa pendente
 
-Criar código real, teste independente quando houver resultado matemático ou físico, integração com a API pública, documentação de hipóteses, execução CI e revisão do contrato. Evitar contar um arquivo vazio ou um adaptador sem validação como funcionalidade concluída.
+Para uma publicação de dataset são necessários um lote autorizado, revisão humana de direitos/privacidade, repositório Hugging Face de destino e segredo `HF_TOKEN`. Para uma rede distribuída são necessários serviço hospedado, operador responsável, autenticação, política de privacidade, monitoramento, backup e testes com máquinas distintas. O site GitHub Pages não fornece backend.
+
+As fases F0–F6 permanecem abertas até os critérios de aceite do roadmap serem satisfeitos com evidência revisável. Uma contagem de arquivos ou testes unitários isolados não fecha uma fase.
