@@ -25,7 +25,7 @@ nabla doctor
 nabla desktop
 ```
 
-Em Windows, a [ação Windows installer](https://github.com/3scud3r0/Nabla-Math/actions/workflows/windows-installer.yml) constrói um instalador com interface e banco locais. Abra uma execução concluída, baixe o artefato `NablaMath-Setup-Windows` e execute seu `.exe`. A compilação deve passar na CI antes de haver um download verificado. Veja o [guia do aplicativo](docs/DESKTOP.md) e os scripts de desenvolvimento `setup.cmd`, `setup.ps1` e `setup.sh`.
+Em Windows, a [compilação Windows](https://github.com/3scud3r0/Nabla-Math/actions/workflows/windows-installer.yml) constrói e testa o instalador. Depois da primeira execução bem-sucedida no branch principal, baixe o `.exe` na [versão alpha](https://github.com/3scud3r0/Nabla-Math/releases/tag/v0.1.0-alpha.1). O instalador ainda não possui assinatura de código. Veja o [guia do aplicativo](docs/DESKTOP.md) e os scripts de desenvolvimento `setup.cmd`, `setup.ps1` e `setup.sh`.
 
 ## Aplicativo local
 

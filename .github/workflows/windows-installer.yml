@@ -55,3 +55,23 @@ jobs:
           path: release/NablaMath-Setup-Windows.exe
           if-no-files-found: error
           retention-days: 90
+
+  release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: NablaMath-Setup-Windows
+          path: release
+      - name: Publish versioned alpha release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v0.1.0-alpha.1 release/NablaMath-Setup-Windows.exe \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --prerelease --title "NablaMath Desktop 0.1 alpha" \
+            --notes "Instalador Windows experimental, sem assinatura de código. Execute localmente; verifique as limitações em docs/DESKTOP.md."
