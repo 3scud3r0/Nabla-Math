@@ -1,0 +1,44 @@
+name: Archive and Python syntax audit
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  archive-syntax:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile committed Python sources (syntax only)
+        shell: bash
+        run: |
+          if [ -d legacy ]; then
+            python -m compileall -q legacy
+          fi
+          if [ -d archive/artifacts ]; then
+            python -m compileall -q archive/artifacts
+          fi
+      - name: Verify original archive once uploaded
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, zipfile
+          archive = Path("archive/bundles/NablaMath_Todos_Arquivos_PDFs_Imagens_Codigo_2026-09-23.zip")
+          if not archive.exists():
+              print("Historical ZIP not uploaded yet; NO archive integrity claim.")
+          else:
+              digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+              expected = "d1e4d3b27090bd8aedbf626ea4aea07a788b8a8550e85941da4a2022f751f18b"
+              assert digest == expected, (digest, expected)
+              with zipfile.ZipFile(archive) as z:
+                  assert len([m for m in z.infolist() if not m.is_dir()]) == 177
+                  assert z.testzip() is None
+              print("Archive verified: 177 entries, SHA-256 and CRC.")
+          PY
