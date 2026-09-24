@@ -11,9 +11,9 @@
 | Cálculo e etapas | Avaliação racional exata, condições de domínio, SQLite e relatório `.tex` | Poucas regras algébricas; não é álgebra computacional geral |
 | Lean 4 | Provas de instâncias racionais específicas, com Lake/Mathlib opcionais | Não formaliza automaticamente qualquer identidade ou teoria física |
 | Física | Órbita ideal de dois corpos, propagação radial reduzida e fluxo laminar analítico | Não é CFD ou dinâmica orbital perturbada validada experimentalmente |
-| Dados | Exportação/importação reexecutáveis, SHA-256, deduplicação, card e aprovação para upload | Licenças dependem de revisão humana; sem dataset público confirmado |
+| Dados | Exportação/importação reexecutáveis, SHA-256, deduplicação, card e aprovação para upload | Não há snapshot científico público confirmado nem avaliação de ganho em treino |
 | Aplicativo pessoal | Interface no navegador local, banco próprio, botões, loop com limite e upload opcional | Não é serviço multiusuário nem computador global |
-| Site | Código estático e workflow GitHub Pages | A URL pública depende da configuração e execução do Pages |
+| Site | Site estático publicado via GitHub Pages | Métricas versionadas; não há API pública de participantes em tempo real |
 
 ## Instalação
 
@@ -37,7 +37,7 @@ Em Windows, a [compilação Windows](https://github.com/3scud3r0/Nabla-Math/acti
 4. Exportar o banco como JSONL com manifesto, importar um snapshot local revalidado e preparar um lote curado.
 5. Publicar um lote no **seu** dataset Hugging Face somente após informar destino, token e declarar os direitos sobre os dados. O token não é salvo no banco.
 
-O site estático público mostra apenas métricas vindas de um snapshot versionado; não mostra participantes conectados em tempo real.
+O [site público](https://3scud3r0.github.io/Nabla-Math/) mostra métricas de um snapshot versionado e oferece um worker opt-in no navegador para gerar exemplos aritméticos demonstrativos e baixar um JSONL. Esse trabalho **não é enviado ao global**: não há backend público implantado. O worker não produz novas descobertas nem provas Lean.
 
 ## Terminal e Python
 
@@ -65,7 +65,9 @@ python -m unittest discover -s tests -v
 python tools/roadmap_status.py
 ```
 
-O segundo comando conta caminhos especificados, não maturidade científica. Cada modelo físico requer comparação com referência independente antes de qualquer alegação aplicada. Consulte o [estado das implementações](docs/IMPLEMENTATION_STATUS.md), o [protocolo de publicação](docs/PUBLISHING.md), as [decisões pendentes](docs/DECISIONS/README.md) e a [estimativa do roteiro](docs/ESTIMATIVA_EXECUCAO.md).
+O segundo comando mostra o checklist F0–F6; não mede maturidade científica. Cada modelo físico requer comparação com referência independente antes de qualquer alegação aplicada. Consulte o [estado das implementações](docs/IMPLEMENTATION_STATUS.md), o [protocolo de publicação](docs/PUBLISHING.md), as [decisões pendentes](docs/DECISIONS/README.md) e a [estimativa do roteiro](docs/ESTIMATIVA_EXECUCAO.md).
+
+Para concatenar fontes e configurações atuais em um arquivo legível (exclui `legacy/`, ambientes, dependências instaladas e dados), execute `python tools/export_source_bundle.py`. O resultado padrão é `NablaMath_current_sources.txt`.
 
 ## Estrutura
 
@@ -83,6 +85,6 @@ O segundo comando conta caminhos especificados, não maturidade científica. Cad
 
 ## Roteiro e status
 
-O [roadmap global](docs/ROADMAP_GLOBAL_RESEARCH.md) conserva o checklist F0–F6. **Existirem todos os caminhos previstos no inventário não conclui as fases.** Lean geral, descoberta científica autônoma, coordenação pública resistente a fraude, sincronização entre máquinas e ganho mensurável em treino de IA permanecem metas de pesquisa. Não há prazo científico garantido nem resultados físicos certificados.
+O [roadmap global](docs/ROADMAP_GLOBAL_RESEARCH.md) lista os arquivos restantes, critérios de aceite e dependências externas para cada fase F0–F6. **Arquivos presentes não significam fases concluídas.** Lean geral, descoberta científica autônoma, coordenação pública resistente a fraude, sincronização entre máquinas e ganho mensurável em treino de IA permanecem metas de pesquisa. Não há prazo científico garantido nem resultados físicos certificados.
 
 Licença do código: [MIT](LICENSE). Dados e dependências têm direitos próprios: revise a procedência antes de redistribuir. Consulte [segurança](SECURITY.md) e [política de dados](docs/DATA_GOVERNANCE.md).
