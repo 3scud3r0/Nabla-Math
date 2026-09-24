@@ -1,16 +1,19 @@
 # NablaMath — status verificável de publicação (24/09/2026)
 
-**Publicação GitHub parcial.** O repo contém neste momento 35 arquivos verificados no branch `main`: 23 `.py`, 4 `.tex`, 7 `.md`, 1 `.yml`. Destes 23 Python, 22 são históricos e 1 é o importador. Documentação, código standalone multímódulos, NablaRender v0.7 e LaTeX reais estão publicamente disponíveis.
+**Publicação parcial — fonte e documentação no GitHub; acervo binário ainda pendente.** O branch `main` foi verificado com **53 arquivos**: 41 `.py` (40 históricos, 1 importador), 4 `.tex`, 7 `.md` e 1 workflow `.yml`.
 
-**AINDA NÃO PUBLICADOS:** o ZIP original de 27,5 MB nem os 177 membros extraídos; portanto PDFs, PNG/JPG e parte do código histórico ainda não constam do remoto. Não dizer “upload completo” até `archive/artifacts/` e `archive/bundles/` existirem no GitHub.
+Publicado: README com visão final, handoff/arquitetura para outra IA, inventário de 177 arquivos, registro recuperável dos pedidos da conversa, fontes standalone, módulos originais v0.3, motor orbital v0.4, fontes NablaRender v0.7, regressões e exemplos.
+
+**NÃO PUBLICADO NESTE MOMENTO:** o ZIP original de 27,5 MB e os 177 membros extraídos — PDFs, imagens e arquivos históricos restantes não estão no remoto. Não dizer “upload completo” antes de `archive/artifacts/` e `archive/bundles/` existirem e passarem na action.
 
 - [README](../README.md)
-- [Handoff para a próxima IA](AI_HANDOFF.md)
-- [Histórico disponível da conversa](CONVERSATION_FOR_NEXT_AI.md)
-- [Inventário dos 177 itens recuperados](CONTENT_INDEX.md)
-- [Publicação segura do ZIP e de todos os 177 membros](UPLOAD_REMAINING_ARCHIVE.md)
-- [Importador já presente no GitHub](../scripts/import_archive.py)
+- [Handoff da próxima IA](AI_HANDOFF.md)
+- [Histórico recuperável](CONVERSATION_FOR_NEXT_AI.md)
+- [Inventário dos 177 arquivos](CONTENT_INDEX.md)
+- [Publicação segura dos bytes binários restantes](UPLOAD_REMAINING_ARCHIVE.md)
+- [Importador pronto](../scripts/import_archive.py)
+- [CI para checagem de sintaxe e integridade](../.github/workflows/archive-audit.yml)
 
-O conector usado escreve arquivos UTF-8, mas não tem acesso direto aos bytes binários montados no sandbox. GitHub Actions habilitado **não** permite ler os arquivos locais desta conversa. Para completar o upload com SHA exato, o proprietário deve executar `scripts/import_archive.py` com o ZIP local no seu Git autenticado, ou conectar outro sistema de transferência binária verificável.
+O conector GitHub aceita texto UTF-8, mas não transfere diretamente o ZIP/PDF/PNG local. GitHub Actions habilitado não dá acesso automático ao sandbox ChatGPT; use o importador local ou outro canal de transferência binária verificável.
 
-A ação `archive-audit.yml` faz verificação de sintaxe e, quando o ZIP chegar ao repositório, SHA-256, 177 membros e CRC. Não substitui suite de testes matemáticos/científicos.
+**Validação:** a action passou nos commits após correção do inicializador indevido de NablaRender; o teste automático atual verifica apenas compilação sintática e ZIP SHA/CRC caso presente. **Não representa validação científica, prova de todos os módulos nem validação dos PDFs.**
