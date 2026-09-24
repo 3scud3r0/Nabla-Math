@@ -16,7 +16,7 @@ from .formal import verify_with_lean
 from .orbits import earth_circular_orbit
 from .report import write_report
 from .research import calculate
-from .storage import export_verified, load_result, save_result, verify_record
+from .storage import export_verified, import_snapshot, load_result, save_result, verify_record
 
 
 def _assignment(text: str) -> tuple[str, Fraction]:
@@ -49,6 +49,9 @@ def main(argv: list[str] | None = None) -> int:
     export = commands.add_parser("export", help="Exportar registros revalidados em JSONL")
     export.add_argument("destination", type=Path)
     export.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
+    import_cmd = commands.add_parser("import", help="Importar snapshot local após hash e reexecução")
+    import_cmd.add_argument("source", type=Path)
+    import_cmd.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
     curated = commands.add_parser("curate", help="Criar dataset local com proveniência e divisões")
     curated.add_argument("destination", type=Path)
     curated.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
@@ -73,6 +76,10 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "curate":
             print(json.dumps(curate(args.db, args.destination, license_id=args.license,
                                     provenance=args.provenance), ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "import":
+            inserted, repeated = import_snapshot(args.db, args.source)
+            print(f"Importados: {inserted}; duplicados idênticos: {repeated}")
             return 0
         if args.command == "formal":
             payload = load_result(args.db, args.identifier)

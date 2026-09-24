@@ -6,6 +6,8 @@ O repositório agora contém uma **prévia experimental de aritmética racional 
 
 Verificação de desenvolvimento: `python -m unittest discover -s tests -v`. Lean e compilação PDF são opcionais e não fazem parte da instalação básica. `nabla orbit --altitude-m 400000` calcula uma órbita circular ideal; `nabla formal ID` submete uma instância racional armazenada ao Lean/Mathlib quando Lake estiver instalado; `nabla curate dataset.jsonl --license CC0-1.0 --provenance 'origem controlada'` cria um conjunto local revalidado (a licença é declaração do curador). Veja [limites e comandos novos](docs/INTEGRATIONS_ALPHA.md).
 
+Intercâmbio manual entre computadores: `nabla export lote.jsonl --db origem.sqlite3` e `nabla import lote.jsonl --db destino.sqlite3`. O importador confere hash, reexecuta os registros e ignora duplicatas idênticas. Ainda não há servidor nem sincronização em tempo real.
+
 ## Roteiro para a plataforma de pesquisa distribuída
 
 O [roteiro de implementação, contratos e inventário de arquivos](docs/ROADMAP_GLOBAL_RESEARCH.md) descreve o desenvolvimento progressivo de um pacote Python local, integração Lean/LaTeX, trabalho com ou sem agentes, dados sintéticos curados, site GitHub Pages e uma futura rede de computação voluntária. **Os exemplos Lean, orbitais e de curadoria locais são limitados; não há serviço global nem dataset publicado.**

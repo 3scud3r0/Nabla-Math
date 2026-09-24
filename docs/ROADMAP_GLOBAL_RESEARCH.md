@@ -214,6 +214,7 @@ Arquivos `__init__.py`, tipos, testes de cada regra/modelo, documentação de no
 - [x] Caso orbital analítico: vis-viva, período, condições SI, checagens independentes de conservação em testes.
 - [x] Gerador Lean de proposições de instâncias racionais e lemas estáticos; CI Lean/Mathlib adicionada, execução verde ainda pendente de observação.
 - [x] Curadoria local JSONL: reexecução, declaração explícita de licença/procedência, divisões determinísticas por expressão.
+- [x] Troca manual de snapshots entre dois bancos locais: manifesto SHA-256, reexecução, importação transacional e idempotente.
 - [ ] Prova formal simbólica de cada regra com hipóteses, revisão humana de tradução e registro persistente do resultado formal.
 - [ ] Comparação orbital com fonte externa, unidade física automática, modelos perturbados, CFD validado e visualização auditável.
 - [ ] Publicação de datasets sob conta escolhida, API multiusuário, sincronização e reprodução por máquinas independentes.

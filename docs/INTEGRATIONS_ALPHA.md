@@ -11,3 +11,7 @@
 ## Dataset local
 
 `nabla curate dataset.jsonl --db .nabla/results.sqlite3 --license CC0-1.0 --provenance 'meus exemplos autorais'` cria JSONL e manifesto SHA-256. A procedência e licença são **declarações**; autor precisa verificar titularidade. A divisão agrupa registros pela expressão textual sem espaços para reduzir vazamento entre treino e teste; isto não bloqueia expressões equivalentes escritas de outro jeito nem contaminação de outros datasets. `formal_proof: false` permanece verdadeiro no dataset mesmo que uma instância tenha sido verificada isoladamente no Lean, até existir vínculo persistente auditável. O comando não publica nada, não treina modelos e não mede ganho científico.
+
+## Troca entre instalações
+
+`nabla export lote.jsonl --db a.sqlite3` e `nabla import lote.jsonl --db b.sqlite3` permitem aproveitar registros em outra máquina após verificação de manifesto e reexecução. O formato importável aqui é o snapshot bruto produzido por `export`, não o JSONL enriquecido produzido por `curate`. Um hash detecta alteração acidental, mas não autentica a pessoa que enviou o arquivo. Não há API pública, tolerância a nós maliciosos, consenso distribuído, blockchain ou contagem de participantes.
