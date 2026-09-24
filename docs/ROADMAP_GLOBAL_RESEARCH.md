@@ -212,14 +212,15 @@ Arquivos `__init__.py`, tipos, testes de cada regra/modelo, documentação de no
 
 - [x] Executor local: expressões racionais, SQLite, reexecução e fonte LaTeX.
 - [x] Caso orbital analítico: vis-viva, período, condições SI, checagens independentes de conservação em testes.
-- [x] Gerador Lean de proposições de instâncias racionais e lemas estáticos; CI Lean/Mathlib adicionada, execução verde ainda pendente de observação.
+- [x] Diagrama SVG local em escala da órbita ideal, com foco explícito e texto de acessibilidade.
+- [x] Gerador Lean de proposições de instâncias racionais e lemas estáticos; CI Lean/Mathlib compilou a biblioteca e verificou duas instâncias racionais (execução `36010666417`).
 - [x] Curadoria local JSONL: reexecução, declaração explícita de licença/procedência, divisões determinísticas por expressão.
 - [x] Troca manual de snapshots entre dois bancos locais: manifesto SHA-256, reexecução, importação transacional e idempotente.
 - [ ] Prova formal simbólica de cada regra com hipóteses, revisão humana de tradução e registro persistente do resultado formal.
 - [ ] Comparação orbital com fonte externa, unidade física automática, modelos perturbados, CFD validado e visualização auditável.
 - [ ] Publicação de datasets sob conta escolhida, API multiusuário, sincronização e reprodução por máquinas independentes.
 
-Nenhuma das fases F1–F6 completas abaixo decorre apenas destes incrementos. A ação Lean no GitHub deverá compilar antes de qualificar o exemplo como prova verificada neste repositório.
+Nenhuma das fases F1–F6 completas abaixo decorre apenas destes incrementos. A ação Lean no GitHub já compilou o exemplo; isso prova duas **instâncias numéricas**, sem estabelecer uma identidade gerada universal nem verificar modelos físicos.
 
 - [ ] **F0 — especificação:** definir licenças e governança, escolher formatos e versões, aprovar contratos de evidência e ameaças; manter README honesto sobre o status.
 - [ ] **F1 — produto local:** `pip install`, bootstrap Windows, `doctor`, CLI e banco local; primeiro problema reproduzível de ponta a ponta sem IA.

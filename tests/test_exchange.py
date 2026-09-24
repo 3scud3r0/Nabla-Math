@@ -8,6 +8,12 @@ from nablamath.storage import export_verified, import_snapshot, load_result, sav
 
 
 class ExchangeTests(unittest.TestCase):
+    def test_missing_database_has_no_side_effect(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "absent.sqlite3"
+            self.assertIsNone(load_result(path, "none"))
+            self.assertFalse(path.exists())
+
     def test_two_local_databases_exchange_verified_work(self):
         with tempfile.TemporaryDirectory() as directory:
             a, b = (Path(directory) / n for n in ("a.sqlite3", "b.sqlite3"))

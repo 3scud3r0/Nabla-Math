@@ -33,8 +33,15 @@ def save_result(path: str | Path, result: ResearchResult) -> bool:
 
 
 def load_result(path: str | Path, identifier: str) -> dict | None:
+    if not Path(path).is_file():
+        return None
     with sqlite3.connect(path) as connection:
-        row = connection.execute("SELECT payload FROM results WHERE content_id=?", (identifier,)).fetchone()
+        try:
+            row = connection.execute("SELECT payload FROM results WHERE content_id=?", (identifier,)).fetchone()
+        except sqlite3.OperationalError as exc:
+            if "no such table" in str(exc):
+                return None
+            raise
     return json.loads(row[0]) if row else None
 
 
@@ -79,6 +86,8 @@ def import_snapshot(path: str | Path, source: str | Path) -> tuple[int, int]:
         raise ValueError("Snapshot excede limite de 64 MiB")
     manifest_path = source.with_suffix(source.suffix + ".manifest.json")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest.get("schema_version") != 1 or manifest.get("format") != "jsonl":
+        raise ValueError("Formato de snapshot incompatível")
     content = source.read_bytes()
     import hashlib
     if hashlib.sha256(content).hexdigest() != manifest.get("sha256"):

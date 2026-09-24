@@ -14,7 +14,7 @@ Atualizada em 24/09/2026. São **intervalos de planejamento**, não previsão de
 
 O total bruto é aproximadamente **44–115 pessoa-meses** para um produto de escopo delimitado; tarefas simultâneas fazem o calendário estimado de **2,5 a 5 anos** para equipe pequena de 2–4 pessoas com revisão científica. Em dedicação individual parcial, prever **5–10+ anos**. Não há um término de “toda a ciência de A a Z”: cobertura e manutenção são contínuas.
 
-**Estado atual:** núcleo racional local, LaTeX fonte, SQLite, caso orbital analítico, geração de instâncias Lean (dependente da CI), curadoria local e troca manual de snapshots. F0–F6 **não** estão concluídas. O início das etapas seguintes exige escolher licença do código, titulares de dados, identidade da organização Hugging Face e política de contribuição; nenhuma plataforma pública será habilitada automaticamente. A verificação Lean deve permanecer CI verde antes de tratar as instâncias como provas produzidas pelo projeto.
+**Estado atual:** núcleo racional local, LaTeX fonte, SQLite, caso orbital analítico e SVG, duas instâncias racionais verificadas pelo Lean na CI, curadoria local e troca manual de snapshots. F0–F6 **não** estão concluídas. O início das etapas seguintes exige escolher licença do código, titulares de dados, identidade da organização Hugging Face e política de contribuição; nenhuma plataforma pública será habilitada automaticamente. A CI Lean deverá permanecer verde e a tradução matemática revisada para ampliar a cobertura.
 
 ## Portas de validação
 

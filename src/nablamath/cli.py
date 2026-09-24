@@ -13,6 +13,7 @@ from . import __version__
 from .curation import curate
 from .expression import DomainError, render
 from .formal import verify_with_lean
+from .orbit_svg import write_earth_orbit_svg
 from .orbits import earth_circular_orbit
 from .report import write_report
 from .research import calculate
@@ -59,6 +60,7 @@ def main(argv: list[str] | None = None) -> int:
     curated.add_argument("--provenance", required=True)
     orbit = commands.add_parser("orbit", help="Órbita terrestre circular ideal em unidades SI")
     orbit.add_argument("--altitude-m", type=float, required=True)
+    orbit.add_argument("--svg", type=Path, help="Gravar visualização orbital SVG em escala")
     formal = commands.add_parser("formal", help="Provar no Lean uma instância racional armazenada")
     formal.add_argument("identifier")
     formal.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
@@ -72,7 +74,10 @@ def main(argv: list[str] | None = None) -> int:
                               "lean_command_available": shutil.which("lean") is not None}, ensure_ascii=False))
             return 0
         if args.command == "orbit":
-            print(json.dumps(earth_circular_orbit(args.altitude_m).summary(), ensure_ascii=False, indent=2))
+            object_orbit = earth_circular_orbit(args.altitude_m)
+            print(json.dumps(object_orbit.summary(), ensure_ascii=False, indent=2))
+            if args.svg:
+                print("SVG:", write_earth_orbit_svg(object_orbit, args.svg))
             return 0
         if args.command == "curate":
             print(json.dumps(curate(args.db, args.destination, license_id=args.license,
