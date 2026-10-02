@@ -204,13 +204,23 @@ class Tensor:
         return Tensor._from_flat(out,(m,n),bool(parents),parents,"matmul")
     def __matmul__(self,other): return self.matmul(other)
     def _topological(self):
-        order=[]; seen=set()
-        def visit(node):
-            if id(node) in seen:return
-            seen.add(id(node))
-            for parent,_ in node._parents:visit(parent)
-            order.append(node)
-        visit(self); return order
+        order = []
+        seen = set()
+        stack = [(self, False)]
+        while stack:
+            node, expanded = stack.pop()
+            marker = id(node)
+            if expanded:
+                order.append(node)
+                continue
+            if marker in seen:
+                continue
+            seen.add(marker)
+            stack.append((node, True))
+            for parent, _ in reversed(node._parents):
+                if id(parent) not in seen:
+                    stack.append((parent, False))
+        return order
     def backward(self,gradient=None)->None:
         order=self._topological()
         for node in order: node._grad=[0.0]*node.size
