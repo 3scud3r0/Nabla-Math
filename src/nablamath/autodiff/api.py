@@ -114,14 +114,23 @@ class Var:
     def detach(self) -> "Var": return Var(self.value, requires_grad=False)
 
     def _topological(self) -> list["Var"]:
-        order: list[Var]=[]; seen:set[int]=set()
-        def visit(node: Var) -> None:
-            marker=id(node)
-            if marker in seen: return
+        order: list[Var] = []
+        seen: set[int] = set()
+        stack: list[tuple[Var, bool]] = [(self, False)]
+        while stack:
+            node, expanded = stack.pop()
+            marker = id(node)
+            if expanded:
+                order.append(node)
+                continue
+            if marker in seen:
+                continue
             seen.add(marker)
-            for parent,_ in node._parents: visit(parent)
-            order.append(node)
-        visit(self); return order
+            stack.append((node, True))
+            for parent, _ in reversed(node._parents):
+                if id(parent) not in seen:
+                    stack.append((parent, False))
+        return order
 
     def backward(self, seed: float = 1.0) -> None:
         seed=float(seed)
