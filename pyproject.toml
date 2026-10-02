@@ -13,6 +13,7 @@ dependencies = []
 
 [project.optional-dependencies]
 cloud = ["huggingface_hub>=0.25,<2"]
+test = ["pytest>=8,<10"]
 accelerate = ["jax"]
 
 [project.scripts]
@@ -24,3 +25,7 @@ where = ["src"]
 [tool.setuptools.package-data]
 "nablamath.desktop" = ["index.html"]
 "nablamath" = ["compatibility.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["legacy", "current scripts", ".git", "build", "dist"]

@@ -96,6 +96,13 @@ O segundo comando mostra o checklist F0–F6; não mede maturidade científica. 
 
 Para concatenar fontes e configurações atuais em um arquivo legível (exclui `legacy/`, ambientes, dependências instaladas e dados), execute `python tools/export_source_bundle.py`. O resultado padrão é `NablaMath_current_sources.txt`.
 
+O arquivo versionado [`math.txt`](math.txt) aglutina, em ordem determinística, todo
+o código matemático canônico em Python e Lean deste recorte. Cada seção contém
+caminho, número de linhas e SHA-256. Regenere-o com
+`python tools/build_math_bundle.py` e verifique sincronização com
+`python tools/build_math_bundle.py --check`; o bundle é artefato de distribuição,
+não uma segunda fonte editável nem uma alegação de que “toda a matemática” acabou.
+
 ## Estrutura
 
 | Diretório | Responsabilidade |

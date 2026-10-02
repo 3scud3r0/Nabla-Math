@@ -91,6 +91,9 @@ evidência; não transformam consenso em verdade científica.
 - Geometria euclidiana/convexa plana racional: distância, orientação, área, fecho convexo e pertinência.
 - Teoria das categorias finitas: categorias por tabelas, categorias discretas, funtores e
   transformações naturais, objetos iniciais/terminais, isomorfismos e produtos por propriedade universal.
+- Polinômios multivariados esparsos exatos sobre os racionais, ordens lex/grlex/grevlex,
+  divisão multivariada, polinômios-S, algoritmo de Buchberger limitado por orçamento,
+  bases de Gröbner reduzidas e teste de pertinência a ideal para sistemas pequenos.
 
 Esses são recortes pequenos e explícitos. Eles não tornam as áreas correspondentes
 “implementadas por completo” e não substituem provas Lean ou revisão especializada.

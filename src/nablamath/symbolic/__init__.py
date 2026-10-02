@@ -1,5 +1,15 @@
 from .parser import parse
 from .derive import derive
+from .egraph import EGraph, EGraphLimitError, RewriteEvent, SaturationResult, saturate
+
+__all__ = [
+    "parse",
+    "derive",
+    "EGraph",
+    "EGraphLimitError",
+    "RewriteEvent",
+    "SaturationResult",
+    "saturate",
 from .differentiate import DerivativeResult, differentiate, symbolic_gradient, symbolic_hessian
 from .assumptions import AssumptionSet
 from .patterns import PNode, PVar, RewriteRule, RuleCondition, parse_pattern
