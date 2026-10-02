@@ -13,6 +13,7 @@ dependencies = []
 
 [project.optional-dependencies]
 cloud = ["huggingface_hub>=0.25,<2"]
+accelerate = ["jax"]
 
 [project.scripts]
 nabla = "nablamath.cli:main"

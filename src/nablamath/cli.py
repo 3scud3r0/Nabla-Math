@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from fractions import Fraction
 import json
+import sys
 from pathlib import Path
 
 from . import __version__
