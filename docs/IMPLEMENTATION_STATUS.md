@@ -6,6 +6,7 @@ Revisado em 24/09/2026. Este documento resume protótipos e limites observáveis
 
 - Pacote Python experimental, CLI e desktop local em loopback.
 - Expressões racionais em subconjunto documentado, etapas com condições, SQLite, importação/exportação JSONL, manifesto/hash e LaTeX fonte.
+- E-graph local com fechamento de congruência, saturação limitada por orçamento, trilha de regras e extração por custo configurável; o conjunto inicial cobre identidades aritméticas conservadoras, associatividade, comutatividade, constantes e fatoração simples.
 - Exemplos limitados de Lean 4/Mathlib, órbita ideal de dois corpos, fluxo laminar analítico em tubo, unidades/conversões, RK4 e visualização SVG.
 - Curadoria local, exportação e publicador Hugging Face opt-in; worker declarativo local; protótipos de fila e log Merkle.
 - Parsers de frações em C/C++/Rust; instalador Windows alpha.
