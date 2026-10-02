@@ -1,0 +1,38 @@
+name: Optional accelerator backend
+
+on:
+  push:
+    paths:
+      - "src/nablamath/compiler/**"
+      - "tests/test_compiler_backends.py"
+      - "pyproject.toml"
+      - ".github/workflows/accelerator-optional.yml"
+  pull_request:
+    paths:
+      - "src/nablamath/compiler/**"
+      - "tests/test_compiler_backends.py"
+      - "pyproject.toml"
+      - ".github/workflows/accelerator-optional.yml"
+
+jobs:
+  jax-cpu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install optional accelerator backend
+        run: python -m pip install -e ".[accelerate]"
+      - name: Exercise compiler backend tests with JAX installed
+        run: python -m unittest discover -s tests -p "test_compiler_backends.py" -v
+      - name: Report runtime devices
+        run: |
+          python - <<'PY'
+          from nablamath.compiler import jax_devices
+          devices = jax_devices()
+          if not devices:
+              raise SystemExit("JAX reported no execution device")
+          for device in devices:
+              print(device)
+          PY
