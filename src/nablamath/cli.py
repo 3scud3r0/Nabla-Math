@@ -6,10 +6,9 @@ import argparse
 from fractions import Fraction
 import json
 from pathlib import Path
-import shutil
-import sys
 
 from . import __version__
+from .compatibility import runtime_report
 from .curation import curate
 from .expression import DomainError, render
 from .formal import verify_with_lean
@@ -19,6 +18,7 @@ from .physics.fluids import PipeFlow
 from .report import write_report
 from .research import calculate
 from .storage import export_verified, import_snapshot, load_result, save_result, verify_record
+from .store.backup import backup_database, restore_database
 
 
 def _assignment(text: str) -> tuple[str, Fraction]:
@@ -57,6 +57,12 @@ def main(argv: list[str] | None = None) -> int:
     import_cmd = commands.add_parser("import", help="Importar snapshot local após hash e reexecução")
     import_cmd.add_argument("source", type=Path)
     import_cmd.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
+    backup = commands.add_parser("backup", help="Criar backup SQLite consistente e verificável")
+    backup.add_argument("destination", type=Path)
+    backup.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
+    restore = commands.add_parser("restore", help="Restaurar backup sem sobrescrever banco existente")
+    restore.add_argument("source", type=Path)
+    restore.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
     curated = commands.add_parser("curate", help="Criar dataset local com proveniência e divisões")
     curated.add_argument("destination", type=Path)
     curated.add_argument("--db", type=Path, default=Path(".nabla/results.sqlite3"))
@@ -86,10 +92,9 @@ def main(argv: list[str] | None = None) -> int:
             desktop_main(desktop_args)
             return 0
         if args.command == "doctor":
-            print(json.dumps({"version": __version__, "python": sys.version.split()[0],
-                              "pdflatex_command_available": shutil.which("pdflatex") is not None,
-                              "lean_command_available": shutil.which("lean") is not None}, ensure_ascii=False))
-            return 0
+            report = runtime_report()
+            print(json.dumps(report.to_data(), ensure_ascii=False))
+            return 0 if report.compatible else 1
         if args.command == "orbit":
             object_orbit = earth_circular_orbit(args.altitude_m)
             print(json.dumps(object_orbit.summary(), ensure_ascii=False, indent=2))
@@ -104,6 +109,12 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "curate":
             print(json.dumps(curate(args.db, args.destination, license_id=args.license,
                                     provenance=args.provenance), ensure_ascii=False, indent=2))
+            return 0
+        if args.command == "backup":
+            print(json.dumps(backup_database(args.db, args.destination).to_data(), ensure_ascii=False))
+            return 0
+        if args.command == "restore":
+            print(json.dumps(restore_database(args.source, args.db).to_data(), ensure_ascii=False))
             return 0
         if args.command == "import":
             inserted, repeated = import_snapshot(args.db, args.source)

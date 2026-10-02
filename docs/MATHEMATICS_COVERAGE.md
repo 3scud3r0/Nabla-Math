@@ -91,6 +91,38 @@ evidência; não transformam consenso em verdade científica.
 - Geometria euclidiana/convexa plana racional: distância, orientação, área, fecho convexo e pertinência.
 - Teoria das categorias finitas: categorias por tabelas, categorias discretas, funtores e
   transformações naturais, objetos iniciais/terminais, isomorfismos e produtos por propriedade universal.
+- Polinômios multivariados esparsos exatos sobre os racionais, ordens lex/grlex/grevlex,
+  divisão multivariada, polinômios-S, algoritmo de Buchberger limitado por orçamento,
+  bases de Gröbner reduzidas e teste de pertinência a ideal para sistemas pequenos.
+- SAT proposicional em CNF por DPLL limitado, com propagação unitária, literais puros e
+  certificado de atribuição; refutação proposicional por resolução com replay dos passos.
+- Integração simbólica exata do subconjunto de polinômios racionais univariados pela
+  regra da potência, acompanhada de certificado independente por diferenciação de coeficientes.
+- Derivação simbólica exata para toda a AST racional atual, preservando obrigações de
+  não nulidade; extensões algébricas exatas `Q(α)` certificadas para graus 2 e 3.
+- Complexos simpliciais e homologia racional por matrizes de bordo, π1 de complexos
+  unidimensionais, formas diferenciais polinomiais, wedge e derivada exterior.
+- Miller–Rabin determinístico em 64 bits, AKS educacional limitado e curvas elípticas
+  não singulares sobre corpos primos, sem apresentá-las como protocolo criptográfico.
+- LRA racional exata por Fourier–Motzkin, distribuições Normal/Exponencial/Poisson,
+  movimento Browniano reproduzível e integração de SDEs por Euler–Maruyama.
+- Jets de Taylor exatos para a AST racional e limites de quocientes polinomiais por
+  multiplicidade algébrica, distinguindo polos que exigem análise lateral.
+- F4 racional de referência com seleção de pares por grau, pré-processamento simbólico,
+  construção de matrizes Macaulay, eliminação esparsa exata e verificação final de Buchberger;
+  F5 de referência com signatures, redução segura por assinatura e conclusão verificada.
+- CDCL de referência com aprendizado de cláusulas, backjump, atividade e reinícios;
+  séries de Laurent e resíduos exatos para funções racionais em centros racionais.
+- Semântica modular exata de bit-vectors, arrays funcionais persistentes e decisão
+  certificada de conjunções de lógica diferencial inteira por ciclos negativos.
+- Cálculo clausular de primeira ordem limitado com unificação por occurs-check,
+  padronização de variáveis, resolução e superposição de igualdades em subtermos.
+- Geometria Riemanniana local exata a partir do 2-jet da métrica, incluindo símbolos
+  de Christoffel, Riemann, Ricci e curvatura escalar; fórmula de Itô polinomial exata.
+
+A situação requisito por requisito está em
+[`MATHEMATICS_COMPLETION_AUDIT.md`](MATHEMATICS_COMPLETION_AUDIT.md); ela registra
+explicitamente por que o pedido amplo ainda não atingiu 100%.
 
 Esses são recortes pequenos e explícitos. Eles não tornam as áreas correspondentes
 “implementadas por completo” e não substituem provas Lean ou revisão especializada.
