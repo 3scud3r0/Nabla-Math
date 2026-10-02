@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nablamath.org/schema/nabla-task-v1.json",
+  "title": "Nabla bounded task v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["task_type", "input_ids", "accepted_output_types", "budget"],
+  "properties": {
+    "task_type": {"enum": ["solve", "verify", "criticize", "formalize", "find_counterexample", "deduplicate"]},
+    "input_ids": {"$ref": "nabla-object-v1.json#/$defs/ids"},
+    "accepted_output_types": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+    "budget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cpu_seconds", "memory_bytes", "disk_bytes", "network_bytes", "wall_seconds"],
+      "properties": {
+        "cpu_seconds": {"type": "integer", "minimum": 0, "maximum": 86400},
+        "memory_bytes": {"type": "integer", "minimum": 0},
+        "disk_bytes": {"type": "integer", "minimum": 0},
+        "network_bytes": {"type": "integer", "minimum": 0},
+        "wall_seconds": {"type": "integer", "minimum": 0, "maximum": 86400}
+      }
+    }
+  }
+}

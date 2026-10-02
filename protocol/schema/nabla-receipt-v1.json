@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nablamath.org/schema/nabla-receipt-v1.json",
+  "title": "Nabla verification receipt payload v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["subject_id", "verifier", "method", "outcome", "evidence_ids", "environment_id", "statement"],
+  "properties": {
+    "subject_id": {"$ref": "nabla-object-v1.json#/$defs/id"},
+    "verifier": {"type": "string", "minLength": 1},
+    "method": {"enum": ["exact_reexecution", "independent_implementation", "formal_kernel", "human_review", "external_reference"]},
+    "outcome": {"enum": ["passed", "failed", "inconclusive"]},
+    "evidence_ids": {"$ref": "nabla-object-v1.json#/$defs/ids"},
+    "environment_id": {"$ref": "nabla-object-v1.json#/$defs/id"},
+    "statement": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nablamath.org/schema/nabla-object-v1.json",
+  "title": "Nabla knowledge object v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["dependencies", "license", "object_type", "parents", "payload", "provenance", "schema_version"],
+  "properties": {
+    "schema_version": {"const": "nabla-object-v1"},
+    "object_type": {"enum": ["problem", "conjecture", "attempt", "proof", "counterexample", "critique", "experiment", "benchmark", "dataset_manifest", "model_evaluation", "verification_receipt", "retraction"]},
+    "payload": {"type": "object"},
+    "license": {"type": "string", "minLength": 1},
+    "provenance": {"type": "object"},
+    "parents": {"$ref": "#/$defs/ids"},
+    "dependencies": {"$ref": "#/$defs/ids"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "ids": {"type": "array", "items": {"$ref": "#/$defs/id"}, "uniqueItems": true}
+  }
+}

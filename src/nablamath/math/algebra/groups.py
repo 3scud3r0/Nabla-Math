@@ -1,0 +1,60 @@
+"""Grupos finitos por tabela explícita, adequados a exemplos e verificação exaustiva."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from itertools import product
+from typing import Generic, Mapping, TypeVar
+
+T = TypeVar("T")
+
+
+@dataclass(frozen=True)
+class FiniteGroup(Generic[T]):
+    elements: tuple[T, ...]
+    identity: T
+    table: Mapping[tuple[T, T], T]
+
+    def __post_init__(self) -> None:
+        values = set(self.elements)
+        if not self.elements or len(values) != len(self.elements) or self.identity not in values:
+            raise ValueError("elementos/identidade inválidos")
+        expected = set(product(self.elements, repeat=2))
+        if set(self.table) != expected or any(value not in values for value in self.table.values()):
+            raise ValueError("tabela não é uma operação fechada e total")
+        for element in self.elements:
+            if self.multiply(self.identity, element) != element or self.multiply(element, self.identity) != element:
+                raise ValueError("identidade inválida")
+            if not any(self.multiply(element, candidate) == self.identity and self.multiply(candidate, element) == self.identity
+                       for candidate in self.elements):
+                raise ValueError("elemento sem inverso bilateral")
+        for a, b, c in product(self.elements, repeat=3):
+            if self.multiply(self.multiply(a, b), c) != self.multiply(a, self.multiply(b, c)):
+                raise ValueError("operação não associativa")
+
+    def multiply(self, left: T, right: T) -> T:
+        try: return self.table[left, right]
+        except KeyError as exc: raise ValueError("elemento fora do grupo") from exc
+
+    def inverse(self, element: T) -> T:
+        for candidate in self.elements:
+            if self.multiply(element, candidate) == self.identity and self.multiply(candidate, element) == self.identity:
+                return candidate
+        raise ValueError("elemento fora do grupo")
+
+    def order(self, element: T) -> int:
+        if element not in self.elements: raise ValueError("elemento fora do grupo")
+        value = self.identity
+        for exponent in range(1, len(self.elements) + 1):
+            value = self.multiply(value, element)
+            if value == self.identity: return exponent
+        raise AssertionError("grupo validado sem ordem finita")
+
+
+def cyclic_group(order: int) -> FiniteGroup[int]:
+    if not 1 <= order <= 4096: raise ValueError("ordem fora do limite")
+    elements = tuple(range(order))
+    return FiniteGroup(elements, 0, {(a, b): (a + b) % order for a in elements for b in elements})
+
+
+__all__ = ["FiniteGroup", "cyclic_group"]
