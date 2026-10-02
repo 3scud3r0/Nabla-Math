@@ -5,11 +5,14 @@ This artifact aggregates implemented code; it does not claim all mathematics is 
 FORMAT_VERSION: 1
 SOURCE_FILES: 132
 SOURCE_LINES: 7159
+SOURCE_FILES: 105
+SOURCE_LINES: 3986
 
 INDEX (path | sha256 | lines)
 lean/NablaMath.lean | 3880becce88a54b4528acf2269b850fc0b2fc9cd38f6730f5c26cf612dc71a1c | 1
 lean/NablaMath/Algebra.lean | cde858124ae36118a88018a32221200b7b74e1d2622192774a9e3d6e687394b8 | 11
 lean/NablaMath/Algebra/Rules.lean | c26ff1d088dfe509fe9c497fde8c9c6819ec68054eae202502d149587d3e7c68 | 36
+lean/NablaMath/Algebra/Rules.lean | c90dbe9db48ff44e03216783ff7cb96dc483b3fe51beeb49c04fc9ca070e1e7e | 13
 lean/NablaMath/Examples/FirstProblem.lean | 5dbf4ff2b6ec2d8d5b45d07ec90d33b9d340935898e3f1ef1f11eebc02556c21 | 13
 lean/NablaMath/Prelude.lean | d7531b6a5cd86e270a526b64265a2d05c85038ddc5845fd73439e13f3faba313 | 13
 lean/lakefile.lean | ee86f86e9b6239d19bde5626c340fb814019f8ebc49d9d8140f3bb3987ed4e93 | 12
@@ -27,6 +30,8 @@ src/nablamath/math/algebra/__init__.py | c6115108a6c58db4cc967063ed8d3bfd1a6f1b5
 src/nablamath/math/algebra/extensions.py | 4bd3c9e60eaf4bfa9eef66a8d25b308b40063e069856d34096bcddead2ed9191 | 187
 src/nablamath/math/algebra/f4.py | 576af2d067f63c42ab1f84f3c23f9bd83400433ba28bdf2fd79804a4c3ed375f | 233
 src/nablamath/math/algebra/f5.py | 90056be1d6e92b661b4100c959e6485d72e6fb85355d0509e5e7365ec321364a | 181
+src/nablamath/math/__init__.py | 058959cf025ba977392b250e34672b85cb863595abd237a0e1d4d29d2b079162 | 1
+src/nablamath/math/algebra/__init__.py | 6a37c87db8703356daa147317ec530619639fe4a8451d26c5b0cb4cb52372452 | 8
 src/nablamath/math/algebra/fields.py | 25f0620a1244faccf0d665c5cb2ece1f4473671292eeae84ee283450f729a8ac | 38
 src/nablamath/math/algebra/groebner.py | b744c419aae610d99992f0e0884bc0dcd35ffe25fa41fd446957523aa0b9e454 | 326
 src/nablamath/math/algebra/groups.py | f60d5d6a454cabd70c41d39fd9c9da7ddd5c7eaa25c7757d2ac704e44c6c96b5 | 60
@@ -34,6 +39,8 @@ src/nablamath/math/algebra/rings.py | 28632a685837039990e7e35438545dc590f1f172c5
 src/nablamath/math/analysis/__init__.py | 18b6e596b6a09f8e7e00a31888b0f16b1e22c4ab41c66a687f02c36fd15099d6 | 6
 src/nablamath/math/analysis/complex.py | 5f748651a9b498fd89a97c4df16db4ec00105ed3a0329508085c676468fada94 | 27
 src/nablamath/math/analysis/laurent.py | d47b82a7a772e9cd48cece8e13068a71f42fef83a48d1b923b553e3b915936f1 | 67
+src/nablamath/math/analysis/__init__.py | 3b11b6ca9c669f627aa39cf4e8c08cb290b6a19a70aedc6a06e9427eae29339d | 5
+src/nablamath/math/analysis/complex.py | 5f748651a9b498fd89a97c4df16db4ec00105ed3a0329508085c676468fada94 | 27
 src/nablamath/math/analysis/numerical.py | fcddd46998259ec3079646db01a1d39aaf308b0a16fcc2580079b43ebd62b1f9 | 117
 src/nablamath/math/analysis/real.py | 7f8c0611ec88026a7c4819d8112cd2bc2fe53b04b6c817168cfde75ab8a8bb1d | 37
 src/nablamath/math/analysis/sequences.py | ec06f81b901dca53fd8bb12af157b1a47f27cdd025fc147ca0f899de283b4b57 | 41
@@ -63,6 +70,9 @@ src/nablamath/math/geometry/convex.py | 34867412805a2cb11e552810693543659d628f30
 src/nablamath/math/geometry/differential.py | a2199d72e2e7eceb93e87f580f0c5bd9e9abdca9a5093e92a699abd93eec3f4e | 95
 src/nablamath/math/geometry/euclidean.py | 661d9a715826c3eab7eb8758b99730eaaa63bc5443b6d4fb750e671a659ed8b8 | 30
 src/nablamath/math/geometry/riemannian.py | 3e6b17254be5ea455378337b7057b310297da58598fddee0def06e76dbc10c08 | 122
+src/nablamath/math/geometry/__init__.py | 3fe5232ed2bdf26fe9e6343dbb1c83c5ccb50a1e291aadc4b93708e57ea5e835 | 3
+src/nablamath/math/geometry/convex.py | 34867412805a2cb11e552810693543659d628f308d3a31c7b65d159a1c2e699b | 26
+src/nablamath/math/geometry/euclidean.py | 661d9a715826c3eab7eb8758b99730eaaa63bc5443b6d4fb750e671a659ed8b8 | 30
 src/nablamath/math/graph_theory/__init__.py | 69680fb6d71f831cafb2c71db16c494d526668ad390918c023e93933776b3a22 | 6
 src/nablamath/math/graph_theory/algorithms.py | 83d1f6e516b3d0541d991d83c919e9352999b66846bd0a9d36b89986d0c5a05a | 38
 src/nablamath/math/graph_theory/directed.py | f6375189f64f7fbe2d14de4880df41677dd2099371a32a755494c05d3124429e | 128
@@ -88,6 +98,12 @@ src/nablamath/math/number_theory/congruences.py | a82d570728ca62add8d83aa2d5caa2
 src/nablamath/math/number_theory/elementary.py | 18a2605f3ff4289dea88e1a9ea58d0c557bcc11b7b28cf8b505d4086594a4b0e | 43
 src/nablamath/math/number_theory/elliptic_curves.py | 4a5f49262a56e01a9c64b48f5b40a10122ef0de5354aeaea1db1b98092312c70 | 73
 src/nablamath/math/number_theory/primality.py | dfe1728bf68e4900077a4b2b50b7905d096b6e9f56fb2b3efb13b89159afa00e | 125
+src/nablamath/math/logic/__init__.py | 24fa6d92c1f3d86cccacd4100f0af1de49f9517e9a1fef07900e59f3c1f39668 | 3
+src/nablamath/math/logic/first_order.py | 1d223533d254316d074a9a9580a22ec0ce31d306ef8a8fff26172cd3aa6e3fd5 | 110
+src/nablamath/math/logic/propositional.py | 69b34a1a9734c9102df766310b9370856a391abb155a489b5c4b03419e14c2a4 | 71
+src/nablamath/math/number_theory/__init__.py | 56eb1c2b2f9cf3d4b309931cfd6bf77cdc1bde14f48ee36063b882169e13b770 | 3
+src/nablamath/math/number_theory/congruences.py | a82d570728ca62add8d83aa2d5caa24dd66e510f9fa6a9609d0aa4df7e6d523f | 32
+src/nablamath/math/number_theory/elementary.py | 18a2605f3ff4289dea88e1a9ea58d0c557bcc11b7b28cf8b505d4086594a4b0e | 43
 src/nablamath/math/operations_research/__init__.py | 8693d39d4d56ac0a589dd15e15e2cf814a2395f7fb041c8867b9487e13ab9a1c | 3
 src/nablamath/math/operations_research/queues.py | 2f2e3164e4a24c0a5d4bfcc1698fd342775fb9b82b3a48ef368c5b260fd7fa3e | 24
 src/nablamath/math/operations_research/scheduling.py | 120907ca48dacae4110e6d4c59f4499d0fa288fb6592a3c010e5d4736b403711 | 98
@@ -103,6 +119,10 @@ src/nablamath/math/probability/ito.py | 85c1d26efc4b936777482c2521a1cc03fa42cc76
 src/nablamath/math/probability/joint.py | 244347f813e99c59b7fc81acad77b9516d55423dbc1d0b2c7b98747a585116d5 | 33
 src/nablamath/math/probability/markov.py | 6cb3ba1b095189072e0b4c14c75c0ffc1f86d1a4922f22ad7d74c9fc58ae3655 | 30
 src/nablamath/math/probability/stochastic.py | 0282385b14cb8cdd5f4886c289874d73617354fb57009c60a5695ab1b09ab92a | 44
+src/nablamath/math/probability/__init__.py | 5202244810b14abcb10bdb5707ddd1b089fe18a9ef1756b1d98a9d2bad0f60bc | 4
+src/nablamath/math/probability/finite.py | ef119b54f747cd900c40136952ac7af0b0b113cbda4bfac2512ce9566bf689ac | 36
+src/nablamath/math/probability/joint.py | 244347f813e99c59b7fc81acad77b9516d55423dbc1d0b2c7b98747a585116d5 | 33
+src/nablamath/math/probability/markov.py | 6cb3ba1b095189072e0b4c14c75c0ffc1f86d1a4922f22ad7d74c9fc58ae3655 | 30
 src/nablamath/math/set_theory/__init__.py | 433aa8e07e97b0175f0e380327ea72b7def23bc9b3fb5f62c3a6da71cf640681 | 2
 src/nablamath/math/set_theory/finite.py | 589672e498d513ae9b24152922cf1b1614559b250e3457321d7984cb95d4c3b1 | 48
 src/nablamath/math/statistics/__init__.py | 1df6fb22cd41d29022adb969620409cff9fe41f2eaeecb8c33e59bdb5b0a2198 | 5
@@ -113,6 +133,8 @@ src/nablamath/math/statistics/time_series.py | 8aafd73864f8c6669abbfb41be8eca9ca
 src/nablamath/math/topology/__init__.py | c3a7f1c97b38bc41bbd541fb84a55bb621d53ab8576297e77f70e845fb40cd1c | 4
 src/nablamath/math/topology/general.py | 41bd56e762030d2a1b020efd078a2ed5914d3ebec9cb6d71532b16de13fd0979 | 27
 src/nablamath/math/topology/homology.py | 4ea94259bcfe0b057d72b1f8cdaa7c7b854f086d6862a3d1cf64d14954a3d2a1 | 112
+src/nablamath/math/topology/__init__.py | 6dc3b2932f164bc0774eac4e19d28e315135c8a913b52c833869c4df2ff2b101 | 3
+src/nablamath/math/topology/general.py | 41bd56e762030d2a1b020efd078a2ed5914d3ebec9cb6d71532b16de13fd0979 | 27
 src/nablamath/math/topology/operations.py | a57a4e55fcec06ac31ccbdf7d9a0b7cf92f4a7e184890165507e50bfe7501741 | 30
 src/nablamath/numeric/__init__.py | 79cbf6198a6e7a8a33f2ef04b90d62952add4a7dcf483001b884d70fd61bd6ea | 1
 src/nablamath/numeric/evaluate.py | 5444dedd3de34aef18987beed1c94fe214280b7378aa0ed8ced4337ce07bb395 | 24
@@ -139,6 +161,12 @@ src/nablamath/symbolic/integrate.py | 691599c603c3a99ae987d8a4c70f737335ebf55264
 src/nablamath/symbolic/parser.py | 7ffb2355d0eec0e9506c4f65a02d6f24b06877cee7bf9efb11ac1c1e9118969c | 7
 src/nablamath/symbolic/rules.py | 64819d22b799b9a64c7a632bf6ee617224cb7efea5ee397c4c6639f92b0ee747 | 11
 src/nablamath/symbolic/series.py | e58930eb6a949fc9a875d8012daa493de787554bd3e62a3c31cf728d75bb2d4d | 99
+src/nablamath/symbolic/__init__.py | aabb7afca9d1b63480c34f4b551eab7aeffd8ed767d4fe19f40746c4350e045c | 13
+src/nablamath/symbolic/assumptions.py | 8f8cc16b3e84254805c451e01acb6d7559b0b9618a0cecb9c9875b2c09374223 | 15
+src/nablamath/symbolic/derive.py | 07210c7f590d98fd3e65a866046f25893418a4aaa2a6f14eb0c37b2bb037b70e | 10
+src/nablamath/symbolic/egraph.py | f0763d2e1b58dfe7997790e164074d1a277fea68954579ea9effa67b845d7fab | 356
+src/nablamath/symbolic/parser.py | 7ffb2355d0eec0e9506c4f65a02d6f24b06877cee7bf9efb11ac1c1e9118969c | 7
+src/nablamath/symbolic/rules.py | 64819d22b799b9a64c7a632bf6ee617224cb7efea5ee397c4c6639f92b0ee747 | 11
 
 ====================================================================================================
 BEGIN FILE: lean/NablaMath.lean
@@ -170,6 +198,8 @@ END FILE: lean/NablaMath/Algebra.lean
 BEGIN FILE: lean/NablaMath/Algebra/Rules.lean
 SHA256: c26ff1d088dfe509fe9c497fde8c9c6819ec68054eae202502d149587d3e7c68
 LINES: 36
+SHA256: c90dbe9db48ff44e03216783ff7cb96dc483b3fe51beeb49c04fc9ca070e1e7e
+LINES: 13
 ====================================================================================================
 import NablaMath.Prelude
 import Mathlib.Tactic
@@ -483,7 +513,6 @@ END FILE: src/nablamath/expression.py
 BEGIN FILE: src/nablamath/gpu/__init__.py
 SHA256: 3110dda9c71fbf8541bacaba96fc6c42a1fe597efd64622388a37099a18495e8
 LINES: 17
-====================================================================================================
 """Optional accelerator-neutral primitives with deterministic CPU fallbacks.
 
 No function in this package claims CUDA execution unless the supplied backend
@@ -503,11 +532,9 @@ __all__ = [
 ]
 END FILE: src/nablamath/gpu/__init__.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/gpu/batch_mcts_kernel.py
 SHA256: c8fc9f8cfbb738f0abb1006961641312b2661c57ee2920e8f3162f0950539bb8
 LINES: 129
-====================================================================================================
 """Deterministic batched Monte-Carlo tree search with explicit work budgets."""
 
 from __future__ import annotations
@@ -639,11 +666,9 @@ def batch_mcts(
 __all__ = ["ActionStatistic", "MCTSConfig", "MCTSResult", "batch_mcts"]
 END FILE: src/nablamath/gpu/batch_mcts_kernel.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/gpu/cuda_f4_reduction.py
 SHA256: 4e3d3de063ae76c3683f059e42eb6e05272f4ed46d2ef1cfe0b67475a51a503b
 LINES: 115
-====================================================================================================
 """F4 building block: exact modular row reduction of Macaulay matrices.
 
 The public API accepts an optional backend implementing the same contract.  The
@@ -761,11 +786,9 @@ def modular_rref(
 __all__ = ["F4ReductionResult", "ModularRrefBackend", "modular_rref"]
 END FILE: src/nablamath/gpu/cuda_f4_reduction.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/gpu/neural_guide.py
 SHA256: dc7ba11c9498f95ca9137e0e2bee92d235d4657bf5a0be391551910566d5cde6
 LINES: 69
-====================================================================================================
 """Small auditable INT8 linear policy for ranking symbolic actions."""
 
 from __future__ import annotations
@@ -837,11 +860,9 @@ class QuantizedLinearGuide:
 __all__ = ["QuantizedLinearGuide"]
 END FILE: src/nablamath/gpu/neural_guide.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/gpu/tensor_egraph.py
 SHA256: 580c01815e804134b94e213896acba42a7ea9b9cd2211a137d6c1d9864922090
 LINES: 100
-====================================================================================================
 """Packed integer representation and batched congruence operations for e-graphs."""
 
 from __future__ import annotations
@@ -944,11 +965,9 @@ class TensorEGraph:
 __all__ = ["PackedENode", "TensorEGraph"]
 END FILE: src/nablamath/gpu/tensor_egraph.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/gpu/vram_buffer_manager.py
 SHA256: f18b81370fdffbf3932f01a2be0a0a600f7ebf9f117366f6d1c0c56f530826e8
 LINES: 132
-====================================================================================================
 """Budgeted device-buffer residency without pretending a CPU is a GPU."""
 
 from __future__ import annotations
@@ -1083,7 +1102,6 @@ class BufferManager:
 __all__ = ["BufferBackend", "BufferHandle", "BufferManager", "CpuBufferBackend"]
 END FILE: src/nablamath/gpu/vram_buffer_manager.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/__init__.py
 SHA256: 058959cf025ba977392b250e34672b85cb863595abd237a0e1d4d29d2b079162
 LINES: 1
@@ -1095,7 +1113,6 @@ END FILE: src/nablamath/math/__init__.py
 BEGIN FILE: src/nablamath/math/algebra/__init__.py
 SHA256: c6115108a6c58db4cc967063ed8d3bfd1a6f1b56fa43833e97fed098f323fe82
 LINES: 13
-====================================================================================================
 from .fields import FiniteField, prime_field
 from .groebner import Polynomial, divide_polynomial, groebner_basis, is_in_ideal, polynomial_from_expr
 from .extensions import AlgebraicField, AlgebraicNumber
@@ -1108,6 +1125,15 @@ __all__ = ["AlgebraicField", "AlgebraicNumber", "FiniteField", "prime_field", "F
            "integers_modulo", "Polynomial", "divide_polynomial", "groebner_basis",
            "F4Result", "MacaulayMatrix", "build_macaulay_matrix", "f4_basis",
            "F5Result", "LabeledPolynomial", "Signature", "f5_basis",
+SHA256: 6a37c87db8703356daa147317ec530619639fe4a8451d26c5b0cb4cb52372452
+LINES: 8
+from .fields import FiniteField, prime_field
+from .groebner import Polynomial, divide_polynomial, groebner_basis, is_in_ideal, polynomial_from_expr
+from .groups import FiniteGroup, cyclic_group
+from .rings import FiniteRing, integers_modulo
+
+__all__ = ["FiniteField", "prime_field", "FiniteGroup", "FiniteRing", "cyclic_group",
+           "integers_modulo", "Polynomial", "divide_polynomial", "groebner_basis",
            "is_in_ideal", "polynomial_from_expr"]
 END FILE: src/nablamath/math/algebra/__init__.py
 
@@ -1115,7 +1141,6 @@ END FILE: src/nablamath/math/algebra/__init__.py
 BEGIN FILE: src/nablamath/math/algebra/extensions.py
 SHA256: 4bd3c9e60eaf4bfa9eef66a8d25b308b40063e069856d34096bcddead2ed9191
 LINES: 187
-====================================================================================================
 """Exact simple algebraic extensions ``Q(α)=Q[x]/(m(x))`` for degree 2/3."""
 
 from __future__ import annotations
@@ -1305,11 +1330,9 @@ class AlgebraicNumber:
 __all__ = ["AlgebraicField", "AlgebraicNumber", "Coefficients"]
 END FILE: src/nablamath/math/algebra/extensions.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/algebra/f4.py
 SHA256: 576af2d067f63c42ab1f84f3c23f9bd83400433ba28bdf2fd79804a4c3ed375f
 LINES: 233
-====================================================================================================
 """Exact F4-style Gröbner basis computation over the rationals.
 
 The implementation performs degree-batched critical-pair selection, symbolic
@@ -1545,11 +1568,9 @@ def f4_basis(generators: Sequence[Polynomial], *, order: MonomialOrder = "grevle
 __all__ = ["F4Result", "MacaulayMatrix", "build_macaulay_matrix", "f4_basis"]
 END FILE: src/nablamath/math/algebra/f4.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/algebra/f5.py
 SHA256: 90056be1d6e92b661b4100c959e6485d72e6fb85355d0509e5e7365ec321364a
 LINES: 181
-====================================================================================================
 """Signature-driven F5 reference algorithm with verified completion.
 
 This implementation uses position-over-term signatures, signature-safe reduction,
@@ -1733,7 +1754,6 @@ def f5_basis(generators: Sequence[Polynomial], *, order: MonomialOrder = "grevle
 __all__ = ["F5Result", "LabeledPolynomial", "Signature", "f5_basis"]
 END FILE: src/nablamath/math/algebra/f5.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/algebra/fields.py
 SHA256: 25f0620a1244faccf0d665c5cb2ece1f4473671292eeae84ee283450f729a8ac
 LINES: 38
@@ -2251,6 +2271,8 @@ END FILE: src/nablamath/math/algebra/rings.py
 BEGIN FILE: src/nablamath/math/analysis/__init__.py
 SHA256: 18b6e596b6a09f8e7e00a31888b0f16b1e22c4ab41c66a687f02c36fd15099d6
 LINES: 6
+SHA256: 3b11b6ca9c669f627aa39cf4e8c08cb290b6a19a70aedc6a06e9427eae29339d
+LINES: 5
 ====================================================================================================
 from .complex import from_polar, mobius, nth_roots, polar
 from .numerical import RootResult, derivative, newton, second_derivative, simpson
@@ -2258,6 +2280,7 @@ from .sequences import aitken_delta_squared, cauchy_tail_bound, monotonicity, pa
 from .real import bisection, trapezoid
 from .laurent import LaurentSeries, rational_laurent_series, rational_residue
 __all__ = ["LaurentSeries", "RootResult", "aitken_delta_squared", "bisection", "cauchy_tail_bound", "derivative", "from_polar", "mobius", "monotonicity", "newton", "nth_roots", "partial_sums", "polar", "rational_laurent_series", "rational_residue", "second_derivative", "simpson", "trapezoid"]
+__all__ = ["RootResult", "aitken_delta_squared", "bisection", "cauchy_tail_bound", "derivative", "from_polar", "mobius", "monotonicity", "newton", "nth_roots", "partial_sums", "polar", "second_derivative", "simpson", "trapezoid"]
 END FILE: src/nablamath/math/analysis/__init__.py
 
 ====================================================================================================
@@ -2298,7 +2321,6 @@ END FILE: src/nablamath/math/analysis/complex.py
 BEGIN FILE: src/nablamath/math/analysis/laurent.py
 SHA256: d47b82a7a772e9cd48cece8e13068a71f42fef83a48d1b923b553e3b915936f1
 LINES: 67
-====================================================================================================
 """Exact Laurent coefficients and residues of rational functions at rational points."""
 
 from __future__ import annotations
@@ -2368,7 +2390,6 @@ def rational_residue(numerator: Expr, denominator: Expr, variable: str,
 __all__ = ["LaurentSeries", "rational_laurent_series", "rational_residue"]
 END FILE: src/nablamath/math/analysis/laurent.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/analysis/numerical.py
 SHA256: fcddd46998259ec3079646db01a1d39aaf308b0a16fcc2580079b43ebd62b1f9
 LINES: 117
@@ -3227,12 +3248,16 @@ END FILE: src/nablamath/math/game_theory/normal_form.py
 BEGIN FILE: src/nablamath/math/geometry/__init__.py
 SHA256: 1a5153101fbf1920b0d509a5f8f0fa1d108ceb51b033172b7cb9242e484dba0d
 LINES: 5
-====================================================================================================
 from .convex import contains_convex, convex_hull, is_strictly_convex
 from .euclidean import Point2, orientation, polygon_twice_signed_area, squared_distance
 from .differential import DifferentialForm, coordinate_form, scalar_form
 from .riemannian import MetricJet, RiemannianPoint, riemannian_tensors
 __all__ = ["contains_convex", "convex_hull", "is_strictly_convex", "Point2", "orientation", "polygon_twice_signed_area", "squared_distance", "DifferentialForm", "MetricJet", "RiemannianPoint", "coordinate_form", "riemannian_tensors", "scalar_form"]
+SHA256: 3fe5232ed2bdf26fe9e6343dbb1c83c5ccb50a1e291aadc4b93708e57ea5e835
+LINES: 3
+from .convex import contains_convex, convex_hull, is_strictly_convex
+from .euclidean import Point2, orientation, polygon_twice_signed_area, squared_distance
+__all__ = ["contains_convex", "convex_hull", "is_strictly_convex", "Point2", "orientation", "polygon_twice_signed_area", "squared_distance"]
 END FILE: src/nablamath/math/geometry/__init__.py
 
 ====================================================================================================
@@ -3268,11 +3293,9 @@ def contains_convex(polygon:tuple[Point2,...],point:Point2)->bool:
 __all__=["contains_convex","convex_hull","is_strictly_convex"]
 END FILE: src/nablamath/math/geometry/convex.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/geometry/differential.py
 SHA256: a2199d72e2e7eceb93e87f580f0c5bd9e9abdca9a5093e92a699abd93eec3f4e
 LINES: 95
-====================================================================================================
 """Polynomial differential forms with exact wedge and exterior derivative."""
 
 from __future__ import annotations
@@ -3369,6 +3392,18 @@ def coordinate_form(variables: tuple[str, ...], index: int) -> DifferentialForm:
 
 __all__ = ["DifferentialForm", "coordinate_form", "scalar_form"]
 END FILE: src/nablamath/math/geometry/differential.py
+def is_strictly_convex(polygon:tuple[Point2,...])->bool:
+    if len(polygon)<3:return False
+    turns=[orientation(polygon[i-2],polygon[i-1],polygon[i]) for i in range(len(polygon))]
+    return all(turn>0 for turn in turns) or all(turn<0 for turn in turns)
+
+def contains_convex(polygon:tuple[Point2,...],point:Point2)->bool:
+    if len(polygon)<3 or polygon_twice_signed_area(polygon)==0: raise ValueError("polígono degenerado")
+    turns=[orientation(polygon[i],polygon[(i+1)%len(polygon)],point) for i in range(len(polygon))]
+    return all(turn>=0 for turn in turns) or all(turn<=0 for turn in turns)
+
+__all__=["contains_convex","convex_hull","is_strictly_convex"]
+END FILE: src/nablamath/math/geometry/convex.py
 
 ====================================================================================================
 BEGIN FILE: src/nablamath/math/geometry/euclidean.py
@@ -3411,7 +3446,6 @@ END FILE: src/nablamath/math/geometry/euclidean.py
 BEGIN FILE: src/nablamath/math/geometry/riemannian.py
 SHA256: 3e6b17254be5ea455378337b7057b310297da58598fddee0def06e76dbc10c08
 LINES: 122
-====================================================================================================
 """Exact coordinate Riemannian tensors from a metric's two-jet at a point."""
 
 from __future__ import annotations
@@ -3536,7 +3570,6 @@ def riemannian_tensors(jet: MetricJet) -> RiemannianPoint:
 __all__ = ["MetricJet", "RiemannianPoint", "riemannian_tensors"]
 END FILE: src/nablamath/math/geometry/riemannian.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/graph_theory/__init__.py
 SHA256: 69680fb6d71f831cafb2c71db16c494d526668ad390918c023e93933776b3a22
 LINES: 6
@@ -4122,7 +4155,6 @@ END FILE: src/nablamath/math/linear_algebra/matrices.py
 BEGIN FILE: src/nablamath/math/logic/__init__.py
 SHA256: fcfb0dcef6145aecc2b9292faece9d008b314586344ca5529fcfba1eb678e52a
 LINES: 20
-====================================================================================================
 from .first_order import Conjunction, Constant, Equal, Exists, ForAll, Function, Negation, Relation, Structure, Variable
 from .propositional import And, Iff, Implies, Not, Or, Var, equivalent, is_tautology, truth_table
 from .resolution import resolution_refutation, verify_resolution
@@ -4145,11 +4177,9 @@ __all__ = ["Conjunction", "Constant", "Equal", "Exists", "ForAll", "Function", "
            "verify_superposition"]
 END FILE: src/nablamath/math/logic/__init__.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/logic/cdcl.py
 SHA256: 53fba9f295b7dc5b8755ade7d6831c2f378e98ecdcea440a7a9eab8e045923eb
 LINES: 130
-====================================================================================================
 """Deterministic CDCL SAT with clause learning, VSIDS-like activity and restarts."""
 
 from __future__ import annotations
@@ -4282,7 +4312,13 @@ def solve_cdcl(clauses: Iterable[Iterable[int]], *, conflict_limit: int = 1_000_
 __all__ = ["CDCLResult", "solve_cdcl"]
 END FILE: src/nablamath/math/logic/cdcl.py
 
-====================================================================================================
+SHA256: 24fa6d92c1f3d86cccacd4100f0af1de49f9517e9a1fef07900e59f3c1f39668
+LINES: 3
+from .first_order import Conjunction, Constant, Equal, Exists, ForAll, Function, Negation, Relation, Structure, Variable
+from .propositional import And, Iff, Implies, Not, Or, Var, equivalent, is_tautology, truth_table
+__all__ = ["Conjunction", "Constant", "Equal", "Exists", "ForAll", "Function", "Negation", "Relation", "Structure", "Variable", "And", "Iff", "Implies", "Not", "Or", "Var", "equivalent", "is_tautology", "truth_table"]
+END FILE: src/nablamath/math/logic/__init__.py
+
 BEGIN FILE: src/nablamath/math/logic/first_order.py
 SHA256: 1d223533d254316d074a9a9580a22ec0ce31d306ef8a8fff26172cd3aa6e3fd5
 LINES: 110
@@ -4477,11 +4513,9 @@ def equivalent(left: Proposition, right: Proposition) -> bool:
 __all__ = ["And", "Iff", "Implies", "Not", "Or", "Proposition", "Var", "equivalent", "is_tautology", "truth_table"]
 END FILE: src/nablamath/math/logic/propositional.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/logic/resolution.py
 SHA256: 6163ef571100b508ffd8a5f820de71e02bae0786d13e85353407b82fc8c68f58
 LINES: 78
-====================================================================================================
 """Propositional resolution refutations with replayable proof steps."""
 
 from __future__ import annotations
@@ -4562,11 +4596,9 @@ def verify_resolution(initial: tuple[Clause, ...], proof: ResolutionProof) -> bo
 __all__ = ["ResolutionProof", "ResolutionStep", "resolution_refutation", "verify_resolution"]
 END FILE: src/nablamath/math/logic/resolution.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/logic/sat.py
 SHA256: b884133be4b72b90619791548521821122fb8dedd18686d757bd04b8b9a1dee0
 LINES: 118
-====================================================================================================
 """Bounded DPLL SAT solver with independently checkable assignments."""
 
 from __future__ import annotations
@@ -4687,11 +4719,9 @@ __all__ = ["CNF", "Clause", "Literal", "SATResult", "normalize_cnf", "solve_sat"
            "verify_assignment"]
 END FILE: src/nablamath/math/logic/sat.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/logic/smt_linear.py
 SHA256: ab53f78c314dc16f8fc5745d46746e4a4a7fb1811e2bb01473042b9265361526
 LINES: 82
-====================================================================================================
 """Exact quantifier-free linear rational arithmetic via Fourier–Motzkin."""
 
 from __future__ import annotations
@@ -4776,11 +4806,9 @@ def equality(coefficients: Mapping[str, Fraction | int], value: Fraction | int) 
 __all__ = ["LinearInequality", "LinearSMTResult", "equality", "solve_linear_rational"]
 END FILE: src/nablamath/math/logic/smt_linear.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/logic/smt_theories.py
 SHA256: 8cda41b950c4372f355dd817772e40902643fb4259ef31ce885c70180b911aaf
 LINES: 194
-====================================================================================================
 """Exact, independently checkable building blocks for bounded SMT theories.
 
 This module deliberately does not advertise a complete SMT solver.  It provides
@@ -4977,11 +5005,9 @@ __all__ = ["ArrayValue", "BitVector", "DifferenceConstraint", "DifferenceLogicRe
            "solve_integer_difference_logic", "verify_difference_result"]
 END FILE: src/nablamath/math/logic/smt_theories.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/logic/superposition.py
 SHA256: bcb6e8ce1ce1e49b1442453fd518640ddcfed3d9e8b1119788b82c99dcc71b75
 LINES: 280
-====================================================================================================
 """Bounded first-order resolution and equality superposition.
 
 The calculus works on already-clausified formulas.  It supplies occurs-check
@@ -5264,16 +5290,43 @@ __all__ = ["Atom", "FOClause", "FOLiteral", "FOTerm", "SuperpositionProof",
            "superposition_refutation", "unify", "variable", "verify_superposition"]
 END FILE: src/nablamath/math/logic/superposition.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/number_theory/__init__.py
 SHA256: b4081ed6bbda665724ee1ad2f616f4bb54efa87dffa347035f962b4e47368c14
 LINES: 5
-====================================================================================================
 from .congruences import chinese_remainder, solve_linear_congruence
 from .elementary import extended_gcd, is_prime, modular_inverse, prime_factors
 from .elliptic_curves import EllipticCurveFp
 from .primality import aks_is_prime, miller_rabin
 __all__ = ["EllipticCurveFp", "aks_is_prime", "chinese_remainder", "solve_linear_congruence", "extended_gcd", "is_prime", "miller_rabin", "modular_inverse", "prime_factors"]
+@dataclass(frozen=True)
+class Iff(Binary):
+    def evaluate(self, values: Mapping[str, bool]) -> bool: return self.left.evaluate(values) == self.right.evaluate(values)
+
+
+def truth_table(proposition: Proposition, *, max_variables: int = 16) -> tuple[tuple[dict[str, bool], bool], ...]:
+    names = sorted(proposition.variables())
+    if len(names) > max_variables: raise ValueError("tabela verdade excede o limite")
+    return tuple((dict(zip(names, values, strict=True)), proposition.evaluate(dict(zip(names, values, strict=True))))
+                 for values in product((False, True), repeat=len(names)))
+
+
+def is_tautology(proposition: Proposition) -> bool:
+    return all(result for _, result in truth_table(proposition))
+
+
+def equivalent(left: Proposition, right: Proposition) -> bool:
+    return is_tautology(Iff(left, right))
+
+
+__all__ = ["And", "Iff", "Implies", "Not", "Or", "Proposition", "Var", "equivalent", "is_tautology", "truth_table"]
+END FILE: src/nablamath/math/logic/propositional.py
+
+BEGIN FILE: src/nablamath/math/number_theory/__init__.py
+SHA256: 56eb1c2b2f9cf3d4b309931cfd6bf77cdc1bde14f48ee36063b882169e13b770
+LINES: 3
+from .congruences import chinese_remainder, solve_linear_congruence
+from .elementary import extended_gcd, is_prime, modular_inverse, prime_factors
+__all__ = ["chinese_remainder", "solve_linear_congruence", "extended_gcd", "is_prime", "modular_inverse", "prime_factors"]
 END FILE: src/nablamath/math/number_theory/__init__.py
 
 ====================================================================================================
@@ -5369,7 +5422,6 @@ END FILE: src/nablamath/math/number_theory/elementary.py
 BEGIN FILE: src/nablamath/math/number_theory/elliptic_curves.py
 SHA256: 4a5f49262a56e01a9c64b48f5b40a10122ef0de5354aeaea1db1b98092312c70
 LINES: 73
-====================================================================================================
 """Elliptic-curve group arithmetic over prime fields (not a crypto protocol)."""
 
 from __future__ import annotations
@@ -5445,11 +5497,9 @@ class EllipticCurveFp:
 __all__ = ["EllipticCurveFp", "Point"]
 END FILE: src/nablamath/math/number_theory/elliptic_curves.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/number_theory/primality.py
 SHA256: dfe1728bf68e4900077a4b2b50b7905d096b6e9f56fb2b3efb13b89159afa00e
 LINES: 125
-====================================================================================================
 """Deterministic 64-bit Miller–Rabin and bounded exact AKS."""
 
 from __future__ import annotations
@@ -5577,7 +5627,6 @@ def aks_is_prime(n: int, *, r_limit: int = 4_096,
 __all__ = ["aks_is_prime", "miller_rabin"]
 END FILE: src/nablamath/math/number_theory/primality.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/operations_research/__init__.py
 SHA256: 8693d39d4d56ac0a589dd15e15e2cf814a2395f7fb041c8867b9487e13ab9a1c
 LINES: 3
@@ -5965,6 +6014,8 @@ END FILE: src/nablamath/math/polynomials/univariate.py
 BEGIN FILE: src/nablamath/math/probability/__init__.py
 SHA256: da9d02fff51052fc73fad07a0f086d01f2d923de18156893c4ae54ffc04c6c78
 LINES: 7
+SHA256: 5202244810b14abcb10bdb5707ddd1b089fe18a9ef1756b1d98a9d2bad0f60bc
+LINES: 4
 ====================================================================================================
 from .markov import MarkovChain
 from .joint import first_marginal, independent, product_distribution, second_marginal
@@ -5975,11 +6026,9 @@ from .ito import ItoDifferential, ito_formula
 __all__ = ["ExponentialDistribution", "FiniteDistribution", "ItoDifferential", "MarkovChain", "NormalDistribution", "PoissonDistribution", "StochasticPath", "brownian_motion", "euler_maruyama", "first_marginal", "independent", "ito_formula", "product_distribution", "second_marginal"]
 END FILE: src/nablamath/math/probability/__init__.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/probability/continuous.py
 SHA256: 67116cad21e2a5e0801a1a83ad2042b0efbb92ca54779315a651b24d9f88ee72
 LINES: 88
-====================================================================================================
 """Validated continuous distributions with analytic moments and CDFs."""
 
 from __future__ import annotations
@@ -6070,7 +6119,9 @@ class PoissonDistribution:
 __all__ = ["ExponentialDistribution", "NormalDistribution", "PoissonDistribution"]
 END FILE: src/nablamath/math/probability/continuous.py
 
-====================================================================================================
+__all__ = ["MarkovChain", "first_marginal", "independent", "product_distribution", "second_marginal", "FiniteDistribution"]
+END FILE: src/nablamath/math/probability/__init__.py
+
 BEGIN FILE: src/nablamath/math/probability/finite.py
 SHA256: ef119b54f747cd900c40136952ac7af0b0b113cbda4bfac2512ce9566bf689ac
 LINES: 36
@@ -6117,7 +6168,6 @@ END FILE: src/nablamath/math/probability/finite.py
 BEGIN FILE: src/nablamath/math/probability/ito.py
 SHA256: 85c1d26efc4b936777482c2521a1cc03fa42cc76695c15fad170d4f4a0b1ea63
 LINES: 46
-====================================================================================================
 """Exact symbolic Itô formula for polynomial time/state functions."""
 
 from __future__ import annotations
@@ -6166,7 +6216,6 @@ def ito_formula(function: Polynomial, drift: Polynomial,
 __all__ = ["ItoDifferential", "ito_formula"]
 END FILE: src/nablamath/math/probability/ito.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/probability/joint.py
 SHA256: 244347f813e99c59b7fc81acad77b9516d55423dbc1d0b2c7b98747a585116d5
 LINES: 33
@@ -6247,7 +6296,6 @@ END FILE: src/nablamath/math/probability/markov.py
 BEGIN FILE: src/nablamath/math/probability/stochastic.py
 SHA256: 0282385b14cb8cdd5f4886c289874d73617354fb57009c60a5695ab1b09ab92a
 LINES: 44
-====================================================================================================
 """Reproducible Brownian paths and Euler–Maruyama Itô SDE integration."""
 
 from __future__ import annotations
@@ -6294,7 +6342,6 @@ def brownian_motion(duration: float, steps: int, *, seed: int = 0) -> Stochastic
 __all__ = ["StochasticPath", "brownian_motion", "euler_maruyama"]
 END FILE: src/nablamath/math/probability/stochastic.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/set_theory/__init__.py
 SHA256: 433aa8e07e97b0175f0e380327ea72b7def23bc9b3fb5f62c3a6da71cf640681
 LINES: 2
@@ -6583,11 +6630,15 @@ END FILE: src/nablamath/math/statistics/time_series.py
 BEGIN FILE: src/nablamath/math/topology/__init__.py
 SHA256: c3a7f1c97b38bc41bbd541fb84a55bb621d53ab8576297e77f70e845fb40cd1c
 LINES: 4
-====================================================================================================
 from .operations import boundary, closure, interior, is_connected, subspace
 from .general import FiniteTopology
 from .homology import SimplicialComplex
 __all__ = ["boundary", "closure", "interior", "is_connected", "subspace", "FiniteTopology", "SimplicialComplex"]
+SHA256: 6dc3b2932f164bc0774eac4e19d28e315135c8a913b52c833869c4df2ff2b101
+LINES: 3
+from .operations import boundary, closure, interior, is_connected, subspace
+from .general import FiniteTopology
+__all__ = ["boundary", "closure", "interior", "is_connected", "subspace", "FiniteTopology"]
 END FILE: src/nablamath/math/topology/__init__.py
 
 ====================================================================================================
@@ -6628,7 +6679,6 @@ END FILE: src/nablamath/math/topology/general.py
 BEGIN FILE: src/nablamath/math/topology/homology.py
 SHA256: 4ea94259bcfe0b057d72b1f8cdaa7c7b854f086d6862a3d1cf64d14954a3d2a1
 LINES: 112
-====================================================================================================
 """Finite simplicial complexes, rational homology and 1D fundamental groups."""
 
 from __future__ import annotations
@@ -6743,7 +6793,6 @@ class SimplicialComplex:
 __all__ = ["Simplex", "SimplicialComplex", "Vertex"]
 END FILE: src/nablamath/math/topology/homology.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/math/topology/operations.py
 SHA256: a57a4e55fcec06ac31ccbdf7d9a0b7cf92f4a7e184890165507e50bfe7501741
 LINES: 30
@@ -7450,6 +7499,8 @@ END FILE: src/nablamath/schema/units.py
 BEGIN FILE: src/nablamath/symbolic/__init__.py
 SHA256: faa37965fb8f37c5be0ca6406de1a13e41dcd4de2d283973676525dd2f54214e
 LINES: 25
+SHA256: aabb7afca9d1b63480c34f4b551eab7aeffd8ed767d4fe19f40746c4350e045c
+LINES: 13
 ====================================================================================================
 from .parser import parse
 from .derive import derive
@@ -7521,7 +7572,6 @@ END FILE: src/nablamath/symbolic/derive.py
 BEGIN FILE: src/nablamath/symbolic/differentiate.py
 SHA256: 1c29c567ef96f25ff5a31d81d45bc054efd37cb903eb42cca1231315259d26ff
 LINES: 136
-====================================================================================================
 """Exact symbolic differentiation for the complete rational-expression AST."""
 
 from __future__ import annotations
@@ -7660,7 +7710,6 @@ def differentiate(expr: Expr, variable: str) -> DerivativeResult:
 __all__ = ["DerivativeResult", "DerivativeStep", "differentiate"]
 END FILE: src/nablamath/symbolic/differentiate.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/symbolic/egraph.py
 SHA256: f0763d2e1b58dfe7997790e164074d1a277fea68954579ea9effa67b845d7fab
 LINES: 356
@@ -8027,7 +8076,6 @@ END FILE: src/nablamath/symbolic/egraph.py
 BEGIN FILE: src/nablamath/symbolic/integrate.py
 SHA256: 691599c603c3a99ae987d8a4c70f737335ebf55264484ee6471615a90cf4b769
 LINES: 55
-====================================================================================================
 """Exact symbolic antiderivatives for the declared rational-polynomial subset."""
 
 from __future__ import annotations
@@ -8085,7 +8133,6 @@ def integrate_polynomial(expr: Expr, variable: str) -> IntegrationCertificate:
 __all__ = ["IntegrationCertificate", "integrate_polynomial"]
 END FILE: src/nablamath/symbolic/integrate.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/symbolic/parser.py
 SHA256: 7ffb2355d0eec0e9506c4f65a02d6f24b06877cee7bf9efb11ac1c1e9118969c
 LINES: 7
@@ -8117,11 +8164,9 @@ def rewrite_once(expr: Expr) -> tuple[Expr, str, tuple[Expr, ...]] | None:
     return _rewrite(expr)
 END FILE: src/nablamath/symbolic/rules.py
 
-====================================================================================================
 BEGIN FILE: src/nablamath/symbolic/series.py
 SHA256: e58930eb6a949fc9a875d8012daa493de787554bd3e62a3c31cf728d75bb2d4d
 LINES: 99
-====================================================================================================
 """Exact finite-point limits and Taylor jets for rational-expression ASTs."""
 
 from __future__ import annotations
