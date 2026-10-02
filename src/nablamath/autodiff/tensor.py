@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import product
-from math import exp as _exp, isfinite, log as _log, prod as _tanh
+from math import exp as _exp, isfinite, log as _log, prod, tanh as _tanh
 from typing import Callable, Iterable, Sequence
 
 Shape = tuple[int, ...]
