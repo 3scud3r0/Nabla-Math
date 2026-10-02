@@ -47,6 +47,8 @@ nabla orbit --altitude-m 400000 --svg orbit.svg
 nabla fluid --radius-m .01 --length-m 2 --pressure-pa 5 --viscosity-pa-s 1 --density-kg-m3 1000
 nabla export lote.jsonl --db minha.sqlite3
 nabla import lote.jsonl --db outro.sqlite3
+nabla backup backup.sqlite3 --db minha.sqlite3
+nabla restore backup.sqlite3 --db restaurado.sqlite3
 ```
 
 ```python
