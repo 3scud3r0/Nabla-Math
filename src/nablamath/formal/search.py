@@ -106,8 +106,9 @@ def search_rule_proof(rule: RewriteRule, project: Path, *, timeout_s: int = 60) 
     return search_universal_proof(lhs, rhs, project, nonzero=nonzero, theorem_name=safe_name, timeout_s=timeout_s)
 
 
-def verify_ruleset_with_lean(rules: Iterable[RewriteRule], project: Path, *, timeout_s: int = 60)
-        -> tuple[tuple[str, ProofSearchResult], ...]:
+def verify_ruleset_with_lean(
+    rules: Iterable[RewriteRule], project: Path, *, timeout_s: int = 60
+) -> tuple[tuple[str, ProofSearchResult], ...]:
     return tuple((rule.name, search_rule_proof(rule, project, timeout_s=timeout_s)) for rule in rules)
 
 
