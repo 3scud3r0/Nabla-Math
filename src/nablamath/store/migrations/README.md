@@ -1,3 +1,8 @@
 # Migrações SQLite
 
-`schema_version=1` é a única versão aceitada pelo leitor atual. Não sobrescreva um registro existente: exporte e revalide o lote original, construa um banco novo para a versão seguinte e guarde as ligações de IDs antigos/novos. A migração deve ser transacional, reversível por backup e testada com casos de falha. Não existe migração automática para esquema ainda não definido.
+`PRAGMA user_version=1` é a versão atual. `migrate()` aplica `0001_initial.py`
+de forma idempotente a bancos alpha com versão zero e recusa versões futuras. Toda
+próxima migração deve ter número monotônico, executar em transação, preservar IDs e
+incluir fixtures de upgrade e falha. Use `store.backup.backup_database` antes de
+migrar e `restore_database` para recuperação verificada por hash; restauração nunca
+sobrescreve um banco existente.

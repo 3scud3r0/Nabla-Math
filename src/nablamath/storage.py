@@ -9,6 +9,7 @@ from contextlib import closing
 
 from .research import ResearchResult
 from .research import calculate
+from .store.migrations import migrate
 
 
 def save_result(path: str | Path, result: ResearchResult) -> bool:
@@ -17,13 +18,7 @@ def save_result(path: str | Path, result: ResearchResult) -> bool:
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(result.to_data(), ensure_ascii=False, sort_keys=True)
     with closing(sqlite3.connect(path)) as connection, connection:
-        connection.execute("""
-            CREATE TABLE IF NOT EXISTS results (
-                content_id TEXT PRIMARY KEY,
-                payload TEXT NOT NULL,
-                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-            )
-        """)
+        migrate(connection)
         existing = connection.execute("SELECT payload FROM results WHERE content_id=?", (result.content_id,)).fetchone()
         if existing is not None:
             if existing[0] != payload:
@@ -37,6 +32,7 @@ def load_result(path: str | Path, identifier: str) -> dict | None:
     if not Path(path).is_file():
         return None
     with closing(sqlite3.connect(path)) as connection, connection:
+        migrate(connection)
         try:
             row = connection.execute("SELECT payload FROM results WHERE content_id=?", (identifier,)).fetchone()
         except sqlite3.OperationalError as exc:
@@ -62,6 +58,7 @@ def export_verified(path: str | Path, destination: str | Path) -> tuple[int, str
     destination = Path(destination)
     destination.parent.mkdir(parents=True, exist_ok=True)
     with closing(sqlite3.connect(path)) as connection, connection:
+        migrate(connection)
         rows = connection.execute("SELECT payload FROM results ORDER BY content_id").fetchall()
     data = []
     for (raw,) in rows:
@@ -107,9 +104,7 @@ def import_snapshot(path: str | Path, source: str | Path) -> tuple[int, int]:
     path.parent.mkdir(parents=True, exist_ok=True)
     inserted = 0
     with closing(sqlite3.connect(path)) as connection, connection:
-        connection.execute("""CREATE TABLE IF NOT EXISTS results (
-            content_id TEXT PRIMARY KEY, payload TEXT NOT NULL,
-            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)""")
+        migrate(connection)
         for item in records:
             payload = json.dumps(item, ensure_ascii=False, sort_keys=True)
             existing = connection.execute("SELECT payload FROM results WHERE content_id=?",

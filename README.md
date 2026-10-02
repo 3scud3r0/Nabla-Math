@@ -8,7 +8,7 @@
 
 | Função | Escopo comprovável | Limite atual |
 | --- | --- | --- |
-| Cálculo e etapas | Avaliação racional exata, condições de domínio, SQLite e relatório `.tex` | Poucas regras algébricas; não é álgebra computacional geral |
+| Cálculo e etapas | Avaliação racional exata, condições de domínio, e-graph limitado, SQLite e relatório `.tex` | Conjunto inicial de regras; não é álgebra computacional geral |
 | Lean 4 | Provas de instâncias racionais específicas, com Lake/Mathlib opcionais | Não formaliza automaticamente qualquer identidade ou teoria física |
 | Física | Órbita ideal de dois corpos, propagação radial reduzida e fluxo laminar analítico | Não é CFD ou dinâmica orbital perturbada validada experimentalmente |
 | Dados | Exportação/importação reexecutáveis, SHA-256, deduplicação, card e aprovação para upload | Não há snapshot científico público confirmado nem avaliação de ganho em treino |
@@ -47,6 +47,8 @@ nabla orbit --altitude-m 400000 --svg orbit.svg
 nabla fluid --radius-m .01 --length-m 2 --pressure-pa 5 --viscosity-pa-s 1 --density-kg-m3 1000
 nabla export lote.jsonl --db minha.sqlite3
 nabla import lote.jsonl --db outro.sqlite3
+nabla backup backup.sqlite3 --db minha.sqlite3
+nabla restore backup.sqlite3 --db restaurado.sqlite3
 ```
 
 ```python
@@ -55,6 +57,31 @@ result = calculate("(x+x)/x", {"x": 3})
 print(result.value)            # 2, exatamente
 print(result.to_data()["assumptions"])  # ['x != 0']
 ```
+
+O módulo simbólico também oferece **saturação de igualdades auditável**. Em vez de
+reescrever uma árvore destrutivamente, ele preserva formas equivalentes em um
+e-graph, registra cada união e extrai a forma de menor custo para o backend:
+
+```python
+from nablamath.symbolic import parse, saturate
+
+optimized = saturate(
+    parse("a*b + a*c"),
+    operation_costs={"*": 10, "+": 1, "symbol": 0},
+    iteration_limit=8,
+    node_limit=2_000,
+)
+print(optimized.expression)  # a * (b + c), em AST tipada
+print(optimized.proof)       # trilha das igualdades aplicadas
+print(optimized.stop_reason) # saturated, node_limit ou iteration_limit
+print(optimized.content_id)  # SHA-256 do registro de auditoria reproduzível
+```
+
+`node_limit` é um teto rígido, inclusive durante uma passagem de regras; custos
+negativos, infinitos ou `NaN` são rejeitados para manter a extração bem definida.
+Os limites evitam explosão combinatória. As regras padrão são conservadoras com
+o domínio: por exemplo, não reduzem `0 * (1/x)` a zero, pois isso esconderia a
+singularidade em `x=0`.
 
 O primeiro exemplo simplifica `x+x` para `2x` e cancela `x` **somente se `x ≠ 0`**. A avaliação para `x=3` é exata; isso não prova uma lei universal sem hipóteses.
 
