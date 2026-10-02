@@ -1,4 +1,5 @@
 import json
+from contextlib import closing
 from pathlib import Path
 import sqlite3
 import tempfile
@@ -22,6 +23,7 @@ class BackupRestoreTests(unittest.TestCase):
             self.assertEqual(receipt.sha256, restored_receipt.sha256)
             self.assertEqual(load_result(restored, result.content_id), result.to_data())
             with sqlite3.connect(restored) as connection:
+            with closing(sqlite3.connect(restored)) as connection, connection:
                 self.assertEqual(connection.execute("PRAGMA user_version").fetchone()[0], 1)
 
     def test_restore_refuses_tampering_and_overwrite(self):
@@ -42,6 +44,7 @@ class BackupRestoreTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             database = Path(directory) / "future.db"
             with sqlite3.connect(database) as connection:
+            with closing(sqlite3.connect(database)) as connection, connection:
                 connection.execute("PRAGMA user_version=999")
             with self.assertRaises(RuntimeError):
                 save_result(database, calculate("1+1", {}))
