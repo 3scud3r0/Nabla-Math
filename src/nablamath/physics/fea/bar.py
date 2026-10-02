@@ -40,8 +40,9 @@ def solve_linear_system(matrix: Sequence[Sequence[Scalar]], rhs: Sequence[Scalar
     return tuple(x)
 
 
-def assemble_uniform_bar(length_m: float, area_m2: Scalar, young_pa: Scalar, elements: int)
-        -> tuple[tuple[Scalar, ...], ...]:
+def assemble_uniform_bar(
+    length_m: float, area_m2: Scalar, young_pa: Scalar, elements: int
+) -> tuple[tuple[Scalar, ...], ...]:
     if not math.isfinite(length_m) or length_m <= 0:
         raise ValueError("Comprimento deve ser positivo e finito")
     if isinstance(elements, bool) or not isinstance(elements, int) or not 1 <= elements <= 10000:
