@@ -65,9 +65,10 @@ class SolutionBundle:
         return bool(required) and all(item.outcome == "passed" for item in required)
 
 
-def solve_expression(entity: ExpressionEntity, values: Mapping[str, Fraction | int | str], *,
-                     formal_project: Path | None = None, operation_costs: Mapping[str, float] | None = None)
-        -> SolutionBundle:
+def solve_expression(
+    entity: ExpressionEntity, values: Mapping[str, Fraction | int | str], *,
+    formal_project: Path | None = None, operation_costs: Mapping[str, float] | None = None
+) -> SolutionBundle:
     exact = entity.evaluate(values)
     optimized = entity.optimize(operation_costs=operation_costs)
     if not optimized.certificate_verified:
