@@ -18,6 +18,7 @@ accelerate = ["jax"]
 
 [project.scripts]
 nabla = "nablamath.cli:main"
+nabla-lab = "nablamath.singularity.interfaces.terminal:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

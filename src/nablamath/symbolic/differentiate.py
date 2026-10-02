@@ -1,3 +1,5 @@
+"""Exact symbolic differentiation for the complete rational-expression AST."""
+
 """Exact symbolic differentiation for the restricted rational expression AST."""
 from __future__ import annotations
 
@@ -12,6 +14,11 @@ ZERO = Number(Fraction(0))
 ONE = Number(Fraction(1))
 
 
+@dataclass(frozen=True)
+class DerivativeStep:
+    rule: str
+    source: Expr
+    result: Expr
 def _mul(a: Expr, b: Expr) -> Expr:
     if isinstance(a, Number) and a.value == 0:
         return ZERO
@@ -48,6 +55,119 @@ def _pow(base: Expr, exponent: int) -> Expr:
 
 @dataclass(frozen=True)
 class DerivativeResult:
+    variable: str
+    expression: Expr
+    derivative: Expr
+    steps: tuple[DerivativeStep, ...]
+    required_nonzero: tuple[Expr, ...]
+
+
+def _number(value: int | Fraction) -> Number:
+    return Number(Fraction(value))
+
+
+def _simplify(expr: Expr) -> Expr:
+    if not isinstance(expr, Binary):
+        return expr
+    left, right = _simplify(expr.left), _simplify(expr.right)
+    if isinstance(left, Number) and isinstance(right, Number):
+        if expr.op == "+":
+            return Number(left.value + right.value)
+        if expr.op == "-":
+            return Number(left.value - right.value)
+        if expr.op == "*":
+            return Number(left.value * right.value)
+        if expr.op == "/" and right.value:
+            return Number(left.value / right.value)
+        if expr.op == "**" and right.value.denominator == 1 and not (
+            left.value == 0 and right.value <= 0
+        ):
+            return Number(left.value ** right.value.numerator)
+    if expr.op == "+":
+        if left == ZERO:
+            return right
+        if right == ZERO:
+            return left
+    if expr.op == "-" and right == ZERO:
+        return left
+    if expr.op == "*":
+        if left == ZERO or right == ZERO:
+            return ZERO
+        if left == ONE:
+            return right
+        if right == ONE:
+            return left
+    if expr.op == "/" and right == ONE:
+        return left
+    if expr.op == "**" and right == ONE:
+        return left
+    return Binary(expr.op, left, right)
+
+
+def differentiate(expr: Expr, variable: str) -> DerivativeResult:
+    """Differentiate numbers, symbols, arithmetic and literal integer powers."""
+    if not variable.isidentifier():
+        raise ValueError("Variável inválida")
+    steps: list[DerivativeStep] = []
+    constraints: list[Expr] = []
+
+    def collect_domain(node: Expr) -> None:
+        if not isinstance(node, Binary):
+            return
+        if node.op == "/" and node.right not in constraints:
+            constraints.append(node.right)
+        if (node.op == "**" and isinstance(node.right, Number)
+                and node.right.value < 0 and node.left not in constraints):
+            constraints.append(node.left)
+        collect_domain(node.left)
+        collect_domain(node.right)
+
+    collect_domain(expr)
+
+    def visit(node: Expr) -> Expr:
+        if isinstance(node, Number):
+            result = ZERO
+            steps.append(DerivativeStep("constant", node, result))
+            return result
+        if isinstance(node, Symbol):
+            result = ONE if node.name == variable else ZERO
+            steps.append(DerivativeStep("symbol", node, result))
+            return result
+        left_derivative, right_derivative = visit(node.left), visit(node.right)
+        if node.op == "+":
+            result = Binary("+", left_derivative, right_derivative)
+            rule = "sum"
+        elif node.op == "-":
+            result = Binary("-", left_derivative, right_derivative)
+            rule = "difference"
+        elif node.op == "*":
+            result = Binary("+", Binary("*", left_derivative, node.right),
+                            Binary("*", node.left, right_derivative))
+            rule = "product"
+        elif node.op == "/":
+            numerator = Binary("-", Binary("*", left_derivative, node.right),
+                               Binary("*", node.left, right_derivative))
+            result = Binary("/", numerator, Binary("**", node.right, _number(2)))
+            rule = "quotient"
+        elif node.op == "**":
+            if not isinstance(node.right, Number) or node.right.value.denominator != 1:
+                raise ValueError("Derivação de potência requer expoente inteiro literal")
+            exponent = node.right.value.numerator
+            result = Binary("*", Binary("*", _number(exponent),
+                                         Binary("**", node.left, _number(exponent - 1))),
+                            left_derivative)
+            rule = "integer_power"
+        else:
+            raise ValueError(f"Operador sem regra de derivação: {node.op}")
+        result = _simplify(result)
+        steps.append(DerivativeStep(rule, node, result))
+        return result
+
+    derivative = visit(expr)
+    return DerivativeResult(variable, expr, derivative, tuple(steps), tuple(constraints))
+
+
+__all__ = ["DerivativeResult", "DerivativeStep", "differentiate"]
     expression: Expr
     derivative: Expr
     variable: str

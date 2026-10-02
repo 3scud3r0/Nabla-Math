@@ -103,6 +103,13 @@ caminho, número de linhas e SHA-256. Regenere-o com
 `python tools/build_math_bundle.py --check`; o bundle é artefato de distribuição,
 não uma segunda fonte editável nem uma alegação de que “toda a matemática” acabou.
 
+O [laboratório autônomo limitado](docs/AUTONOMOUS_RESEARCH_LAB.md) materializa a
+arquitetura de planejador, memória, agentes, experimentos, crítica, avaliação e
+orquestração em componentes declarativos. `nablamath.gpu` acrescenta pontos de
+integração para redução modular/F4, e-graphs compactados, MCTS em lote, guia INT8 e
+buffers de dispositivo, sempre com fallback CPU explicitamente identificado. Não
+há alegação de singularidade nem execução CUDA sem um backend real e benchmark.
+
 ## Estrutura
 
 | Diretório | Responsabilidade |

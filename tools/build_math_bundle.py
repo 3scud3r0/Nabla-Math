@@ -19,6 +19,7 @@ DIRECTORIES = (
     ROOT / "src/nablamath/numeric",
     ROOT / "src/nablamath/autodiff",
     ROOT / "src/nablamath/physics",
+    ROOT / "src/nablamath/gpu",
     ROOT / "lean",
 )
 FILES = (
